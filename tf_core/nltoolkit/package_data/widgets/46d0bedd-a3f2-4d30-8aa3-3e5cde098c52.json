@@ -1,0 +1,158 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e0d0faae-f4c8-4808-ba25-57dc334a05f6", 
+      "treeview_image": "", 
+      "uid": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TODO", 
+      "static_image": "", 
+      "action": "extract_annotations_from_IOB_tags", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 2, 
+      "name": "Extract Annotations from IOB tags"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "Element's Annotation", 
+      "short_name": "str", 
+      "default": "Token", 
+      "description": "Tokens which feature's will be used in extraction.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "25053e7b-e988-4a69-b420-d887f638cf40"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "Sentence's Annotation", 
+      "short_name": "str", 
+      "default": "Sentence", 
+      "description": "Tokens which will be used to group element annotations.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "group_annotation", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "36a5fd3a-ba95-4c1f-ae09-1bb6691ec056"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "POS Feature Name", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "Element Annotations' POS Tag Feature Names ", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_pos_feature_name", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "4bdacaff-f5fd-427c-a1cd-57a36947dc01"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "Annotation to be produced", 
+      "short_name": "str", 
+      "default": "Chunk", 
+      "description": "The prefix for annotation of newly discovered tokens. Annotations names will be constructed as a combinations of this prefix and the label type e.x. \"Chunk_NP\"", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_annotation", 
+      "parameter": true, 
+      "order": 7, 
+      "uid": "87fcd150-24b2-4d2d-a252-af46a7bfb98e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "IOB Feature Name", 
+      "short_name": "str", 
+      "default": "IOB Tag", 
+      "description": "Element Annotations' IOB Tag Feature Names ", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_iob_feature_name", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "cbab0434-3377-47ea-9041-7fca03dd371d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "cc28a683-f21f-4af7-9ca4-9d6645dab9e6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "Grammar Labels to be extracted", 
+      "short_name": "str", 
+      "default": "NP,VP", 
+      "description": "Grammar labels which will be extracted from the text as new annotations (NP,PP,VP), separated by a comma. NP - noun phrases, VP - verb phrases.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "labels", 
+      "parameter": true, 
+      "order": 6, 
+      "uid": "f9bcff30-c923-43f7-90b8-4f380ae85035"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "46d0bedd-a3f2-4d30-8aa3-3e5cde098c52", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "0eab1c83-09a1-4cfd-b183-35a27cc02a6a"
+    }
+  }
+]

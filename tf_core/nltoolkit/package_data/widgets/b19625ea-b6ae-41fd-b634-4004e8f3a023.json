@@ -1,0 +1,262 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "6091637f-b3cd-4559-b525-18357b02dbc2", 
+      "treeview_image": "", 
+      "uid": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "The Construct BoW Dataset and BoW Model Constructor widget takes as an input an ADC data object and generates a  BowModelConstructor instance. This object contains settings which allow repetition of the feature construction steps on another document corpus. These settings include the inputted parameters, as well as the learned term weights and vocabulary. The widget takes as an input also several user defined parameters, such as weighting type, minimum word frequency, ngram length ...", 
+      "static_image": "bow_space_image.png", 
+      "action": "construct_bow_model_constructor", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Construct BoW Model Constructor"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Feature Name", 
+      "short_name": "str", 
+      "default": "Stem", 
+      "description": "If present, the model will be constructed out of annotations' feature values instead of document text. For example, this is useful when we wish build the BoW model using stems instead of the original word forms.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "stem_feature_name", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "227440af-112c-4c59-aada-4b996724f024"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Cut Low Weights Percentage", 
+      "short_name": "dbl", 
+      "default": "0.2", 
+      "description": "System.Double", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "cutLowWeightsPerc", 
+      "parameter": true, 
+      "order": 10, 
+      "uid": "280e1f61-3a39-4e35-9804-f1e2b463ff5e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Token Annotation", 
+      "short_name": "str", 
+      "default": "Token", 
+      "description": "This is the type of Annotation instances, which mark parts of the document (e.g., words, sentences or a terms), which will be used for generating the vocabulary and the dataset.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "token_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "2ad719d7-5814-4c04-8c9d-54354898e513"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "83025d2e-9a79-4af4-95eb-40082357c925"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Controlled Vocabulary", 
+      "short_name": "voc", 
+      "default": "", 
+      "description": "List of terms which will be used for building the vocabulary. Parameter 'Maximum N-gram Length' from in this widget is also applied to the vocabulary. The final vocabulary is the intersection of the controlled vocabulary and the dataset vocabulary.", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "vocabulary", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "926736d9-3994-4b91-9fa2-d4554ae31809"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Word Weighting Type", 
+      "short_name": "wwt", 
+      "default": "tf_idf", 
+      "description": "The user can select among various weighting models for assigning weights to features", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "word_weight_type", 
+      "parameter": true, 
+      "order": 9, 
+      "uid": "a19b8a57-5131-4da1-90e2-3ff408896c0e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Maximum N-Gram Length", 
+      "short_name": "int", 
+      "default": "2", 
+      "description": "The upper boundary of the range of n-values for different n-grams to be extracted. All values of n such that 1 <= n <= max_ngram will be used.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "max_ngram_len", 
+      "parameter": true, 
+      "order": 7, 
+      "uid": "c81f1943-8c9e-49b1-9b27-f9bd9545e8fa"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Minimum Word Freqency", 
+      "short_name": "dbl", 
+      "default": "5", 
+      "description": "When building the vocabulary ignore terms that have a term frequency strictly lower than the given threshold. This value is also called cut-off in the literature.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "min_word_freq", 
+      "parameter": true, 
+      "order": 8, 
+      "uid": "c99c3bd6-4bea-46c8-a349-0b2f92b5fe0d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Normalize Vectors", 
+      "short_name": "bol", 
+      "default": "true", 
+      "description": "The weighting methods can be further modified by vector normalization. If the user opts to use it in TextFlows the L2 regularization is performed.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "normalize_vectors", 
+      "parameter": true, 
+      "order": 11, 
+      "uid": "d6fe3225-e492-4f20-9817-3fb5137e97bc"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Stopword Feature Name", 
+      "short_name": "str", 
+      "default": "StopWord", 
+      "description": "This is an annotation feature name which was used to tag tokens as stop words. These tokens will be excluded from the BoW representational model. If blank, no stop words will be used.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "stop_word_feature_name", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "de3e1211-57bd-44b3-b09e-ecefb0df3438"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Label Document Feature Name", 
+      "short_name": "str", 
+      "default": "Labels", 
+      "description": "This is the name of the document feature which will be used for class labeling examples in the dataset. If blank, the generated sparse dataset will be unlabeled.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "label_doc_feature_name", 
+      "parameter": true, 
+      "order": 6, 
+      "uid": "febec116-4be4-442c-8595-7bd1887a4504"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "b19625ea-b6ae-41fd-b634-4004e8f3a023", 
+      "name": "Bag of Words Model Constructor", 
+      "short_name": "bmc", 
+      "description": "Bag of Words Model Constructor (BowModelConstructor) gathers utilities to build feature vectors from annotated document corpus.", 
+      "variable": "bow_model_constructor", 
+      "order": 1, 
+      "uid": "931dfa80-c03b-4980-ac16-6a55445f9d9c"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Term Frequency", 
+      "uid": "0d60555f-c4ab-44f2-935f-954ba5f0e071", 
+      "value": "term_freq", 
+      "abstract_input": "a19b8a57-5131-4da1-90e2-3ff408896c0e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "TF-IDF Safe", 
+      "uid": "23cbc095-e669-49e1-a2ba-099d1a4810d9", 
+      "value": "tf_idf_safe", 
+      "abstract_input": "a19b8a57-5131-4da1-90e2-3ff408896c0e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "TF-IDF", 
+      "uid": "719cadef-97db-49d9-bd10-3f387f5c5741", 
+      "value": "tf_idf", 
+      "abstract_input": "a19b8a57-5131-4da1-90e2-3ff408896c0e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Log Df TF-IDF", 
+      "uid": "dda48651-76a6-4196-ad2b-426096076037", 
+      "value": "log_df_tf_idf", 
+      "abstract_input": "a19b8a57-5131-4da1-90e2-3ff408896c0e"
+    }
+  }
+]

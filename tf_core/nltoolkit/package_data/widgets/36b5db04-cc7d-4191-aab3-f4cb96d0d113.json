@@ -1,0 +1,90 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "f6b2571e-7e11-4e4c-86ed-da403217b9ec", 
+      "treeview_image": "", 
+      "uid": "36b5db04-cc7d-4191-aab3-f4cb96d0d113", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "", 
+      "static_image": "", 
+      "action": "nltk_ngram_chunker", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "N-gram Chunker"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "36b5db04-cc7d-4191-aab3-f4cb96d0d113", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "default": "", 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "5b44a482-f819-4b21-b3ce-db61b9b5cf8c"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "36b5db04-cc7d-4191-aab3-f4cb96d0d113", 
+      "name": "N-gram", 
+      "short_name": "nnn", 
+      "default": "1", 
+      "description": "N-gram is a contiguous sequence of n items from a given sequence of text or speech.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "n", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "87b2f866-8635-4d5a-81e5-8cae7025c6b0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "36b5db04-cc7d-4191-aab3-f4cb96d0d113", 
+      "name": "Backoff Chunker", 
+      "short_name": "chk", 
+      "default": "", 
+      "description": "A backoff chunker, to be used by the new chunker if it encounters an unknown context.", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "backoff_chunker", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "e410bb5d-7ebc-45a1-acf8-353dd200e12b"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "36b5db04-cc7d-4191-aab3-f4cb96d0d113", 
+      "name": "Chunker", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the Chunker object and its arguments.", 
+      "variable": "chunker", 
+      "order": 1, 
+      "uid": "368d37c9-9bad-41a1-b401-192a9a12e831"
+    }
+  }
+]

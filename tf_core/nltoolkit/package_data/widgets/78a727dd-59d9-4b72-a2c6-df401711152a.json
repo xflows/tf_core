@@ -1,0 +1,102 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "7232a2da-88f5-4799-802d-2410ed6f9946", 
+      "treeview_image": "", 
+      "uid": "78a727dd-59d9-4b72-a2c6-df401711152a", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TODO", 
+      "static_image": "token_word_do_image.png", 
+      "action": "triplet_extraction_hub", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Triplet Extraction Hub"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "78a727dd-59d9-4b72-a2c6-df401711152a", 
+      "name": "Annotation to be tokenized", 
+      "short_name": "ann", 
+      "default": "Sentence", 
+      "description": "Which annotated part of document to be splitted.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "input_annotation", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "8b9bbd45-4f58-47ca-9dae-2a700c987c7e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "78a727dd-59d9-4b72-a2c6-df401711152a", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "d8990c7d-f443-4b0b-91a4-2aee7aff78b2"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "78a727dd-59d9-4b72-a2c6-df401711152a", 
+      "name": "Annotation to be produced", 
+      "short_name": "ann", 
+      "default": "Triplet", 
+      "description": "How to annotate the newly discovered tokens.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "ea0ae84a-93d7-4d49-914d-d4332fbf126e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "78a727dd-59d9-4b72-a2c6-df401711152a", 
+      "name": "Triplets", 
+      "short_name": "tri", 
+      "description": "List of triplets from all documents.", 
+      "variable": "triplets", 
+      "order": 2, 
+      "uid": "55c25515-125e-444e-8bed-a5a4747a6d59"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "78a727dd-59d9-4b72-a2c6-df401711152a", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "e9ee479a-7981-4512-beab-8b4cebebcb0e"
+    }
+  }
+]

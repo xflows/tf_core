@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
+      "treeview_image": "", 
+      "uid": "02c6c4fb-4589-44f0-905e-c5da3261c9e1", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "This widget makes a web search query on the Bing search engine and returns a list of top k URLs.", 
+      "static_image": "", 
+      "action": "search_with_bing", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Search with Bing"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "02c6c4fb-4589-44f0-905e-c5da3261c9e1", 
+      "name": "Limit", 
+      "short_name": "lim", 
+      "default": "50", 
+      "description": "Limit no of results", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "limit", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "ded29578-d4a3-44fd-a3ab-e4aa01be545a"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "02c6c4fb-4589-44f0-905e-c5da3261c9e1", 
+      "name": "Search Query", 
+      "short_name": "key", 
+      "default": "", 
+      "description": "Search Query.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "query", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "ea81096b-500a-4d96-b3b0-adafaa4b0c8f"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "02c6c4fb-4589-44f0-905e-c5da3261c9e1", 
+      "name": "List of URLs", 
+      "short_name": "url", 
+      "description": "List of URLs", 
+      "variable": "urls", 
+      "order": 1, 
+      "uid": "268acae6-7f98-4518-b8e2-34eb9b1996b6"
+    }
+  }
+]

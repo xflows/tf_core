@@ -1,0 +1,141 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e0d0faae-f4c8-4808-ba25-57dc334a05f6", 
+      "treeview_image": "", 
+      "uid": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TODO", 
+      "static_image": "", 
+      "action": "chunking_hub", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Chunking Hub"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "name": "POS Feature Name", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "Element Annotations' POS Tag Feature Names ", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_pos_feature_name", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "2a123fea-ef1b-45b2-960e-5497c967f6cb"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "4b9fe5eb-cf46-4dc5-b565-586de0f29ac5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "name": "Element's Annotation", 
+      "short_name": "str", 
+      "default": "Token", 
+      "description": "Tokens which feature's will be used for tagging.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "8a58069d-3a78-44b8-94b6-e4ff58b86e5d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "name": "Output Feature Name", 
+      "short_name": "str", 
+      "default": "IOB Tag", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_feature", 
+      "parameter": true, 
+      "order": 6, 
+      "uid": "a39dc52b-8c07-4d83-b8b1-0aeb99920dd6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "name": "Sentence's Annotation", 
+      "short_name": "str", 
+      "default": "Sentence", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "group_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "d69d2fae-9020-4c74-8756-80898f5883d1"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "name": "Chunker", 
+      "short_name": "chk", 
+      "default": "", 
+      "description": "Chunker which will be used to parse the text into chunks.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "chunker", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "eaaba5e8-9fb0-4af5-82ed-3912b73007a4"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "946682f4-5317-4ac1-acad-9fafd229b4bb", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "7157ebd8-7b57-42f5-a95b-6860313e99ea"
+    }
+  }
+]

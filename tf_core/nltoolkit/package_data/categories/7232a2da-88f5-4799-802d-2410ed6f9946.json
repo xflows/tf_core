@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Triplet Extraction", 
+    "parent": null, 
+    "order": 1, 
+    "uid": "7232a2da-88f5-4799-802d-2410ed6f9946"
+  }
+}

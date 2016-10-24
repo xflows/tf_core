@@ -1,0 +1,153 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
+      "treeview_image": "", 
+      "uid": "a900f817-2945-4509-b562-e5d47fe0ef4e", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "This widget takes either a list of url links or a string, where each url is in a separate line. For every inputted url, the system crawls the page and extracts content using the boilerpipe library.", 
+      "static_image": "load_adc_from_file_image.png", 
+      "action": "crawl_url_links", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 2, 
+      "name": "Crawl URL links"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "a900f817-2945-4509-b562-e5d47fe0ef4e", 
+      "name": "Input", 
+      "short_name": "inp", 
+      "default": "", 
+      "description": "Input can be a string (str) or a file (fil).", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "input", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "13785836-d797-4c89-ad17-6dd19590f3cf"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "a900f817-2945-4509-b562-e5d47fe0ef4e", 
+      "name": "Extractor Name", 
+      "short_name": "ext", 
+      "default": "DefaultExtractor", 
+      "description": "Extractor which is used for content extraction", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "extractor", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "a900f817-2945-4509-b562-e5d47fe0ef4e", 
+      "name": "Label", 
+      "short_name": "lab", 
+      "default": "", 
+      "description": "label which is set to all documents", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "label", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "936faba8-aeaf-465b-b1b9-978097d9be4d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "a900f817-2945-4509-b562-e5d47fe0ef4e", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus.", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "4254d272-a685-456b-8749-3e2a113b9f80"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Canola Extractor", 
+      "uid": "0d54e0ef-d391-432d-8a72-9e95c8716232", 
+      "value": "CanolaExtractor", 
+      "abstract_input": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Article Extractor", 
+      "uid": "1557d968-bfe9-4a8a-b235-25b0caf730b3", 
+      "value": "ArticleExtractor", 
+      "abstract_input": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Keep Everything Extractor", 
+      "uid": "8f8d45ed-e1fd-4e97-8d4c-8dbf0122b934", 
+      "value": "KeepEverythingExtractor", 
+      "abstract_input": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Article Sentences Extractor", 
+      "uid": "b2d9f265-8965-4339-b6db-9b75f4dd8fb7", 
+      "value": "ArticleSentencesExtractor\r\n", 
+      "abstract_input": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Largest Content Extractor", 
+      "uid": "d7a79833-257c-4f96-9099-0141b6a015fc", 
+      "value": "LargestContentExtractor", 
+      "abstract_input": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Default Extractor", 
+      "uid": "de2806e6-5f10-496b-a1fc-64156b12e47b", 
+      "value": "DefaultExtractor", 
+      "abstract_input": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Default Extractor", 
+      "uid": "dfce9b26-a2bc-4468-897d-5f194f8f5184", 
+      "value": "DefaultExtractor\r\n", 
+      "abstract_input": "291ca677-61d2-4173-bc79-1e07bea66213"
+    }
+  }
+]

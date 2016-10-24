@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "f6b2571e-7e11-4e4c-86ed-da403217b9ec", 
+      "treeview_image": "", 
+      "uid": "fec49f85-4eb4-4ba5-9e6c-6ad65ad3dd5a", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "A grammar based chunk parser.  ``chunk.RegexpParser`` uses a set of\r\nregular expression patterns to specify the behavior of the parser.\r\nThe chunking of the text is encoded using a ``ChunkString``, and\r\neach rule acts by modifying the chunking in the ``ChunkString``.\r\nThe rules are all implemented using regular expression matching\r\nand substitution.\r\n\r\nA grammar contains one or more clauses in the following form::\r\n\r\n NP:\r\n   {<DT|JJ>}          # chunk determiners and adjectives\r\n   }<[\\.VI].*>+{      # chink any tag beginning with V, I, or .\r\n   <.*>}{<DT>         # split a chunk at a determiner\r\n   <DT|JJ>{}<NN.*>    # merge chunk ending with det/adj\r\n                      # with one starting with a noun\r\n\r\nThe patterns of a clause are executed in order.  An earlier\r\npattern may introduce a chunk boundary that prevents a later\r\npattern from executing.  Sometimes an individual pattern will\r\nmatch on multiple, overlapping extents of the input.  As with\r\nregular expression substitution more generally, the chunker will\r\nidentify the first match possible, then continue looking for matches\r\nafter this one has ended.\r\n\r\nThe clauses of a grammar are also executed in order.  A cascaded\r\nchunk parser is one having more than one clause.  The maximum depth\r\nof a parse tree created by this chunk parser is the same as the\r\nnumber of clauses in the grammar.", 
+      "static_image": "", 
+      "action": "nltk_regex_chunker", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Regex Chunker"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "fec49f85-4eb4-4ba5-9e6c-6ad65ad3dd5a", 
+      "name": "Grammar", 
+      "short_name": "grm", 
+      "default": "NP: {<DT>? <JJ>* <NN>*} # NP\r\nP: {<IN>}           # Preposition\r\nV: {<V.*>}          # Verb\r\nPP: {<P> <NP>}      # PP -> P NP\r\nVP: {<V> <NP|PP>*}  # VP -> V (NP|PP)*", 
+      "description": "Grammar: a set of regular expression patterns to specify the behavior of the parser", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "grammar", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "bafba87c-0b17-40cc-b740-b3b84d8e416e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "fec49f85-4eb4-4ba5-9e6c-6ad65ad3dd5a", 
+      "name": "Chunker", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the Chunker object and its arguments.", 
+      "variable": "chunker", 
+      "order": 1, 
+      "uid": "d25f6ebe-828c-486e-bdc9-401e087616b7"
+    }
+  }
+]

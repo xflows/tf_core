@@ -1,0 +1,175 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
+      "treeview_image": "", 
+      "uid": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "This widget processes input text from the inputed MySQL database and loads it into ADC (Annotated Document Corpus) structure.", 
+      "static_image": "mysql.png", 
+      "action": "load_mysql_document_corpus", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 3, 
+      "name": "Load Document Corpus from MySQL"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "Database Name", 
+      "short_name": "db", 
+      "default": "", 
+      "description": "Database Name", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "database", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "02bbf195-3d38-405a-8b5b-8c95409b3c59"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "Text Column Name", 
+      "short_name": "ccn", 
+      "default": "", 
+      "description": "Text Column Name", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "text_column_name", 
+      "parameter": true, 
+      "order": 7, 
+      "uid": "038fc5d2-78c9-4e16-8aac-6cba909e0075"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "DB Password", 
+      "short_name": "pwd", 
+      "default": "", 
+      "description": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "password", 
+      "variable": "password", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "0e713efc-7007-4c9d-a4cd-3c8eac1d9838"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "DB Username", 
+      "short_name": "usr", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "user", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "69e42463-990a-4599-b580-75856c70aa5f"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "Table Name", 
+      "short_name": "tbn", 
+      "default": "", 
+      "description": "Tabel Name", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "table_name", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "761eaf06-dce6-462e-b840-3d46985ac467"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "Hostname", 
+      "short_name": "hst", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "host", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "a3306379-3c38-438e-8250-415ed7c332c6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "Title Column Name", 
+      "short_name": "tcn", 
+      "default": "", 
+      "description": "Title Column Name", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "title_column_name", 
+      "parameter": true, 
+      "order": 6, 
+      "uid": "abf0723b-b87c-4c32-885c-faa07ca67956"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "Label Column Name", 
+      "short_name": "lcn", 
+      "default": "", 
+      "description": "Label Column Name", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "label_column_name", 
+      "parameter": true, 
+      "order": 8, 
+      "uid": "c58d68cd-6ebd-4b1c-a04b-f611875cf596"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "ab6fd710-da1a-4e92-88d3-c00e693029ba", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus.", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "5b26ad1c-c624-4893-9928-19efa69ce996"
+    }
+  }
+]

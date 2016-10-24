@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
+      "treeview_image": "", 
+      "uid": "0def1b2c-b6bf-4d43-8d30-8c634b2f4b27", 
+      "windows_queue": false, 
+      "package": "tf_core.nltoolkit",
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "This widget makes a web search query on the Faroo search engine and returns a list of top k URLs.", 
+      "static_image": "", 
+      "action": "search_with_faroo", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 2, 
+      "name": "Search with Faroo"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0def1b2c-b6bf-4d43-8d30-8c634b2f4b27", 
+      "name": "Limit", 
+      "short_name": "lim", 
+      "default": "50", 
+      "description": "Limit no of results", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "limit", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "96f553ee-790c-4863-a247-0a91b3b1d96c"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0def1b2c-b6bf-4d43-8d30-8c634b2f4b27", 
+      "name": "Search Query", 
+      "short_name": "key", 
+      "default": "", 
+      "description": "Search Query.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "query", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "aa927358-09c0-41c3-9f27-971604eca411"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "0def1b2c-b6bf-4d43-8d30-8c634b2f4b27", 
+      "name": "List of URLs", 
+      "short_name": "url", 
+      "description": "List of URLs", 
+      "variable": "urls", 
+      "order": 1, 
+      "uid": "35ec3296-9974-44e4-b95e-de31361f6ae3"
+    }
+  }
+]
