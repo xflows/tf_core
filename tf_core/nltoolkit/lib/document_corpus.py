@@ -7,7 +7,17 @@ import re
 
 def nltk_corpus(input_dict):
     """Returns the nltk.corpus for the selected corpus name"""
-    return {'corpus': NltkCorpus(input_dict['corpus_name'])}
+    return {'corpus': {'corpus': NltkCorpus(input_dict['corpus_name']), 'chunk': input_dict['chunk']}}
+
+
+def extract_nltk_corpus_name(input_dict):
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    name = "NLTK corpus " + str(chunk)
+    match = re.search(r"(\\\\|/)(\w+)'", str(corpus))
+    if match:
+        name = match.group(2) + " " + str(chunk)
+    return {'name': name}
 
 
 def statistics(input_dict):
@@ -186,4 +196,8 @@ def merge_corpora(input_dict):
             adc.documents.append(document)
 
     return {"adc": adc}
+
+    def extract_adc_name(input_dict):
+        return {'y_name' : input_dict['adc'].features['Source']}
+
 

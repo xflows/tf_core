@@ -1,24 +1,27 @@
 from django.conf import settings
+from workflows.tasks import executeFunction
 
 import nltk
+from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
+from nltk.corpus import wordnet
+from pattern.vector import stem, PORTER, LEMMA
+from textblob import Word
 #from tagging_common_parallel import universal_word_tagger_hub
-from tf_core.nltoolkit.helpers import NltkRegexpStemmer
 
 
 def stem_lemma_tagger_hub(input_dict):
-    if input_dict['tagger'].__class__.__name__=='LatinoObject':
-        from tf_latino.latino.library_gen import latino_tag_adc_stem_lemma
-        from workflows.tasks import executeFunction
-
+    if isinstance(input_dict['tagger'],LatinoObject): #check if this is a latino object
+        from ...latino.library_gen import latino_tag_adc_stem_lemma
         return latino_tag_adc_stem_lemma(input_dict) if not settings.USE_WINDOWS_QUEUE \
             else executeFunction.apply_async([latino_tag_adc_stem_lemma,input_dict],queue="windows").wait()
     else:
         adc = input_dict['adc']
         tagger_dict = input_dict['tagger']
         input_annotation = input_dict['element_annotation']
+        pos_annotation = input_dict['pos_annotation']
         output_annotation = input_dict['output_feature']
-        return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
+        return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation,pos_annotation)
 
 # STEMMERS
 def nltk_lancaster_stemmer(input_dict):
@@ -151,16 +154,89 @@ def nltk_snowball_stemmer(input_dict):
             }}
 
 
+class WordnetLemmatizer:
+    def __init__(self, pos_annotation):
+        self.pos_annotation = pos_annotation
+        self.lemmatizer = nltk.stem.wordnet.WordNetLemmatizer()
+        self.morphy_tag = {'NN':wordnet.NOUN, 'NNS':wordnet.NOUN,
+                  'NNP':wordnet.NOUN, 'NNPS':wordnet.NOUN, 'JJ':wordnet.ADJ,
+                  'JJR':wordnet.ADJ, 'JJS':wordnet.ADJ, 'VB':wordnet.VERB,
+                  'VBD':wordnet.VERB, 'VBG':wordnet.VERB, 'VBN':wordnet.VERB,
+                  'VBP':wordnet.VERB, 'VBZ':wordnet.VERB,'RB':wordnet.ADV,
+                  'RBR':wordnet.ADV, 'RBS':wordnet.ADV}
+    
+    def lemmatize(self, lemma, **kwargs):
+        if kwargs and self.pos_annotation:
+            pos_tag = kwargs[self.pos_annotation]
+            if pos_tag in self.morphy_tag:
+                return self.lemmatizer.lemmatize(lemma, self.morphy_tag[pos_tag])
+        return self.lemmatizer.lemmatize(lemma)
+
+
+
 def nltk_wordnet_lemmatizer(input_dict):
     """
     WordNet Lemmatizer
     Lemmatize using WordNet's built-in morphy function.
     Returns the input word unchanged if it cannot be found in WordNet.
     """
+
+    pos_annotation = input_dict['pos_annotation']
     return {'tagger':
-                {'object': nltk.stem.wordnet.WordNetLemmatizer(),
+                {'object': WordnetLemmatizer(pos_annotation),
                  'function': 'lemmatize',
                 }}
+
+
+class PatternLemmatizer:
+    def lemmatize(self, word):
+        return stem(word, stemmer = LEMMA)
+
+
+def pattern_lemmatizer(input_dict):
+    """
+    WordNet Lemmatizer
+    Lemmatize using WordNet's built-in morphy function.
+    Returns the input word unchanged if it cannot be found in WordNet.
+    """
+    return {'tagger':
+                {'object': PatternLemmatizer(),
+                 'function': 'lemmatize',
+                }}
+
+
+class PatternPorterStemmer:
+    def stem(self, word):
+        return stem(word, stemmer = PORTER)
+
+
+def pattern_porter_stemmer(input_dict):
+    """
+    WordNet Lemmatizer
+    Lemmatize using WordNet's built-in morphy function.
+    Returns the input word unchanged if it cannot be found in WordNet.
+    """
+    return {'tagger':
+                {'object': PatternPorterStemmer(),
+                 'function': 'stem',
+                }}
+
+class TextblobLemmatizer:
+    def lemmatize(self, word):
+        return Word(word).lemmatize()
+
+
+def textblob_lemmatizer(input_dict):
+    """
+    WordNet Lemmatizer
+    Lemmatize using WordNet's built-in morphy function.
+    Returns the input word unchanged if it cannot be found in WordNet.
+    """
+    return {'tagger':
+                {'object': TextblobLemmatizer(),
+                 'function': 'lemmatize',
+                }}
+
 
 
 

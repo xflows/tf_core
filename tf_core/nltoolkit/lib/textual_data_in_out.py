@@ -11,6 +11,7 @@ import document_converters
 from tf_core.annotation import Annotation
 from tf_core.document import Document
 from tf_core.document_corpus import DocumentCorpus
+from part_of_speech_tagging import corpus_reader
 
 
 def load_adc(input_dict):
@@ -35,6 +36,103 @@ def load_adc(input_dict):
     features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": json.dumps(labels)}
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
+
+
+def load_ptb_corpus(input_dict):
+    input_text = input_dict[u"input"]
+    leading_labels = False
+    docs, source, source_date,titles=_process_input(input_text,leading_labels)
+    tagged_sents = []
+    if "." in source:
+        name = source.split('.')[0]
+    else:
+        name = source
+    for doc in docs:
+        l = []
+        doc = doc.replace('\n', '')
+        sent = ""
+        depth = 0
+        for character in doc:
+            if character == '(':
+                depth = depth + 1
+            elif character == ')':
+                depth = depth - 1
+            sent += character
+            if depth == 0 and len(sent) > 0 and not sent.isspace():
+                l.append(sent)
+                sent = ""
+        for sent in l:
+            tagged_sent = []
+            match = re.findall(r'\(([^\(\)]*)\)',sent)
+            for m in match:
+                tagged_word = m.strip().split(" ")
+                if len(tagged_word) == 2:
+                    tagged_word = [tagged_word[1], tagged_word[0]]
+                    tagged_sent.append(tagged_word)
+            tagged_sents.append(tagged_sent)
+
+    return {"ptb_corpus": [name, tagged_sents]}
+
+
+def ptb_to_adc_converter(input_dict):
+    corpus = input_dict['ptb_corpus'][1]
+    annotation_feature = input_dict['annotation_name']
+    annotations = []
+    string_list = []
+    docs = []
+    title = u"Document1"
+    features = {u"contentType": u"Text", u"sourceFileLine": '1'}
+    position = 0
+    for i, sentence in enumerate(corpus):
+        if i%100 == 0 and i != 0 and i != (len(corpus) - 1):
+            annotation = Annotation(0, position , "TextBlock")
+            annotations.append(annotation)
+            rawtext = " ".join(string_list)
+            document = Document(title, rawtext, annotations, features)
+            docs.append(document)
+            annotations = []
+            string_list = []
+            title = u"Document" + str(i)
+            features = {u"contentType": u"Text", u"sourceFileLine": '1'}
+            position = 0
+
+        sentence_start = position
+        for word, tag in sentence:
+            if len(word) > 0:
+                string_list.append(word)
+                word_length = len(word)
+                annotation_features = {annotation_feature: tag}
+                annotation = Annotation(position, position + word_length - 1, "Token", annotation_features)
+                annotations.append(annotation)
+                position = position + word_length + 1
+        if position > sentence_start:
+            annotation = Annotation(sentence_start, position - 1, "Sentence")
+            annotations.append(annotation)
+    annotation = Annotation(0, position , "TextBlock")
+    annotations.append(annotation)
+    rawtext = " ".join(string_list)
+    document = Document(title, rawtext, annotations, features)
+    docs.append(document)
+    source = input_dict['ptb_corpus'][0]
+    source_date = "unknown"
+    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": []}
+    adc = DocumentCorpus(documents=docs, features=features)
+
+    return {"adc": adc}
+
+
+def nltk_corpus_to_adc(input_dict):
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    annotation_feature = input_dict['annotation_name']
+    name = "NLTK corpus"
+    match = re.search(r"(\\\\|/)(\w+)'", str(corpus))
+    if match:
+        name = match.group(2) + " corpus"
+    corpus_dict = {"ptb_corpus": [name, list(corpus_reader(corpus, chunk))], 'annotation_name': annotation_feature}
+    return ptb_to_adc_converter(corpus_dict)
+
 
 def crawl_url_links(input_dict):
     """
@@ -292,5 +390,9 @@ def get_plain_texts(input_dict):
 
 
 def display_document_corpus(input_dict):
+    #implemented in visualization_views.py
+    return {}
+
+def display_annotation_statistic(input_dict):
     #implemented in visualization_views.py
     return {}
