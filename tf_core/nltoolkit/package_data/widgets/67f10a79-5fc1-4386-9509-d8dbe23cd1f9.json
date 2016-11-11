@@ -4,36 +4,36 @@
     "fields": {
       "category": "017444c3-afd0-4300-9766-bedeaef10765", 
       "treeview_image": "", 
-      "uid": "61ac4b4f-a290-406b-9557-976681393b87", 
-      "is_streaming": false, 
+      "uid": "67f10a79-5fc1-4386-9509-d8dbe23cd1f9", 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
       "image": "", 
-      "description": "A stemmer for Portuguese.", 
+      "description": "Porter stemmer from Pattern library.", 
       "static_image": "tag_stem_image.png", 
-      "action": "nltk_rslp_stemmer", 
+      "action": "pattern_porter_stemmer", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
-      "order": 3, 
-      "name": "RSLP Stemmer"
+      "is_streaming": false, 
+      "order": 5, 
+      "name": "Pattern Porter Stemmer"
     }
   }, 
   {
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": "61ac4b4f-a290-406b-9557-976681393b87", 
+      "widget": "67f10a79-5fc1-4386-9509-d8dbe23cd1f9", 
       "name": "Stemmer (Tagger)", 
       "short_name": "tgr", 
       "description": "", 
       "variable": "tagger", 
       "order": 1, 
-      "uid": "8312467d-da3e-48f3-be07-5f5d4a52778d"
+      "uid": "5abaecc9-3c1b-488f-bd1a-073b9c200434"
     }
   }
 ]

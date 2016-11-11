@@ -5,8 +5,8 @@
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
       "uid": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
-      "windows_queue": false, 
-      "package": "tf_core.nltoolkit",
+      "is_streaming": false, 
+      "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
       "image": "", 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "order": 1, 
       "name": "POS Tagger Hub"
     }
@@ -132,10 +132,10 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "description": "Annotated Document Corpus", 
       "variable": "adc", 
       "order": 1, 
-      "uid": "cded8ae2-2518-420a-a8ff-662ca07c57bc"
+      "uid": "4e2038f4-2f9a-4248-aca7-335ce0fc57f7"
     }
   }, 
   {

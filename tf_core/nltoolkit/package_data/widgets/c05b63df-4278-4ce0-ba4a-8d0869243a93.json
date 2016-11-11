@@ -6,7 +6,7 @@
       "treeview_image": "", 
       "uid": "c05b63df-4278-4ce0-ba4a-8d0869243a93", 
       "is_streaming": false, 
-      "package": "tf_core.nltoolkit",
+      "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
       "image": "", 
