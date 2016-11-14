@@ -7,12 +7,13 @@ from tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
 from pattern.vector import stem, PORTER, LEMMA
 from textblob import Word
+
 #from tagging_common_parallel import universal_word_tagger_hub
 
 
 def stem_lemma_tagger_hub(input_dict):
-    if isinstance(input_dict['tagger'],LatinoObject): #check if this is a latino object
-        from ...latino.library_gen import latino_tag_adc_stem_lemma
+    if input_dict['tagger'].__class__.__name__=="LatinoObject": #check if this is a latino object
+        from tf_latino.latino.library_gen import latino_tag_adc_stem_lemma
         return latino_tag_adc_stem_lemma(input_dict) if not settings.USE_WINDOWS_QUEUE \
             else executeFunction.apply_async([latino_tag_adc_stem_lemma,input_dict],queue="windows").wait()
     else:

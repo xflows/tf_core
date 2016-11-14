@@ -197,7 +197,7 @@ def merge_corpora(input_dict):
 
     return {"adc": adc}
 
-    def extract_adc_name(input_dict):
-        return {'y_name' : input_dict['adc'].features['Source']}
+def extract_adc_name(input_dict):
+    return {'y_name' : input_dict['adc'].features['Source']}
 
 

@@ -1,3 +1,5 @@
+from itertools import izip
+import inspect
 
 def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation, pos_annotation=None):
     tagger=tagger_dict['object']

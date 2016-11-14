@@ -23,7 +23,7 @@ import re
 
 
 def pos_tagger_hub(input_dict):
-    if isinstance(input_dict['pos_tagger'],LatinoObject): #check if this is a latino object
+    if input_dict['pos_tagger'].__class__.__name__=="LatinoObject": #check if this is a latino object
         from ...latino.library_gen import latino_pos_tag
         adc= executeFunction.apply_async([latino_pos_tag,input_dict],queue="windows").wait()['adc'] \
             if settings.USE_WINDOWS_QUEUE else latino_pos_tag(input_dict)
@@ -48,9 +48,9 @@ from workflows.textflows import DocumentCorpus, LatinoObject
 
 def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
-    tagger_name=tagger['object'].__class__.__name__ if not isinstance(tagger,LatinoObject) else tagger.name
+    tagger_name=tagger['object'].__class__.__name__ if not tagger.__class__.__name__=="LatinoObject" else tagger.name
     tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
-    if not isinstance(tagger,LatinoObject) and 'pretrained' in tagger:
+    if not tagger.__class__.__name__=="LatinoObject" and 'pretrained' in tagger:
         if tagger['pretrained']:
             if tagger_name == 'ClassifierBasedPOSTagger':
                 tagger_name = 'MaxentPosTagger-pretrained'
