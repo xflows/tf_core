@@ -6,3 +6,4 @@ scikit-learn==0.16.1
 docx
 requests
 pdfminer
+pattern==2.6

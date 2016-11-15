@@ -4,24 +4,24 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "uid": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
+      "name": "POS Brill's rule-based Tagger nltoolkit", 
       "is_streaming": false, 
-      "package": "nltoolkit", 
+      "uid": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "\"\"\"Brill's transformational rule-based tagger.  Brill taggers use an\r\ninitial tagger (such as ``tag.DefaultTagger``) to assign an initial\r\ntag sequence to a text; and then apply an ordered list of\r\ntransformational rules to correct the tags of individual tokens.\r\nThese transformation rules are specified by the ``BrillRule``\r\ninterface.\r\n\r\nBrill taggers can be created directly, from an initial tagger and\r\na list of transformational rules; but more often, Brill taggers\r\nare created by learning rules from a training corpus, using either\r\n``BrillTaggerTrainer`` or ``FastBrillTaggerTrainer``.", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "tag_pos_image.png", 
-      "action": "nltk_brill_pos_tagger", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "nltk_brill_pos_tagger", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 10, 
-      "name": "POS Brill's rule-based Tagger"
+      "description": "\"\"\"Brill's transformational rule-based tagger.  Brill taggers use an\r\ninitial tagger (such as ``tag.DefaultTagger``) to assign an initial\r\ntag sequence to a text; and then apply an ordered list of\r\ntransformational rules to correct the tags of individual tokens.\r\nThese transformation rules are specified by the ``BrillRule``\r\ninterface.\r\n\r\nBrill taggers can be created directly, from an initial tagger and\r\na list of transformational rules; but more often, Brill taggers\r\nare created by learning rules from a training corpus, using either\r\n``BrillTaggerTrainer`` or ``FastBrillTaggerTrainer``."
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "name": "Max Rules", 
       "short_name": "mru", 
+      "uid": "000d3e76-901f-4ee2-9efe-34ffb4633fb0", 
       "default": "200", 
-      "description": "The maximum number of transformations to be created", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "max_rules", 
       "parameter": true, 
       "order": 3, 
-      "uid": "000d3e76-901f-4ee2-9efe-34ffb4633fb0"
+      "description": "The maximum number of transformations to be created"
     }
   }, 
   {
@@ -47,15 +47,15 @@
       "widget": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "name": "Initial Tagger", 
       "short_name": "tgr", 
+      "uid": "93594713-d320-4902-b456-92176ed502f4", 
       "default": "", 
-      "description": "The initial tagger. Brill taggers use an initial tagger (such as ``DefaultTagger``) to assign an initial tag sequence to a text.", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "initial_tagger", 
       "parameter": false, 
       "order": 2, 
-      "uid": "93594713-d320-4902-b456-92176ed502f4"
+      "description": "The initial tagger. Brill taggers use an initial tagger (such as ``DefaultTagger``) to assign an initial tag sequence to a text."
     }
   }, 
   {
@@ -64,15 +64,15 @@
       "widget": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "name": "Templates", 
       "short_name": "tmp", 
+      "uid": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f", 
       "default": "brill24", 
-      "description": "Templates to be used in training TODO: meaning?!\r\n\r\nOptions:\r\n- nltkdemo18:\r\n    Return 18 templates, from the original nltk demo, in multi-feature syntax\r\n- nltkdemo18plus:\r\n    Return 18 templates, from the original nltk demo, and additionally a few\r\n    multi-feature ones (the motivation is easy comparison with nltkdemo18)\r\n- brill24:\r\n    Return 24 templates of the seminal TBL paper, Brill (1995)\r\n- fntbl37:\r\n    Return 37 templates taken from the postagging task of the\r\n    fntbl distribution http://www.cs.jhu.edu/~rflorian/fntbl/\r\n    (37 is after excluding a handful which do not condition on Pos[0];\r\n    fntbl can do that but the current nltk implementation cannot.)", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "templates", 
       "parameter": true, 
       "order": 5, 
-      "uid": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f"
+      "description": "Templates to be used in training TODO: meaning?!\r\n\r\nOptions:\r\n- nltkdemo18:\r\n    Return 18 templates, from the original nltk demo, in multi-feature syntax\r\n- nltkdemo18plus:\r\n    Return 18 templates, from the original nltk demo, and additionally a few\r\n    multi-feature ones (the motivation is easy comparison with nltkdemo18)\r\n- brill24:\r\n    Return 24 templates of the seminal TBL paper, Brill (1995)\r\n- fntbl37:\r\n    Return 37 templates taken from the postagging task of the\r\n    fntbl distribution http://www.cs.jhu.edu/~rflorian/fntbl/\r\n    (37 is after excluding a handful which do not condition on Pos[0];\r\n    fntbl can do that but the current nltk implementation cannot.)"
     }
   }, 
   {
@@ -81,15 +81,15 @@
       "widget": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "name": "Training Corpus", 
       "short_name": "cor", 
+      "uid": "bd881e97-4c22-4643-9da2-d065e9de0723", 
       "default": "", 
-      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "training_corpus", 
       "parameter": false, 
       "order": 1, 
-      "uid": "bd881e97-4c22-4643-9da2-d065e9de0723"
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
     }
   }, 
   {
@@ -98,15 +98,15 @@
       "widget": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "name": "Min Score", 
       "short_name": "msc", 
+      "uid": "cd670e97-68b0-48b0-8ae9-e1fa75d01cf8", 
       "default": "2", 
-      "description": "The minimum acceptable net error reduction that each transformation must produce in the corpus.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "min_score", 
       "parameter": true, 
       "order": 4, 
-      "uid": "cd670e97-68b0-48b0-8ae9-e1fa75d01cf8"
+      "description": "The minimum acceptable net error reduction that each transformation must produce in the corpus."
     }
   }, 
   {
@@ -115,46 +115,46 @@
       "widget": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "name": "POS Tagger", 
       "short_name": "tgr", 
-      "description": "A python dictionary containing the POS tagger object and its arguments.", 
       "variable": "pos_tagger", 
+      "uid": "99f7cda3-3303-49f2-a895-e562dec52de6", 
       "order": 1, 
-      "uid": "99f7cda3-3303-49f2-a895-e562dec52de6"
+      "description": "A python dictionary containing the POS tagger object and its arguments."
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "fntbl37", 
       "uid": "088f4113-6844-42fa-8270-2c892bea3a57", 
+      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f", 
       "value": "fntbl37", 
-      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f"
+      "name": "fntbl37"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "nltkdemo18", 
       "uid": "8c9864a5-2961-440e-be5a-a709efae1b17", 
+      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f", 
       "value": "nltkdemo18", 
-      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f"
+      "name": "nltkdemo18"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "nltkdemo18plus", 
       "uid": "d5b8cd7d-ba38-4978-a783-ff0dbf79f7f5", 
+      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f", 
       "value": "nltkdemo18plus", 
-      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f"
+      "name": "nltkdemo18plus"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "brill24", 
       "uid": "dcf226b2-89e5-4341-887a-c4296ad730fe", 
+      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f", 
       "value": "brill24", 
-      "abstract_input": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f"
+      "name": "brill24"
     }
   }
 ]

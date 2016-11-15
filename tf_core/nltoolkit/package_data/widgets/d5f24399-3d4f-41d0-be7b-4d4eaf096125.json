@@ -4,24 +4,24 @@
     "fields": {
       "category": "46050a99-188d-40e1-90e5-0c1912059fa7", 
       "treeview_image": "", 
-      "uid": "d5f24399-3d4f-41d0-be7b-4d4eaf096125", 
+      "name": "Extract Classifier Name nltoolkit", 
       "is_streaming": false, 
-      "package": "nltoolkit", 
+      "uid": "d5f24399-3d4f-41d0-be7b-4d4eaf096125", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "Returns a string with pretty classifier name. ", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "", 
-      "action": "extract_classifier_name", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "extract_classifier_name", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1000, 
-      "name": "Extract Classifier Name"
+      "description": "Returns a string with pretty classifier name. "
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "d5f24399-3d4f-41d0-be7b-4d4eaf096125", 
       "name": "Classifier", 
       "short_name": "csf", 
+      "uid": "c83ad8b7-2268-4d18-9c84-19f8237cced5", 
       "default": "", 
-      "description": "", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "classifier", 
       "parameter": false, 
       "order": 1, 
-      "uid": "c83ad8b7-2268-4d18-9c84-19f8237cced5"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +47,10 @@
       "widget": "d5f24399-3d4f-41d0-be7b-4d4eaf096125", 
       "name": "Classifier Name", 
       "short_name": "str", 
-      "description": "", 
       "variable": "classifier_name", 
+      "uid": "aa071286-4095-4a01-8228-0628915a9707", 
       "order": 1, 
-      "uid": "aa071286-4095-4a01-8228-0628915a9707"
+      "description": ""
     }
   }
 ]

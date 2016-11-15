@@ -4,12 +4,12 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "name": "Extract NLTK Corpus Name", 
+      "name": "Extract NLTK Corpus Name nltoolkit", 
       "is_streaming": false, 
       "uid": "49f10635-c13a-4e64-94b4-dedaf3574883", 
       "interaction_view": "", 
       "image": "", 
-      "package": "nltoolkit", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "", 
       "windows_queue": false, 
       "post_interact_action": "", 
@@ -47,7 +47,7 @@
       "widget": "49f10635-c13a-4e64-94b4-dedaf3574883", 
       "name": "NLTK Name", 
       "short_name": "str", 
-      "variable": "y_name", 
+      "variable": "name", 
       "uid": "e0026161-c0fe-44cd-b7d6-626643efbdea", 
       "order": 1, 
       "description": ""

@@ -4,24 +4,24 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "uid": "2b2c8547-8d24-4e35-9a4f-639c6af3bddc", 
+      "name": "Merge Corpora nltoolkit", 
       "is_streaming": false, 
-      "package": "nltoolkit", 
+      "uid": "2b2c8547-8d24-4e35-9a4f-639c6af3bddc", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "Merge multiple Annotated Document Corpuses into one.", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "latino_widget_image.png", 
-      "action": "merge_corpora", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "merge_corpora", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Merge Corpora"
+      "description": "Merge multiple Annotated Document Corpuses into one."
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "2b2c8547-8d24-4e35-9a4f-639c6af3bddc", 
       "name": "Annotated ", 
       "short_name": "adc", 
+      "uid": "eac4128d-ccf3-41e2-bdac-0184cb42cd37", 
       "default": "", 
-      "description": "Annotated ", 
       "required": true, 
       "multi": true, 
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "eac4128d-ccf3-41e2-bdac-0184cb42cd37"
+      "description": "Annotated "
     }
   }, 
   {
@@ -47,10 +47,10 @@
       "widget": "2b2c8547-8d24-4e35-9a4f-639c6af3bddc", 
       "name": "Merged Annotated Document Corpus", 
       "short_name": "adc", 
-      "description": "", 
       "variable": "adc", 
+      "uid": "e5952d4d-0990-412e-95ce-5b7d07b8534b", 
       "order": 1, 
-      "uid": "e5952d4d-0990-412e-95ce-5b7d07b8534b"
+      "description": ""
     }
   }
 ]

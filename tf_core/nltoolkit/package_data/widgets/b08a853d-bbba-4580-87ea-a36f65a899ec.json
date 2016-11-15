@@ -4,24 +4,24 @@
     "fields": {
       "category": "6091637f-b3cd-4559-b525-18357b02dbc2", 
       "treeview_image": "", 
-      "uid": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
+      "name": "Create BoW Dataset using the BoW Model Constructor nltoolkit", 
       "is_streaming": false, 
-      "package": "nltoolkit", 
+      "uid": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "TODO:", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "process_new_adc_image.png", 
-      "action": "create_dataset_using_bow_model_constructor", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "create_dataset_using_bow_model_constructor", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 3, 
-      "name": "Create BoW Dataset using the BoW Model Constructor"
+      "description": "TODO:"
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
       "name": "Bag of Words Model Constructor", 
       "short_name": "bmc", 
+      "uid": "4cb462a9-19df-444f-9d0d-214a4f058782", 
       "default": "", 
-      "description": "Latino.TextMining.BowSpace", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "bow_model_constructor", 
       "parameter": false, 
       "order": 2, 
-      "uid": "4cb462a9-19df-444f-9d0d-214a4f058782"
+      "description": "Latino.TextMining.BowSpace"
     }
   }, 
   {
@@ -47,15 +47,15 @@
       "widget": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
+      "uid": "8131c527-39df-4825-a75d-3dedd3691fa7", 
       "default": "", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "8131c527-39df-4825-a75d-3dedd3691fa7"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }, 
   {
@@ -64,10 +64,10 @@
       "widget": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
       "name": "BOW Model Dataset", 
       "short_name": "ds", 
-      "description": "Sparse BOW feature vectors.", 
       "variable": "bow_dataset", 
+      "uid": "81e0be14-0ddd-47b1-a79d-74c53a3ffb7b", 
       "order": 1, 
-      "uid": "81e0be14-0ddd-47b1-a79d-74c53a3ffb7b"
+      "description": "Sparse BOW feature vectors."
     }
   }
 ]

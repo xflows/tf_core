@@ -4,12 +4,12 @@
     "fields": {
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
-      "name": "Display annotation statistic", 
+      "name": "Display annotation statistic nltoolkit", 
       "is_streaming": false, 
       "uid": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
       "interaction_view": "", 
       "image": "", 
-      "package": "nltoolkit", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "view_adc_image.png", 
       "windows_queue": false, 
       "post_interact_action": "", 
@@ -21,7 +21,7 @@
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 1, 
-      "description": "Display statistic (frequency and PMI) for specific annotation or annotation sequence in ADC corpus"
+      "description": "Display statistics for specific annotation or annotation sequence in ADC corpus. Widget shows annotations ranked by frequency, PMI and chi square and the scores they achieved."
     }
   }, 
   {

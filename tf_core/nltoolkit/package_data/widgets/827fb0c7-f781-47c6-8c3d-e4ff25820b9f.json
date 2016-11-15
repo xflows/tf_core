@@ -4,24 +4,24 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "uid": "827fb0c7-f781-47c6-8c3d-e4ff25820b9f", 
+      "name": "Add Computed Document Features nltoolkit", 
       "is_streaming": false, 
-      "package": "nltoolkit", 
+      "uid": "827fb0c7-f781-47c6-8c3d-e4ff25820b9f", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "TODO", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "adc_add_feature_image.png", 
-      "action": "add_computed_document_features", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "add_computed_document_features", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 5, 
-      "name": "Add Computed Document Features"
+      "description": "TODO"
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "827fb0c7-f781-47c6-8c3d-e4ff25820b9f", 
       "name": "New Feature Name", 
       "short_name": "str", 
+      "uid": "b56b32b7-14ec-4315-9f1f-3f1aa1aac8df", 
       "default": "feature", 
-      "description": "System.String", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "feature_name", 
       "parameter": true, 
       "order": 2, 
-      "uid": "b56b32b7-14ec-4315-9f1f-3f1aa1aac8df"
+      "description": "System.String"
     }
   }, 
   {
@@ -47,15 +47,15 @@
       "widget": "827fb0c7-f781-47c6-8c3d-e4ff25820b9f", 
       "name": "New Feature Computataion", 
       "short_name": "str", 
+      "uid": "b703ceb8-3b10-492f-a08e-86aa6fad0e39", 
       "default": "{feature2:name}{feature3}, {feature1:value}", 
-      "description": "System.String", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "feature_computation", 
       "parameter": true, 
       "order": 3, 
-      "uid": "b703ceb8-3b10-492f-a08e-86aa6fad0e39"
+      "description": "System.String"
     }
   }, 
   {
@@ -64,15 +64,15 @@
       "widget": "827fb0c7-f781-47c6-8c3d-e4ff25820b9f", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
+      "uid": "c299c0f8-d7f9-4ff5-b3fc-13e4911597fb", 
       "default": "", 
-      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "c299c0f8-d7f9-4ff5-b3fc-13e4911597fb"
+      "description": "LatinoInterfaces.DocumentCorpus"
     }
   }, 
   {
@@ -81,10 +81,10 @@
       "widget": "827fb0c7-f781-47c6-8c3d-e4ff25820b9f", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
-      "description": "", 
       "variable": "adc", 
+      "uid": "6e33ef12-e466-41fd-bfb7-e5674f400ae8", 
       "order": 1, 
-      "uid": "6e33ef12-e466-41fd-bfb7-e5674f400ae8"
+      "description": ""
     }
   }
 ]

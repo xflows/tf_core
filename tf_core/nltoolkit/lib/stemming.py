@@ -222,22 +222,6 @@ def pattern_porter_stemmer(input_dict):
                  'function': 'stem',
                 }}
 
-class TextblobLemmatizer:
-    def lemmatize(self, word):
-        return Word(word).lemmatize()
-
-
-def textblob_lemmatizer(input_dict):
-    """
-    WordNet Lemmatizer
-    Lemmatize using WordNet's built-in morphy function.
-    Returns the input word unchanged if it cannot be found in WordNet.
-    """
-    return {'tagger':
-                {'object': TextblobLemmatizer(),
-                 'function': 'lemmatize',
-                }}
-
 
 
 

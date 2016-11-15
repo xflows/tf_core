@@ -4,24 +4,24 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "uid": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
+      "name": "NLTK Document Corpus nltoolkit", 
       "is_streaming": false, 
-      "package": "nltoolkit", 
+      "uid": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "NLTK corpus readers. The modules in this package provide functions that can be used to read corpus files in a variety of formats. These functions can be used to read both the corpus files that are distributed in the NLTK corpus package, and corpus files that are part of external corpora.\r\n\r\nPlease see http://nltk.googlecode.com/svn/trunk/nltk_data/index.xml for a complete list. Install corpora using nltk.download().\r\n\r\nCorpus has the following available functions:\r\nwords(): list of str\r\nsents(): list of (list of str)\r\nparas(): list of (list of (list of str))\r\ntagged_words(): list of (str,str) tuple\r\ntagged_sents(): list of (list of (str,str))\r\ntagged_paras(): list of (list of (list of (str,str)))\r\nchunked_sents(): list of (Tree w/ (str,str) leaves)\r\nparsed_sents(): list of (Tree with str leaves)\r\nparsed_paras(): list of (list of (Tree with str leaves))\r\nxml(): A single xml ElementTree\r\nraw(): unprocessed corpus contents", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "", 
-      "action": "nltk_corpus", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "nltk_corpus", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "NLTK Document Corpus"
+      "description": "NLTK corpus readers. The modules in this package provide functions that can be used to read corpus files in a variety of formats. These functions can be used to read both the corpus files that are distributed in the NLTK corpus package, and corpus files that are part of external corpora.\r\n\r\nPlease see http://nltk.googlecode.com/svn/trunk/nltk_data/index.xml for a complete list. Install corpora using nltk.download().\r\n\r\nCorpus has the following available functions:\r\nwords(): list of str\r\nsents(): list of (list of str)\r\nparas(): list of (list of (list of str))\r\ntagged_words(): list of (str,str) tuple\r\ntagged_sents(): list of (list of (str,str))\r\ntagged_paras(): list of (list of (list of (str,str)))\r\nchunked_sents(): list of (Tree w/ (str,str) leaves)\r\nparsed_sents(): list of (Tree with str leaves)\r\nparsed_paras(): list of (list of (Tree with str leaves))\r\nxml(): A single xml ElementTree\r\nraw(): unprocessed corpus contents"
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
       "name": "NLTK Document Corpus Name", 
       "short_name": "str", 
+      "uid": "9e3c98c0-69f9-40ee-b11d-cc86c0531606", 
       "default": "brown", 
-      "description": "NTLK Document Corpus Name", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "corpus_name", 
       "parameter": true, 
       "order": 1, 
-      "uid": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+      "description": "NTLK Document Corpus Name"
     }
   }, 
   {
@@ -47,15 +47,15 @@
       "widget": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
       "name": "Corpus Chunk", 
       "short_name": "str", 
+      "uid": "bccff022-db6c-4a5a-bd1b-c078521584af", 
       "default": "100%", 
-      "description": "Define the chunk of the corpus you want. You can define the chunk as percentage(e.g. '80%') of the corpus you would like or you can define the number of sentences from the beggining of the corpus. For example, value '1000' will return first 1000 sentences in the corpus.\r\n\r\nYou can also define the chunk you want to discard. For example '^80%' will discard first 80% of the corpus and return last 20% of the corpus. '^1000' will discard first 1000 sentences of the corpus and return the rest of the corpus.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "chunk", 
       "parameter": true, 
       "order": 2, 
-      "uid": "bccff022-db6c-4a5a-bd1b-c078521584af"
+      "description": "Define the chunk of the corpus you want. You can define the chunk as percentage(e.g. '80%') of the corpus you would like or you can define the number of sentences from the beggining of the corpus. For example, value '1000' will return first 1000 sentences in the corpus.\r\n\r\nYou can also define the chunk you want to discard. For example '^80%' will discard first 80% of the corpus and return last 20% of the corpus. '^1000' will discard first 1000 sentences of the corpus and return the rest of the corpus."
     }
   }, 
   {
@@ -64,55 +64,55 @@
       "widget": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
       "name": "NTLK document corpus", 
       "short_name": "cor", 
-      "description": "NLTK document corpus name", 
       "variable": "corpus", 
+      "uid": "c2fce52f-e6c4-4074-9b75-49a3ebcac8bf", 
       "order": 1, 
-      "uid": "c2fce52f-e6c4-4074-9b75-49a3ebcac8bf"
+      "description": "NLTK document corpus name"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "NPS chat", 
       "uid": "", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606", 
       "value": "nps_chat", 
-      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+      "name": "NPS chat"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "Treebank", 
       "uid": "045fac92-ea05-4699-b8aa-99cb33966b03", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606", 
       "value": "treebank", 
-      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+      "name": "Treebank"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "Floresta", 
       "uid": "51464033-9252-455a-8024-9d14893789ff", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606", 
       "value": "floresta", 
-      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+      "name": "Floresta"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "Cess Esp (spanish)", 
       "uid": "d9a7ece8-fb57-4ff3-8e7f-233a1dd989b9", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606", 
       "value": "cess_esp", 
-      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+      "name": "Cess Esp (spanish)"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "Brown", 
       "uid": "fcf19171-2a06-450f-8e5a-5a40b9cb3370", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606", 
       "value": "brown", 
-      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+      "name": "Brown"
     }
   }
 ]

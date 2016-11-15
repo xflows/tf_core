@@ -17,7 +17,7 @@ def extract_nltk_corpus_name(input_dict):
     match = re.search(r"(\\\\|/)(\w+)'", str(corpus))
     if match:
         name = match.group(2) + " " + str(chunk)
-    return {'y_name': name}
+    return {'name': name}
 
 
 def statistics(input_dict):
