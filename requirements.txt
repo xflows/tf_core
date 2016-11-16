@@ -1,4 +1,4 @@
-nltk==3.0.5
+nltk==3.2.1
 django-discover-runner==1.0
 numpy
 scipy
