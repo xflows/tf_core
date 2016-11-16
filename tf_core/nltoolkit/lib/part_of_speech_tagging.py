@@ -445,9 +445,7 @@ def nltk_maxent_pos_tagger(input_dict):
         pretrained = True
     else:
         pretrained = False
-        #this megam executable will only work on 64bit windows, change the path to megam file
-        PATH_TO_MEGAM_EXECUTABLE = os.path.expanduser("C:\\work\\textflows-env\\MEGAM\\megam.exe")
-        nltk.config_megam(PATH_TO_MEGAM_EXECUTABLE)
+        nltk.config_megam(settings.MEGAM_EXECUTABLE_PATH)
 
         maxent_tagger = MaxentPosTagger()
         chunk = input_dict['training_corpus']['chunk']
@@ -486,15 +484,8 @@ def nltk_perceptron_pos_tagger(input_dict):
             }
     }
 
-#this path should be changed on linux server
-java_path = "C:\Program Files\java\jdk1.7.0_79\\bin\java.exe"
-os.environ['JAVAHOME'] = java_path
-
 def stanford_pos_tagger(input_dict):
-    stanford_dir = "C:\\work\\textflows-env\\"
-    modelfile = stanford_dir + 'english-bidirectional-distsim.tagger'
-    jarfile = stanford_dir + 'stanford-postagger.jar'
-    tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile, java_options='-mx4000m')
+    tagger = StanfordPOSTagger(model_filename=settings.STANFORD_POS_TAGGER_MODEL, path_to_jar=settings.STANFORD_POS_TAGGER_JAR, java_options='-mx4000m')
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': tagger
