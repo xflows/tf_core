@@ -1,5 +1,7 @@
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, TfidfTransformer
 
+from tf_core.nltoolkit.helpers import TokenSplitter
+
 
 class BowModelConstructor:
     def __init__(self,adc,token_annotation,stem_feature_name,stop_word_feature_name,
