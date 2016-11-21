@@ -4,24 +4,24 @@
     "fields": {
       "category": "bb196a4d-7235-475d-bb4a-8210564f9c37", 
       "treeview_image": "", 
+      "name": "Tokenizer Hub nltoolkit", 
+      "is_streaming": false, 
       "uid": "737f32f0-033d-4455-8c82-28679393e998", 
-      "windows_queue": false, 
-      "package": "tf_core.nltoolkit",
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "Apply the *tokenizer* object on the Annotated Document Corpus (*adc*):\r\n\r\n1. first select only annotations of type *input_annotation*,\r\n2. apply the tokenizer\r\n3. create new annotations *output_annotation* with the outputs of the tokenizer.", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "token_word_do_image.png", 
-      "action": "tokenizer_hub", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "tokenizer_hub", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "is_streaming": false, 
+      "has_progress_bar": false, 
       "order": 7, 
-      "name": "Tokenizer Hub"
+      "description": "Apply the *tokenizer* object on the Annotated Document Corpus (*adc*):\r\n\r\n1. first select only annotations of type *input_annotation*,\r\n2. apply the tokenizer\r\n3. create new annotations *output_annotation* with the outputs of the tokenizer."
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "737f32f0-033d-4455-8c82-28679393e998", 
       "name": "Tokenizer", 
       "short_name": "tkn", 
+      "uid": "15bf0ab2-491e-4c44-aaf9-53206cc3a54f", 
       "default": "", 
-      "description": "Python dictionary containing the Tokenizer object and its arguments.", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "tokenizer", 
       "parameter": false, 
       "order": 2, 
-      "uid": "15bf0ab2-491e-4c44-aaf9-53206cc3a54f"
+      "description": "Python dictionary containing the Tokenizer object and its arguments."
     }
   }, 
   {
@@ -47,15 +47,15 @@
       "widget": "737f32f0-033d-4455-8c82-28679393e998", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
+      "uid": "5e0eedbe-5d93-4fb2-abf6-4f9deeb555a5", 
       "default": "", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "5e0eedbe-5d93-4fb2-abf6-4f9deeb555a5"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }, 
   {
@@ -64,15 +64,15 @@
       "widget": "737f32f0-033d-4455-8c82-28679393e998", 
       "name": "Annotation to be produced", 
       "short_name": "ann", 
+      "uid": "73e438f5-8d6f-43a3-a3d4-1df23c496a98", 
       "default": "Token", 
-      "description": "How to annotate the newly discovered tokens.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "output_annotation", 
       "parameter": true, 
       "order": 4, 
-      "uid": "73e438f5-8d6f-43a3-a3d4-1df23c496a98"
+      "description": "How to annotate the newly discovered tokens."
     }
   }, 
   {
@@ -81,15 +81,15 @@
       "widget": "737f32f0-033d-4455-8c82-28679393e998", 
       "name": "Annotation to be tokenized", 
       "short_name": "ann", 
+      "uid": "83118f55-9ef7-4710-9217-627ccbd52df3", 
       "default": "TextBlock", 
-      "description": "Which annotated part of document to be splitted.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "input_annotation", 
       "parameter": true, 
       "order": 3, 
-      "uid": "83118f55-9ef7-4710-9217-627ccbd52df3"
+      "description": "Which annotated part of document to be splitted."
     }
   }, 
   {
@@ -98,10 +98,10 @@
       "widget": "737f32f0-033d-4455-8c82-28679393e998", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "variable": "adc", 
+      "uid": "313ad85a-aa64-4212-a870-0d010df62695", 
       "order": 1, 
-      "uid": "313ad85a-aa64-4212-a870-0d010df62695"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }
 ]

@@ -1,6 +1,5 @@
-#from tagging_common import universal_sentence_tagger_hub
-from tf_core.document_corpus import DocumentCorpus
-from tagging_common_parallel import universal_sentence_tagger_hub
+from tagging_common import universal_sentence_tagger_hub
+#from tagging_common_parallel import universal_sentence_tagger_hub
 #from nltk.tag.simplify   import (simplify_brown_tag, simplify_wsj_tag,
 #                                 simplify_indian_tag, simplify_alpino_tag,
 #                                 simplify_tag)
@@ -10,20 +9,22 @@ from nltk.tag.sequential import (DefaultTagger, NgramTagger, AffixTagger,
 import nltk.tag.brill
 from nltk.tag.brill      import BrillTagger
 from nltk.tag.brill_trainer import BrillTaggerTrainer
-import re
-
+from workflows.textflows import LatinoObject, NltkCorpus
 from nltk.tag.tnt        import TnT
 from nltk.tag.hunpos     import HunposTagger
 from nltk.tag.stanford   import StanfordTagger
 #from nltk.tag.crf        import MalletCRF
 from django.conf import settings
+from workflows.tasks import executeFunction
+from nltk.corpus import brown, treebank, nps_chat
+from nltk.tag.stanford import StanfordPOSTagger
+import os
+import re
 
 
 def pos_tagger_hub(input_dict):
-    if input_dict['pos_tagger'].__class__.__name__=='LatinoObject':
-        from tf_latino.latino.library_gen import latino_pos_tag
-        from workflows.tasks import executeFunction
-
+    if input_dict['pos_tagger'].__class__.__name__=="LatinoObject": #check if this is a latino object
+        from ...latino.library_gen import latino_pos_tag
         adc= executeFunction.apply_async([latino_pos_tag,input_dict],queue="windows").wait()['adc'] \
             if settings.USE_WINDOWS_QUEUE else latino_pos_tag(input_dict)
     else:
@@ -43,22 +44,48 @@ def pos_tagger_hub(input_dict):
 
     return {'adc': adc }
 
+from workflows.textflows import DocumentCorpus, LatinoObject
 
 def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
-
-    tagger_name=tagger['object'].__class__.__name__ if not isinstance(tagger,LatinoObject) else tagger.name
+    tagger_name=tagger['object'].__class__.__name__ if not tagger.__class__.__name__=="LatinoObject" else tagger.name
     tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
-
+    if not tagger.__class__.__name__=="LatinoObject" and 'pretrained' in tagger:
+        if tagger['pretrained']:
+            if tagger_name == 'ClassifierBasedPOSTagger':
+                tagger_name = 'MaxentPosTagger-pretrained'
+            else:
+                tagger_name = 'PerceptronTagger-pretrained'
+        
     return {'pos_tagger_name': tagger_name}
 
 
-
-def corpus_reader(corpus):
+def corpus_reader(corpus, chunk):
     if type(corpus)==DocumentCorpus:
         raise NotImplementedError
     else:
-        return corpus.tagged_sents()
+        tagged_posts = getattr(corpus, "tagged_posts", None)
+        reverse = False
+        if chunk[0] == '^':
+            reverse = True
+            chunk = chunk[1:]
+        if callable(tagged_posts):
+            if chunk[-1] == '%':
+                index = (float(chunk[:-1])/100) * len(corpus.tagged_posts())
+            else:
+                index = int(chunk)
+            if reverse:
+                return corpus.tagged_posts()[int(index):]
+            return corpus.tagged_posts()[:int(index)]
+        else:
+            if chunk[-1] == '%':
+                index = (float(chunk[:-1])/100) * len(corpus.tagged_sents())
+            else:
+                index = int(chunk)
+            if reverse:
+                return corpus.tagged_sents()[int(index):]
+            return corpus.tagged_sents()[:int(index)]
+
 
 def nltk_default_pos_tagger(input_dict):
     """
@@ -109,8 +136,9 @@ def nltk_affix_pos_tagger(input_dict):
 
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
-
-    tagged_corpus=corpus_reader(input_dict['training_corpus'])
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus=corpus_reader(corpus, chunk)
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     affix_length=int(input_dict['affix_length'])
     min_stem_length=int(input_dict['min_stem_length'])
@@ -119,7 +147,7 @@ def nltk_affix_pos_tagger(input_dict):
 
     return {'pos_tagger': {
                 'function':'tag_sents',
-                'object': AffixTagger(tagged_corpus, affix_length=affix_length, cutoff=cutoff,
+                'object': AffixTagger(training_corpus, affix_length=affix_length, cutoff=cutoff,
                          min_stem_length=min(min_stem_length, 2), backoff=backoff_tagger)
         }
     }
@@ -152,8 +180,9 @@ def nltk_ngram_pos_tagger(input_dict):
 
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
-
-    training_corpus=corpus_reader(input_dict['training_corpus'])
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus=corpus_reader(corpus, chunk)
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     n=int(input_dict['n']) #default 2
     cutoff=int(input_dict['cutoff']) #default 0
@@ -161,7 +190,7 @@ def nltk_ngram_pos_tagger(input_dict):
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': NgramTagger(n, train=training_corpus, model=None,
-                 backoff=backoff_tagger, cutoff=cutoff)
+                 backoff=backoff_tagger, cutoff=0)
             }
     }
 
@@ -209,13 +238,15 @@ TODO: odloci se katerega se obdrzi od naslednjih dveh
     :returns pos_tagger: A python dictionary containing the POS tagger
         object and its arguments.
     """
-    #training_corpus=corpus_reader(input_dict['training_corpus']) #TODO: should it stay or should it go
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus=corpus_reader(corpus, chunk)
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     classifier=None #(input_dict['classifier'])
     cutoff_prob=int(input_dict['cutoff_prob']) if input_dict['cutoff_prob'] else None
 
     import nltk
-    tagger_object=ClassifierBasedPOSTagger(train=nltk.corpus.brown.tagged_sents()[:5], classifier=classifier,
+    tagger_object=ClassifierBasedPOSTagger(train=training_corpus, classifier=classifier,
                  backoff=backoff_tagger, cutoff_prob=cutoff_prob)
     return {'pos_tagger': {
                 'function':'tag_sents',
@@ -257,11 +288,13 @@ def nltk_brill_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger
         object and its arguments.
     """
-    training_corpus=corpus_reader(input_dict['training_corpus'])[:1000]
-    initial_tagger=input_dict['initial_tagger']['object'] if input_dict['initial_tagger'] else DefaultTagger('-None-')
-    max_rules=int(input_dict['max_rules']) #default 200
-    min_score=int(input_dict['min_score']) #default 2
-    deterministic=True
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus = corpus_reader(corpus, chunk)
+    initial_tagger = input_dict['initial_tagger']['object'] if input_dict['initial_tagger'] else DefaultTagger('-None-')
+    max_rules = int(input_dict['max_rules']) #default 200
+    min_score = int(input_dict['min_score']) #default 2
+    deterministic = True
 
     templates = getattr(nltk.tag.brill,input_dict['templates'])()
 
@@ -277,3 +310,187 @@ def nltk_brill_pos_tagger(input_dict):
                 'object': brill_tagger
             }
     }
+
+import time, os
+import re
+from collections import defaultdict
+
+from nltk import TaggerI, FreqDist, untag, config_megam
+from nltk.classify.maxent import MaxentClassifier
+                  
+
+class MaxentPosTagger(TaggerI):
+
+    """
+    MaxentPosTagger is a part-of-speech tagger based on Maximum Entropy models.
+    """
+    def train(self, train_sents, algorithm='megam', rare_word_cutoff=5,
+              rare_feat_cutoff=5, uppercase_letters='[A-Z]', trace=3,
+              **cutoffs):
+        self.uppercase_letters = uppercase_letters
+        self.word_freqdist = self.gen_word_freqs(train_sents)
+        self.featuresets = self.gen_featsets(train_sents,
+                rare_word_cutoff)
+        self.features_freqdist = self.gen_feat_freqs(self.featuresets)
+        self.cutoff_rare_feats(self.featuresets, rare_feat_cutoff)
+
+        t1 = time.time()
+        self.classifier = MaxentClassifier.train(self.featuresets, algorithm,
+                                                 trace, **cutoffs)
+        t2 = time.time()
+        if trace > 0:
+            print "time to train the classifier: {0}".format(round(t2-t1, 3))
+
+    def gen_feat_freqs(self, featuresets):
+        features_freqdist = defaultdict(int)
+        for (feat_dict, tag) in featuresets:
+            for (feature, value) in feat_dict.items():
+                features_freqdist[ ((feature, value), tag) ] += 1
+        return features_freqdist
+
+    def gen_word_freqs(self, train_sents):
+        word_freqdist = FreqDist()
+        for tagged_sent in train_sents:
+            for (word, _tag) in tagged_sent:
+                word_freqdist[word] += 1
+        return word_freqdist
+
+    def gen_featsets(self, train_sents, rare_word_cutoff):
+        featuresets = []
+        for tagged_sent in train_sents:
+            history = []
+            untagged_sent = untag(tagged_sent)
+            for (i, (_word, tag)) in enumerate(tagged_sent):
+                featuresets.append( (self.extract_feats(untagged_sent, i,
+                    history, rare_word_cutoff), tag) )
+                history.append(tag)
+        return featuresets
+
+
+    def cutoff_rare_feats(self, featuresets, rare_feat_cutoff):
+        never_cutoff_features = set(['w','t'])
+
+        for (feat_dict, tag) in featuresets:
+            for (feature, value) in feat_dict.items():
+                feat_value_tag = ((feature, value), tag)
+                if self.features_freqdist[feat_value_tag] < rare_feat_cutoff:
+                    if feature not in never_cutoff_features:
+                        feat_dict.pop(feature)
+
+
+    def extract_feats(self, sentence, i, history, rare_word_cutoff=5):
+        features = {}
+        hyphen = re.compile("-")
+        number = re.compile("\d")
+        uppercase = re.compile(self.uppercase_letters)
+
+        #get features: w-1, w-2, t-1, t-2.
+        #takes care of the beginning of a sentence
+        if i == 0: #first word of sentence
+            features.update({"w-1": "<START>", "t-1": "<START>",
+                             "w-2": "<START>", "t-2 t-1": "<START> <START>"})
+        elif i == 1: #second word of sentence
+            features.update({"w-1": sentence[i-1], "t-1": history[i-1],
+                             "w-2": "<START>",
+                             "t-2 t-1": "<START> %s" % (history[i-1])})
+        else:
+            features.update({"w-1": sentence[i-1], "t-1": history[i-1],
+                "w-2": sentence[i-2],
+                "t-2 t-1": "%s %s" % (history[i-2], history[i-1])})
+
+        #get features: w+1, w+2. takes care of the end of a sentence.
+        for inc in [1, 2]:
+            try:
+                features["w+%i" % (inc)] = sentence[i+inc]
+            except IndexError:
+                features["w+%i" % (inc)] = "<END>"
+
+        if self.word_freqdist[sentence[i]] >= rare_word_cutoff:
+            #additional features for 'non-rare' words
+            features["w"] = sentence[i]
+
+        else: #additional features for 'rare' or 'unseen' words
+            features.update({"suffix(1)": sentence[i][-1:],
+                "suffix(2)": sentence[i][-2:], "suffix(3)": sentence[i][-3:],
+                "suffix(4)": sentence[i][-4:], "prefix(1)": sentence[i][:1],
+                "prefix(2)": sentence[i][:2], "prefix(3)": sentence[i][:3],
+                "prefix(4)": sentence[i][:4]})
+            if hyphen.search(sentence[i]) != None:
+                #set True, if regex is found at least once
+                features["contains-hyphen"] = True
+            if number.search(sentence[i]) != None:
+                features["contains-number"] = True
+            if uppercase.search(sentence[i]) != None:
+                features["contains-uppercase"] = True
+
+        return features
+
+
+    def tag(self, sentence, rare_word_cutoff=5):
+        history = []
+        for i in xrange(len(sentence)):
+            featureset = self.extract_feats(sentence, i, history,
+                                               rare_word_cutoff)
+            tag = self.classifier.classify(featureset)
+            history.append(tag)
+        return zip(sentence, history)
+
+    def tag_sents(self, sentences):
+        return [self.tag(sent) for sent in sentences]
+
+
+def nltk_maxent_pos_tagger(input_dict):
+    if not input_dict['training_corpus']:
+        maxent_tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
+        pretrained = True
+    else:
+        pretrained = False
+        nltk.config_megam(settings.MEGAM_EXECUTABLE_PATH)
+
+        maxent_tagger = MaxentPosTagger()
+        chunk = input_dict['training_corpus']['chunk']
+        corpus = input_dict['training_corpus']['corpus']
+        training_corpus=corpus_reader(corpus, chunk)
+        if training_corpus:
+            maxent_tagger.train(training_corpus)
+        else:
+            raise AttributeError
+
+    return {'pos_tagger': {
+                'function':'tag_sents',
+                'object': maxent_tagger,
+                'pretrained': pretrained
+            }
+    }
+
+from nltk.tag.perceptron import PerceptronTagger
+
+def nltk_perceptron_pos_tagger(input_dict):
+    if not input_dict['training_corpus']:
+        perceptron_tagger = PerceptronTagger()
+        pretrained = True
+    else: 
+        pretrained = False   
+        perceptron_tagger = PerceptronTagger(load=False)
+        chunk = input_dict['training_corpus']['chunk']
+        corpus = input_dict['training_corpus']['corpus']
+        training_corpus=corpus_reader(corpus, chunk)
+        perceptron_tagger.train(list(training_corpus))
+
+    return {'pos_tagger': {
+                'function':'tag_sents',
+                'object': perceptron_tagger,
+                'pretrained': pretrained
+            }
+    }
+
+def stanford_pos_tagger(input_dict):
+    tagger = StanfordPOSTagger(model_filename=settings.STANFORD_POS_TAGGER_MODEL, path_to_jar=settings.STANFORD_POS_TAGGER_JAR, java_options='-mx4000m')
+    return {'pos_tagger': {
+                'function':'tag_sents',
+                'object': tagger
+            }
+    }
+
+
+

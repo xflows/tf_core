@@ -1,0 +1,185 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
+      "treeview_image": "", 
+      "name": "Display annotation statistic nltoolkit", 
+      "is_streaming": false, 
+      "uid": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "view_adc_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "display_annotation_statistic", 
+      "streaming_visualization_view": "", 
+      "action": "display_annotation_statistic", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "Display statistics for specific annotation or annotation sequence in ADC corpus. Widget shows annotations ranked by frequency, PMI and chi square and the scores they achieved."
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "N-gram", 
+      "short_name": "str", 
+      "uid": "48c5c9f0-2302-43d0-9b46-f689d0f5f063", 
+      "default": "1", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "n_gram", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "Choose what kind of n-gram features you would like to score."
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "75d57dba-1c76-4982-9362-23b41c0b37c0", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Statistic type", 
+      "short_name": "str", 
+      "uid": "a721b27b-3576-44ab-8039-7f7827e6067e", 
+      "default": "frequency", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "stat_type", 
+      "parameter": true, 
+      "order": 2, 
+      "description": "Choose what kind of statistics you would like to show"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Annotation name", 
+      "short_name": "str", 
+      "uid": "d2f1b218-7805-40e2-8caf-02d6760785c3", 
+      "default": "Token/POS Tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_name", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "Choose annotation"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "27922e8e-9348-499f-906e-f51c90aa1d0f", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e", 
+      "value": "pmi_trigrams", 
+      "name": "PMI of trigrams"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "27922e8e-9348-499f-906e-f51c90ba1d0f", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e", 
+      "value": "chi_square_test", 
+      "name": "Chi square test"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "39beea0e-6363-4b1d-86cc-ff4bd6001013", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063", 
+      "value": "2", 
+      "name": "2"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "612f2d64-ce12-4644-ad6d-485341b9fcae", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063", 
+      "value": "6", 
+      "name": "6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "8e741644-47c6-443a-a44b-3f559382dfe1", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063", 
+      "value": "1", 
+      "name": "1"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "9ca86893-039d-4824-bb63-3c89e3c8a650", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e", 
+      "value": "pmi_bigrams", 
+      "name": "PMI of bigrams"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "d3124c05-f011-4aa7-9c54-c9a885a27dee", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e", 
+      "value": "frequency", 
+      "name": "frequency"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "ec21fcc3-f4bb-4281-b75e-0f342802b3c5", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063", 
+      "value": "5", 
+      "name": "5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "f3bfb8aa-efc4-4bee-9cca-aebd35bc2572", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063", 
+      "value": "4", 
+      "name": "4"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "f3d0e14f-793d-449c-95ab-c0bfa806d684", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063", 
+      "value": "3", 
+      "name": "3"
+    }
+  }
+]

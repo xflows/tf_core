@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
+      "treeview_image": "", 
+      "name": "Load PTB Corpus nltoolkit", 
+      "is_streaming": false, 
+      "uid": "99ba101b-282e-42d1-85e7-9de886e502ad", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "load_ptb_corpus", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "Loads corpus in Penn Treebank format with part of speech or lemma annotations. Corpus should be a directory with ptb or .txt files, or it could be just one file with one nested tupple per line. Bellow is an example of how the input format could look:\r\n\r\n(ROOT\r\n  (S\r\n    (S\r\n      (VP (VBG Making)\r\n        (NP (NNPS Skittles))))\r\n    (NP (NN vodka))\r\n    (VP (VBZ is)\r\n      (NP (DT a) (JJ fun) (NN way)\r\n        (S\r\n          (VP (TO to)\r\n            (VP (VB add)\r\n              (NP\r\n                (NP (DT a) (NN splash))\r\n                (PP (IN of)\r\n                  (NP (JJ fruity) (NN flavor)\r\n                    (CC and)\r\n                    (NN color))))\r\n              (PP (TO to)\r\n                (NP (JJ regular) (NN vodka))))))))\r\n    (. .)))\r\nThe widget returns a list of tokenized sentences with part of speech or lemma tags."
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "99ba101b-282e-42d1-85e7-9de886e502ad", 
+      "name": "Input", 
+      "short_name": "inp", 
+      "uid": "2bf6d126-7548-4d34-9615-48175a7d3f21", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "input", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "input should be a zipped directory of files or a file"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "99ba101b-282e-42d1-85e7-9de886e502ad", 
+      "name": "PTB document corpus", 
+      "short_name": "ptb", 
+      "variable": "ptb_corpus", 
+      "uid": "ff3f9661-7f26-4371-b5b8-10dd4fadd308", 
+      "order": 1, 
+      "description": "PTB document corpus"
+    }
+  }
+]

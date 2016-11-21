@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "name": "Extract NLTK Corpus Name nltoolkit", 
+      "is_streaming": false, 
+      "uid": "49f10635-c13a-4e64-94b4-dedaf3574883", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "extract_nltk_corpus_name", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1000, 
+      "description": "Returns a name od the NLTK corpus."
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "49f10635-c13a-4e64-94b4-dedaf3574883", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "uid": "398cd9f4-48b9-4449-a0e3-1517ef370d2e", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "49f10635-c13a-4e64-94b4-dedaf3574883", 
+      "name": "NLTK Name", 
+      "short_name": "str", 
+      "variable": "name", 
+      "uid": "e0026161-c0fe-44cd-b7d6-626643efbdea", 
+      "order": 1, 
+      "description": ""
+    }
+  }
+]

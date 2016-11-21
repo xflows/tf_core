@@ -4,24 +4,24 @@
     "fields": {
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
+      "name": "POS Tagger Hub nltoolkit", 
+      "is_streaming": false, 
       "uid": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
-      "windows_queue": false, 
-      "package": "tf_core.nltoolkit",
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "TODO", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "tag_pos_do_image.png", 
-      "action": "pos_tagger_hub", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "pos_tagger_hub", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "is_streaming": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "POS Tagger Hub"
+      "description": "TODO"
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "Output Feature Name", 
       "short_name": "str", 
+      "uid": "42602fdc-7094-465b-8c8c-0ab19fd9ef44", 
       "default": "POS Tag", 
-      "description": "System.String", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "output_feature", 
       "parameter": true, 
       "order": 5, 
-      "uid": "42602fdc-7094-465b-8c8c-0ab19fd9ef44"
+      "description": "System.String"
     }
   }, 
   {
@@ -47,15 +47,15 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "Sentence's Annotation", 
       "short_name": "str", 
+      "uid": "575212d6-fabc-4eb4-b725-f2f095538c7a", 
       "default": "Sentence", 
-      "description": "System.String", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "group_annotation", 
       "parameter": true, 
       "order": 3, 
-      "uid": "575212d6-fabc-4eb4-b725-f2f095538c7a"
+      "description": "System.String"
     }
   }, 
   {
@@ -64,15 +64,15 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "Element's Annotation", 
       "short_name": "str", 
+      "uid": "5efe8312-301e-4fe9-aef8-d39762594584", 
       "default": "Token", 
-      "description": "System.String", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "element_annotation", 
       "parameter": true, 
       "order": 4, 
-      "uid": "5efe8312-301e-4fe9-aef8-d39762594584"
+      "description": "System.String"
     }
   }, 
   {
@@ -81,15 +81,15 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "POS Tagger", 
       "short_name": "tgr", 
+      "uid": "6f5f601d-d89c-4578-a6cc-f91750013c78", 
       "default": "", 
-      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "pos_tagger", 
       "parameter": false, 
       "order": 2, 
-      "uid": "6f5f601d-d89c-4578-a6cc-f91750013c78"
+      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger"
     }
   }, 
   {
@@ -98,15 +98,15 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
+      "uid": "f769fea1-3600-4c01-817e-3cbf6214c4df", 
       "default": "", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "f769fea1-3600-4c01-817e-3cbf6214c4df"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }, 
   {
@@ -115,15 +115,15 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "Take first k letters from POS tag", 
       "short_name": "ltr", 
+      "uid": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57", 
       "default": "-1", 
-      "description": "Take first k letters from POS tag", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "num_of_letters", 
       "parameter": true, 
       "order": 6, 
-      "uid": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+      "description": "Take first k letters from POS tag"
     }
   }, 
   {
@@ -132,46 +132,46 @@
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "variable": "adc", 
+      "uid": "4e2038f4-2f9a-4248-aca7-335ce0fc57f7", 
       "order": 1, 
-      "uid": "cded8ae2-2518-420a-a8ff-662ca07c57bc"
+      "description": "Annotated Document Corpus"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "3", 
       "uid": "36b27b61-c8ba-4030-921c-1861b6b0fe59", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57", 
       "value": "3", 
-      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+      "name": "3"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "all", 
       "uid": "40f0e4a2-44b7-4a1a-98d0-c95a05fdc4ee", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57", 
       "value": "-1", 
-      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+      "name": "all"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "1", 
       "uid": "4cecf0f5-6039-4534-b3c0-dfa6cfdb2d0d", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57", 
       "value": "1", 
-      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+      "name": "1"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "2", 
       "uid": "57ebf440-472c-4618-9a20-b2093b9d1cde", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57", 
       "value": "2", 
-      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+      "name": "2"
     }
   }
 ]

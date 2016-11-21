@@ -4,24 +4,24 @@
     "fields": {
       "category": "fb4fad1e-9c2f-454b-86af-3dc255ac9297", 
       "treeview_image": "", 
+      "name": "Stem/Lemma Tagger Hub nltoolkit", 
+      "is_streaming": false, 
       "uid": "8710e976-8020-45c3-bbeb-5e523871525c", 
-      "windows_queue": false, 
-      "package": "tf_core.nltoolkit",
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "Taggs the given annotated document corpus with the given tagger.", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "tag_stem_do_image.png", 
-      "action": "stem_lemma_tagger_hub", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "stem_lemma_tagger_hub", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "is_streaming": false, 
+      "has_progress_bar": false, 
       "order": 5, 
-      "name": "Stem/Lemma Tagger Hub"
+      "description": "Taggs the given annotated document corpus with the given tagger."
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
       "name": "Token Tagger", 
       "short_name": "tgr", 
+      "uid": "07d4636f-5ec1-4cdb-8ea0-2a35930c2499", 
       "default": "Output feature name specifies how the token will be tagged (assigend the feature to)\r\nIf multiple taggers are used then one line per tagger must be specified.", 
-      "description": "Token Annotation of the token to be tagged. If also the feature name is used than the feature value of selected token will be tagged.\r\nUsage: \r\n1. TokenName\r\n2. TokenName/FeatureName\r\nIf multiple taggers are used then one line per tagger must be specified.", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "tagger", 
       "parameter": false, 
       "order": 2, 
-      "uid": "07d4636f-5ec1-4cdb-8ea0-2a35930c2499"
+      "description": "Token Annotation of the token to be tagged. If also the feature name is used than the feature value of selected token will be tagged.\r\nUsage: \r\n1. TokenName\r\n2. TokenName/FeatureName\r\nIf multiple taggers are used then one line per tagger must be specified."
     }
   }, 
   {
@@ -47,15 +47,15 @@
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
       "name": "Token Annotation", 
       "short_name": "str", 
+      "uid": "72232775-edbc-4748-8b7f-77eb5023048c", 
       "default": "Token", 
-      "description": "System.String", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "element_annotation", 
       "parameter": true, 
       "order": 3, 
-      "uid": "72232775-edbc-4748-8b7f-77eb5023048c"
+      "description": "System.String"
     }
   }, 
   {
@@ -64,15 +64,32 @@
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
+      "uid": "786e1f2b-8e77-4732-9f6d-e9757dd36564", 
       "default": "", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "786e1f2b-8e77-4732-9f6d-e9757dd36564"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
+      "name": "POS Annotation", 
+      "short_name": "str", 
+      "uid": "87df8f8d-ecbe-4319-9622-dd505dfbd7d9", 
+      "default": "POS Tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "pos_annotation", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "Name of Part of Speech annotation in ADC corpus if ADC corpus contains part of speech tags. Used by wordnet lemmatizer which uses POS tags for lemma prediction."
     }
   }, 
   {
@@ -81,15 +98,15 @@
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
       "name": "Output Feature Name", 
       "short_name": "str", 
+      "uid": "a7946246-3719-4f0e-b915-1512183aa472", 
       "default": "Stem", 
-      "description": "System.String", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "output_feature", 
       "parameter": true, 
       "order": 4, 
-      "uid": "a7946246-3719-4f0e-b915-1512183aa472"
+      "description": "System.String"
     }
   }, 
   {
@@ -98,10 +115,10 @@
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
-      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "variable": "adc", 
+      "uid": "2882c119-5077-49a0-80dc-466cf30c5eb6", 
       "order": 1, 
-      "uid": "2882c119-5077-49a0-80dc-466cf30c5eb6"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }
 ]

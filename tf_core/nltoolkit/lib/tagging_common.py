@@ -1,5 +1,7 @@
+from itertools import izip
+import inspect
 
-def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation):
+def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation, pos_annotation=None):
     tagger=tagger_dict['object']
     tagger_function=tagger_dict['function']
     args=tagger_dict.get('args',[])
@@ -11,6 +13,11 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
                 pass
             for annotation,subtext in document.get_annotations_with_text(input_annotation): #all annotations of this type
                 if subtext:
+                    if pos_annotation:
+                        if pos_annotation in annotation.features:
+                            method = getattr(tagger,tagger_function)
+                            if inspect.getargspec(method)[2] == 'kwargs':
+                                kwargs[pos_annotation] = annotation.features[pos_annotation]
                     new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
                     if new_feature!=None:
                         annotation.features[output_annotation]=new_feature

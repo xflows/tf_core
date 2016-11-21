@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
+      "treeview_image": "", 
+      "name": "POS Tagger Evaluator nltoolkit", 
+      "is_streaming": false, 
+      "uid": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "tag_pos_do_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "pos_tagger_evaluate", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "This widgets can be used to evaluate NLTK POS taggers. Inputs are POS tagger and golden standard corpus"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "name": "PTB Document Corpus", 
+      "short_name": "ptb", 
+      "uid": "398a52d4-c96d-410c-826b-05916a6eae55", 
+      "default": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "ptb_corpus", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "Corpus in penn treebank format"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "uid": "b236e3d2-909a-4c21-a728-64f9755cbf3e", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "pos_tagger", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "name": "Actual and predicted labels", 
+      "short_name": "lst", 
+      "variable": "actual_and_predicted", 
+      "uid": "5b9e0d41-415a-4685-9e84-50f162a7cb6f", 
+      "order": 1, 
+      "description": "List of actual and predicted labels (see help for details)"
+    }
+  }
+]

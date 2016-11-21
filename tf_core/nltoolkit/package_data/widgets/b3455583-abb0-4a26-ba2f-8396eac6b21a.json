@@ -4,24 +4,24 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "uid": "b3455583-abb0-4a26-ba2f-8396eac6b21a", 
+      "name": "Display Document Corpus nltoolkit", 
       "is_streaming": false, 
-      "package": "tf_core.nltoolkit",
+      "uid": "b3455583-abb0-4a26-ba2f-8396eac6b21a", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "Display Document Corpus widget displays ADC (Annotated Document Corpus) structure. It shows a detail view for selected document with annotations.", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "view_adc_image.png", 
-      "action": "display_document_corpus", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "display_document_corpus", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "display_document_corpus", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Display Document Corpus"
+      "description": "Display Document Corpus widget displays ADC (Annotated Document Corpus) structure. It shows a detail view for selected document with annotations."
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "b3455583-abb0-4a26-ba2f-8396eac6b21a", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
+      "uid": "d4ffbff2-8055-454b-99db-254a9f6264b6", 
       "default": "", 
-      "description": "Annotated Document Corpus.", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "d4ffbff2-8055-454b-99db-254a9f6264b6"
+      "description": "Annotated Document Corpus."
     }
   }
 ]

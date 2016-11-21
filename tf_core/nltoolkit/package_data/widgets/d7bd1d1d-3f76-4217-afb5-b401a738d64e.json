@@ -1,0 +1,90 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "ed2728bc-3fd5-4244-9876-f6a757d1b922", 
+      "treeview_image": "", 
+      "name": "Extract Actual and Predicted features nltoolkit", 
+      "is_streaming": false, 
+      "uid": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "extract_actual_and_predicted_features", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1001, 
+      "description": "Takes as an input an ADC object with predicted features and an ADC object with actual features(golden standard). Output is a list containing a list of predicted features and a list contained actual features."
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Actual annotation", 
+      "short_name": "str", 
+      "uid": "89cdcbd2-684f-4f56-a21e-3ba611ae634a", 
+      "default": "POS tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_actual", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Predicted annotation", 
+      "short_name": "str", 
+      "uid": "c67d197b-d7f0-4697-b9c5-bafb87a6a968", 
+      "default": "POS tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_predicted", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "cfc16923-a5fb-4050-b58c-79d9f4544b07", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Actual and Predicted Values", 
+      "short_name": "lst", 
+      "variable": "actual_and_predicted", 
+      "uid": "b76ad968-cbfa-444f-9916-3e085f1a6f2a", 
+      "order": 1, 
+      "description": "List of Actual and Predicted Values"
+    }
+  }
+]

@@ -1,4 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, TfidfTransformer
+from nltoolkit.helpers import TokenSplitter
 
 from tf_core.nltoolkit.helpers import TokenSplitter
 

@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "45090e07-d869-4fb2-990a-dd108b1063cc", 
+      "treeview_image": "", 
+      "name": "Classifier based parser nltoolkit", 
+      "is_streaming": false, 
+      "uid": "7a06c214-b7ab-40ef-947f-73f5648aefa1", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "tag_pos_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "classifier_based_parser", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "TODO"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "7a06c214-b7ab-40ef-947f-73f5648aefa1", 
+      "name": "classifier based chunker", 
+      "short_name": "chn", 
+      "variable": "chunker", 
+      "uid": "cf514394-7714-44a9-a111-171ae54c9c16", 
+      "order": 1, 
+      "description": "classifier based chunker"
+    }
+  }
+]

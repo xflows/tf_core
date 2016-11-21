@@ -4,24 +4,24 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "uid": "18ca239d-90c1-4a53-bdc0-a874eff0efe5", 
+      "name": "Statistics nltoolkit", 
       "is_streaming": false, 
-      "package": "tf_core.nltoolkit",
+      "uid": "18ca239d-90c1-4a53-bdc0-a874eff0efe5", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "Statistics of Annotated Document Corpus.", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "adc_info_image.png", 
-      "action": "statistics", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "statistics", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Statistics"
+      "description": "Statistics of Annotated Document Corpus."
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "18ca239d-90c1-4a53-bdc0-a874eff0efe5", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
+      "uid": "165819b1-9720-429e-b4ec-0aaec5d5fd07", 
       "default": "", 
-      "description": "Annotated Document Corpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "uid": "165819b1-9720-429e-b4ec-0aaec5d5fd07"
+      "description": "Annotated Document Corpus"
     }
   }, 
   {
@@ -47,10 +47,10 @@
       "widget": "18ca239d-90c1-4a53-bdc0-a874eff0efe5", 
       "name": "Number of Features", 
       "short_name": "int", 
-      "description": "Number of Features.", 
       "variable": "feature_count", 
+      "uid": "b975213e-5241-4f6b-909c-6bf7989d8fbe", 
       "order": 2, 
-      "uid": "b975213e-5241-4f6b-909c-6bf7989d8fbe"
+      "description": "Number of Features."
     }
   }, 
   {
@@ -59,10 +59,10 @@
       "widget": "18ca239d-90c1-4a53-bdc0-a874eff0efe5", 
       "name": "Number of Documents", 
       "short_name": "int", 
-      "description": "Number of Documents.", 
       "variable": "doc_count", 
+      "uid": "cb53b12d-6ed2-491b-8c2a-af7726c5498d", 
       "order": 1, 
-      "uid": "cb53b12d-6ed2-491b-8c2a-af7726c5498d"
+      "description": "Number of Documents."
     }
   }, 
   {
@@ -71,10 +71,10 @@
       "widget": "18ca239d-90c1-4a53-bdc0-a874eff0efe5", 
       "name": "Statistics", 
       "short_name": "str", 
-      "description": "Statistics.", 
       "variable": "description", 
+      "uid": "fac4b436-5a90-4b2f-b3aa-d3d1be2b6424", 
       "order": 3, 
-      "uid": "fac4b436-5a90-4b2f-b3aa-d3d1be2b6424"
+      "description": "Statistics."
     }
   }
 ]

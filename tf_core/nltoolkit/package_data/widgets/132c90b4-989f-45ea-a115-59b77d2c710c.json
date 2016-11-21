@@ -4,24 +4,24 @@
     "fields": {
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
-      "uid": "132c90b4-989f-45ea-a115-59b77d2c710c", 
+      "name": "Extract POS Tagger Name nltoolkit", 
       "is_streaming": false, 
-      "package": "tf_core.nltoolkit",
+      "uid": "132c90b4-989f-45ea-a115-59b77d2c710c", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "", 
-      "description": "Returns a string with pretty POS tagger name. ", 
+      "package": "tf_core.nltoolkit", 
       "static_image": "tag_pos_do_image.png", 
-      "action": "extract_pos_tagger_name", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "extract_pos_tagger_name", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1000, 
-      "name": "Extract POS Tagger Name"
+      "description": "Returns a string with pretty POS tagger name. "
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "132c90b4-989f-45ea-a115-59b77d2c710c", 
       "name": "POS Tagger", 
       "short_name": "tgr", 
+      "uid": "73f43656-c52d-48b3-b567-fb02a6db2d0e", 
       "default": "", 
-      "description": "", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "pos_tagger", 
       "parameter": false, 
       "order": 1, 
-      "uid": "73f43656-c52d-48b3-b567-fb02a6db2d0e"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +47,10 @@
       "widget": "132c90b4-989f-45ea-a115-59b77d2c710c", 
       "name": "POS Tagger Name", 
       "short_name": "str", 
-      "description": "", 
       "variable": "pos_tagger_name", 
+      "uid": "2abf0cbf-fc14-402b-91e1-63553d857db3", 
       "order": 1, 
-      "uid": "2abf0cbf-fc14-402b-91e1-63553d857db3"
+      "description": ""
     }
   }
 ]

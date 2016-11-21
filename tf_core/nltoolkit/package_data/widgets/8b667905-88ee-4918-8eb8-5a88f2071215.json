@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
+      "treeview_image": "", 
+      "name": "NLTK corpus to ADC format nltoolkit", 
+      "is_streaming": false, 
+      "uid": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_corpus_to_adc", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "extract tagged sentences in PTB format from NLTK corpus and convert it to ADC format."
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "uid": "39c2917e-84fe-4c01-973f-54a631078856", 
+      "default": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "name": "Annotation name", 
+      "short_name": "str", 
+      "uid": "ff1c6c3a-3878-4932-b41f-daed68021aad", 
+      "default": "POS Tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_name", 
+      "parameter": true, 
+      "order": 2, 
+      "description": "Give the name to the annotations from the Penn Treebank Format, for example, 'POS Tag' or 'Lemma'. This annotation will be tagged in the ADC corpus under this name."
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "variable": "adc", 
+      "uid": "3ea38619-f510-43f7-a9c5-909f1e7e7600", 
+      "order": 1, 
+      "description": "Annotated Document Corpus"
+    }
+  }
+]
