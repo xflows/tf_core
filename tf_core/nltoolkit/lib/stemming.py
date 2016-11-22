@@ -6,7 +6,6 @@ from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
 from pattern.vector import stem, PORTER, LEMMA
-from textblob import Word
 
 #from tagging_common_parallel import universal_word_tagger_hub
 

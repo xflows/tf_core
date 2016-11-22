@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='tf_core',
-    version='0.0.2',
+    version='0.0.7',
     packages=['tf_core'],
     include_package_data=True,
     license='MIT License',
@@ -32,4 +32,15 @@ setup(
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Software Development :: Libraries'
     ],
+    install_requires=[
+        "nltk==3.2.1",
+        "django-discover-runner==1.0",
+        "numpy",
+        "scipy",
+        "scikit-learn==0.16.1",
+        "docx",
+        "requests",
+        "pdfminer",
+        "pattern==2.6"
+    ]
 )
