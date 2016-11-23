@@ -1,3 +1,4 @@
+from tf_core.document_corpus import DocumentCorpus
 from tagging_common import universal_sentence_tagger_hub
 #from tagging_common_parallel import universal_sentence_tagger_hub
 #from nltk.tag.simplify   import (simplify_brown_tag, simplify_wsj_tag,
@@ -9,13 +10,11 @@ from nltk.tag.sequential import (DefaultTagger, NgramTagger, AffixTagger,
 import nltk.tag.brill
 from nltk.tag.brill      import BrillTagger
 from nltk.tag.brill_trainer import BrillTaggerTrainer
-from workflows.textflows import LatinoObject, NltkCorpus
 from nltk.tag.tnt        import TnT
 from nltk.tag.hunpos     import HunposTagger
 from nltk.tag.stanford   import StanfordTagger
 #from nltk.tag.crf        import MalletCRF
 from django.conf import settings
-from workflows.tasks import executeFunction
 from nltk.corpus import brown, treebank, nps_chat
 from nltk.tag.stanford import StanfordPOSTagger
 import os
@@ -44,7 +43,6 @@ def pos_tagger_hub(input_dict):
 
     return {'adc': adc }
 
-from workflows.textflows import DocumentCorpus, LatinoObject
 
 def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
