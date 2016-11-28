@@ -20,7 +20,7 @@ def stem_lemma_tagger_hub(input_dict):
         adc = input_dict['adc']
         tagger_dict = input_dict['tagger']
         input_annotation = input_dict['element_annotation']
-        pos_annotation = input_dict.get(['pos_annotation'])
+        pos_annotation = input_dict.get('pos_annotation')
         output_annotation = input_dict['output_feature']
         return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation,pos_annotation)
 
