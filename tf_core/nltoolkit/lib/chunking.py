@@ -1,5 +1,6 @@
+from itertools import izip
+
 import nltk
-from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
 #from tagging_common_parallel import universal_word_tagger_hub
 
