@@ -15,7 +15,7 @@
       "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "action": "perceptron_pos_tagger", 
+      "action": "nltk_custom_perceptron_pos_tagger",
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 

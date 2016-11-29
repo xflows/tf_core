@@ -1,3 +1,5 @@
+import pickle
+
 from tf_core.document_corpus import DocumentCorpus
 from tagging_common import universal_sentence_tagger_hub
 #from tagging_common_parallel import universal_sentence_tagger_hub
@@ -48,15 +50,11 @@ def pos_tagger_hub(input_dict):
 
 def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
-    tagger_name=tagger['object'].__class__.__name__ if not tagger.__class__.__name__=="LatinoObject" else tagger.name
-    tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
-    if not tagger.__class__.__name__=="LatinoObject" and 'pretrained' in tagger:
-        if tagger['pretrained']:
-            if tagger_name == 'ClassifierBasedPOSTagger':
-                tagger_name = 'MaxentPosTagger-pretrained'
-            else:
-                tagger_name = 'PerceptronTagger-pretrained'
-        
+    if tagger['name']:
+        tagger_name=tagger['name']
+    else:
+        tagger_name=tagger['object'].__class__.__name__ if not tagger.__class__.__name__=="LatinoObject" else tagger.name
+        tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
     return {'pos_tagger_name': tagger_name}
 
 
@@ -440,11 +438,11 @@ class MaxentPosTagger(TaggerI):
 
 
 def nltk_maxent_pos_tagger(input_dict):
+    name = 'MaxentPosTagger'
     if not input_dict['training_corpus']:
         maxent_tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
-        pretrained = True
+        name += '-pretrained'
     else:
-        pretrained = False
         nltk.config_megam(settings.MEGAM_EXECUTABLE_PATH)
 
         maxent_tagger = MaxentPosTagger()
@@ -459,18 +457,18 @@ def nltk_maxent_pos_tagger(input_dict):
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': maxent_tagger,
-                'pretrained': pretrained
+                'name': name
             }
     }
 
 from nltk.tag.perceptron import PerceptronTagger
 
 def nltk_perceptron_pos_tagger(input_dict):
+    name= 'PerceptronPosTagger'
     if not input_dict['training_corpus']:
         perceptron_tagger = PerceptronTagger()
-        pretrained = True
+        name += '-pretrained'
     else: 
-        pretrained = False   
         perceptron_tagger = PerceptronTagger(load=False)
         chunk = input_dict['training_corpus']['chunk']
         corpus = input_dict['training_corpus']['corpus']
@@ -480,7 +478,7 @@ def nltk_perceptron_pos_tagger(input_dict):
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': perceptron_tagger,
-                'pretrained': pretrained
+                'name': name
             }
     }
 
@@ -755,12 +753,12 @@ class CustomPerceptronTagger(TaggerI):
             if n >= freq_thresh and (mode / n) >= ambiguity_thresh:
                 self.tagdict[word] = tag
 
-def perceptron_pos_tagger(input_dict):
+def nltk_custom_perceptron_pos_tagger(input_dict):
+    name= 'PerceptronPosTagger'
     if not input_dict['training_corpus']:
-        perceptron_tagger = PerceptronTagger()
-        pretrained = True
+        perceptron_tagger = CustomPerceptronTagger()
+        name+='-pretrained'
     else: 
-        pretrained = False   
         perceptron_tagger = CustomPerceptronTagger(load=False)
         chunk = input_dict['training_corpus']['chunk']
         corpus = input_dict['training_corpus']['corpus']
@@ -770,7 +768,7 @@ def perceptron_pos_tagger(input_dict):
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': perceptron_tagger,
-                'pretrained': pretrained
+                'name': name
             }
     }
 
