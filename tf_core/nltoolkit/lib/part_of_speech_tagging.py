@@ -23,7 +23,9 @@ import re
 
 def pos_tagger_hub(input_dict):
     if input_dict['pos_tagger'].__class__.__name__=="LatinoObject": #check if this is a latino object
-        from ...latino.library_gen import latino_pos_tag
+        from tf_latino.latino.library_gen import latino_pos_tag
+        from workflows.tasks import executeFunction
+
         adc= executeFunction.apply_async([latino_pos_tag,input_dict],queue="windows").wait()['adc'] \
             if settings.USE_WINDOWS_QUEUE else latino_pos_tag(input_dict)
     else:

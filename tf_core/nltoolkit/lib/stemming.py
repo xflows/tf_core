@@ -1,25 +1,26 @@
 from django.conf import settings
-from workflows.tasks import executeFunction
 
 import nltk
-from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
 from pattern.vector import stem, PORTER, LEMMA
 
 #from tagging_common_parallel import universal_word_tagger_hub
+from tf_core.nltoolkit.helpers import NltkRegexpStemmer
 
 
 def stem_lemma_tagger_hub(input_dict):
     if input_dict['tagger'].__class__.__name__=="LatinoObject": #check if this is a latino object
         from tf_latino.latino.library_gen import latino_tag_adc_stem_lemma
+        from workflows.tasks import executeFunction
+
         return latino_tag_adc_stem_lemma(input_dict) if not settings.USE_WINDOWS_QUEUE \
             else executeFunction.apply_async([latino_tag_adc_stem_lemma,input_dict],queue="windows").wait()
     else:
         adc = input_dict['adc']
         tagger_dict = input_dict['tagger']
         input_annotation = input_dict['element_annotation']
-        pos_annotation = input_dict['pos_annotation']
+        pos_annotation = input_dict.get('pos_annotation')
         output_annotation = input_dict['output_feature']
         return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation,pos_annotation)
 
