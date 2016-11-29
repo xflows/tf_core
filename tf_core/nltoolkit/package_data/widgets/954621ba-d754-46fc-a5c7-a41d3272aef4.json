@@ -4,7 +4,7 @@
     "fields": {
       "category": "45090e07-d869-4fb2-990a-dd108b1063cc", 
       "treeview_image": "", 
-      "name": "Regex parser nltoolkit", 
+      "name": "Regex parser", 
       "is_streaming": false, 
       "uid": "954621ba-d754-46fc-a5c7-a41d3272aef4", 
       "interaction_view": "", 

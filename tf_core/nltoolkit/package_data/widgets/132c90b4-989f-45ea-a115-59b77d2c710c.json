@@ -4,7 +4,7 @@
     "fields": {
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
-      "name": "Extract POS Tagger Name nltoolkit", 
+      "name": "Extract POS Tagger Name", 
       "is_streaming": false, 
       "uid": "132c90b4-989f-45ea-a115-59b77d2c710c", 
       "interaction_view": "", 

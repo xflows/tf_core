@@ -4,7 +4,7 @@
     "fields": {
       "category": "017444c3-afd0-4300-9766-bedeaef10765", 
       "treeview_image": "", 
-      "name": "ISRI Stemmer nltoolkit", 
+      "name": "ISRI Stemmer", 
       "is_streaming": false, 
       "uid": "56d7d244-4969-4b33-a884-f1ac539beda6", 
       "interaction_view": "", 

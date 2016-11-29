@@ -4,7 +4,7 @@
     "fields": {
       "category": "b0ce2ce4-16e8-4f9c-9874-238066c20fea", 
       "treeview_image": "", 
-      "name": "Treebank Word Tokenizer nltoolkit", 
+      "name": "Treebank Word Tokenizer", 
       "is_streaming": false, 
       "uid": "30e18e0a-8330-4f4d-b1dd-dcd06aeec2ae", 
       "interaction_view": "", 

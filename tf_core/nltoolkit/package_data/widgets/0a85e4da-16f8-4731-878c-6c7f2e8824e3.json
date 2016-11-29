@@ -4,7 +4,7 @@
     "fields": {
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
-      "name": "Display annotation statistic nltoolkit", 
+      "name": "Display annotation statistic", 
       "is_streaming": false, 
       "uid": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
       "interaction_view": "", 

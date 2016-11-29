@@ -4,9 +4,9 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "name": "NLTK perceptron tagger", 
+      "name": "Perceptron POS tagger", 
       "is_streaming": false, 
-      "uid": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
+      "uid": "2c3c1f83-9cd3-4b27-aca4-783eb5f8ac51", 
       "interaction_view": "", 
       "image": "", 
       "package": "tf_core.nltoolkit", 
@@ -15,22 +15,22 @@
       "post_interact_action": "", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "action": "nltk_perceptron_pos_tagger", 
+      "action": "perceptron_pos_tagger", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 1, 
-      "description": "Perceptron tagger from NLTK. It's the tagger NLTK 3.0 uses when 'nltk.pos_tag()'  function is called. "
+      "description": "Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal with a fix that\r\nmakes it not crash on 0 length tokens during training. The implementation is identical to the one implemented in NLTK 3.1.0 and later if you do not consider the fix."
     }
   }, 
   {
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
+      "widget": "2c3c1f83-9cd3-4b27-aca4-783eb5f8ac51", 
       "name": "Training Corpus", 
       "short_name": "cor", 
-      "uid": "c2a9a12a-5d03-4cc7-9524-3ef2b737f34d", 
+      "uid": "d70cdfb1-8904-4a65-805e-17c33fae079a", 
       "default": "", 
       "required": false, 
       "multi": false, 
@@ -44,13 +44,13 @@
   {
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
+      "widget": "2c3c1f83-9cd3-4b27-aca4-783eb5f8ac51", 
       "name": "POS Tagger", 
       "short_name": "tgr", 
       "variable": "pos_tagger", 
-      "uid": "99f3d531-b733-46cd-a398-eccfe442b9ef", 
+      "uid": "248935df-be50-4831-ae67-7c46238198e0", 
       "order": 1, 
-      "description": "A python dictionary containing the POS tagger "
+      "description": "A python dictionary containing the POS tagger"
     }
   }
 ]

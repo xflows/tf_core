@@ -4,7 +4,7 @@
     "fields": {
       "category": "fb4fad1e-9c2f-454b-86af-3dc255ac9297", 
       "treeview_image": "", 
-      "name": "Lemmatizer Evaluator nltoolkit", 
+      "name": "Lemmatizer Evaluator", 
       "is_streaming": false, 
       "uid": "7e5b03c2-ede5-424b-a28c-ae7684dc1ea6", 
       "interaction_view": "", 

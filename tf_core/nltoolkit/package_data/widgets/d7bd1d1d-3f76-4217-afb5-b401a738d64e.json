@@ -4,7 +4,7 @@
     "fields": {
       "category": "ed2728bc-3fd5-4244-9876-f6a757d1b922", 
       "treeview_image": "", 
-      "name": "Extract Actual and Predicted features nltoolkit", 
+      "name": "Extract Actual and Predicted features", 
       "is_streaming": false, 
       "uid": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
       "interaction_view": "", 

@@ -4,7 +4,7 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "name": "POS Classifier-based Tagger nltoolkit", 
+      "name": "POS Classifier-based Tagger", 
       "is_streaming": false, 
       "uid": "dcc5dc6c-9d35-4556-9698-4024f5cf7d0a", 
       "interaction_view": "", 

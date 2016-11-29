@@ -4,7 +4,7 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "name": "Stanford POS tagger nltoolkit", 
+      "name": "Stanford POS tagger", 
       "is_streaming": false, 
       "uid": "982aafd8-1d71-4d37-9b91-acce96e0009f", 
       "interaction_view": "", 

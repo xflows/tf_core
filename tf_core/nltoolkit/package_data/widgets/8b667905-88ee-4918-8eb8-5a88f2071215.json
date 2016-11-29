@@ -4,7 +4,7 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "name": "NLTK corpus to ADC format nltoolkit", 
+      "name": "NLTK corpus to ADC format", 
       "is_streaming": false, 
       "uid": "8b667905-88ee-4918-8eb8-5a88f2071215", 
       "interaction_view": "", 

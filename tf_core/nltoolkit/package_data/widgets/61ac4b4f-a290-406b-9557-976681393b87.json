@@ -4,7 +4,7 @@
     "fields": {
       "category": "017444c3-afd0-4300-9766-bedeaef10765", 
       "treeview_image": "", 
-      "name": "RSLP Stemmer nltoolkit", 
+      "name": "RSLP Stemmer", 
       "is_streaming": false, 
       "uid": "61ac4b4f-a290-406b-9557-976681393b87", 
       "interaction_view": "", 

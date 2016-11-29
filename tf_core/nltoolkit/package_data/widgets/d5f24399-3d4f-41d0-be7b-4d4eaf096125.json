@@ -4,7 +4,7 @@
     "fields": {
       "category": "46050a99-188d-40e1-90e5-0c1912059fa7", 
       "treeview_image": "", 
-      "name": "Extract Classifier Name nltoolkit", 
+      "name": "Extract Classifier Name", 
       "is_streaming": false, 
       "uid": "d5f24399-3d4f-41d0-be7b-4d4eaf096125", 
       "interaction_view": "", 

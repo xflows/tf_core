@@ -4,7 +4,7 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "name": "NLTK Document Corpus nltoolkit", 
+      "name": "NLTK Document Corpus", 
       "is_streaming": false, 
       "uid": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
       "interaction_view": "", 

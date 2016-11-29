@@ -4,7 +4,7 @@
     "fields": {
       "category": "017444c3-afd0-4300-9766-bedeaef10765", 
       "treeview_image": "", 
-      "name": "Snowball Stemmer nltoolkit", 
+      "name": "Snowball Stemmer", 
       "is_streaming": false, 
       "uid": "7041d151-cb4b-482f-be06-06666612a8b6", 
       "interaction_view": "", 

@@ -4,7 +4,7 @@
     "fields": {
       "category": "017444c3-afd0-4300-9766-bedeaef10765", 
       "treeview_image": "", 
-      "name": "WordNet Lemmatizer nltoolkit", 
+      "name": "WordNet Lemmatizer", 
       "is_streaming": false, 
       "uid": "c8472428-1050-4f54-9a5e-e910c692415d", 
       "interaction_view": "", 

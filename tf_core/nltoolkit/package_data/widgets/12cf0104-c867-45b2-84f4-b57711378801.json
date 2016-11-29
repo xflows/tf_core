@@ -4,7 +4,7 @@
     "fields": {
       "category": "a797f6a3-02a7-4eee-ab65-075c8c35455c", 
       "treeview_image": "", 
-      "name": "Naive Bayes Classifier nltoolkit", 
+      "name": "Naive Bayes Classifier", 
       "is_streaming": false, 
       "uid": "12cf0104-c867-45b2-84f4-b57711378801", 
       "interaction_view": "", 

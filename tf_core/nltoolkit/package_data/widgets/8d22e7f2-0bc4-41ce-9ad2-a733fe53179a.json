@@ -4,7 +4,7 @@
     "fields": {
       "category": "46050a99-188d-40e1-90e5-0c1912059fa7", 
       "treeview_image": "", 
-      "name": "Apply Classifier Hub nltoolkit", 
+      "name": "Apply Classifier Hub", 
       "is_streaming": false, 
       "uid": "8d22e7f2-0bc4-41ce-9ad2-a733fe53179a", 
       "interaction_view": "", 

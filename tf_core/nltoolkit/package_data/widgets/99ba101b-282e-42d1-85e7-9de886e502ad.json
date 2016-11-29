@@ -4,7 +4,7 @@
     "fields": {
       "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
       "treeview_image": "", 
-      "name": "Load PTB Corpus nltoolkit", 
+      "name": "Load PTB Corpus", 
       "is_streaming": false, 
       "uid": "99ba101b-282e-42d1-85e7-9de886e502ad", 
       "interaction_view": "", 

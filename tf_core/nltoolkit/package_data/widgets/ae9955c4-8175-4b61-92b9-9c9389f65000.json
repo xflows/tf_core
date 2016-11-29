@@ -4,7 +4,7 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "name": "POS N-gram Tagger nltoolkit", 
+      "name": "POS N-gram Tagger", 
       "is_streaming": false, 
       "uid": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
       "interaction_view": "", 

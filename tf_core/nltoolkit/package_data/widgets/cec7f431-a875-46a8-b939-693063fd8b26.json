@@ -4,7 +4,7 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "name": "Extract Documents nltoolkit", 
+      "name": "Extract Documents", 
       "is_streaming": false, 
       "uid": "cec7f431-a875-46a8-b939-693063fd8b26", 
       "interaction_view": "", 

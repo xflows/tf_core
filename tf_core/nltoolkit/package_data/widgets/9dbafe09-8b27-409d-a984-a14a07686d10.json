@@ -4,7 +4,7 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "name": "Add Computed Token Features nltoolkit", 
+      "name": "Add Computed Token Features", 
       "is_streaming": false, 
       "uid": "9dbafe09-8b27-409d-a984-a14a07686d10", 
       "interaction_view": "", 

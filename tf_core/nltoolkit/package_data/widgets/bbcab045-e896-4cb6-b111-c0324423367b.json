@@ -4,7 +4,7 @@
     "fields": {
       "category": "46050a99-188d-40e1-90e5-0c1912059fa7", 
       "treeview_image": "", 
-      "name": "Train Classifier Hub nltoolkit", 
+      "name": "Train Classifier Hub", 
       "is_streaming": false, 
       "uid": "bbcab045-e896-4cb6-b111-c0324423367b", 
       "interaction_view": "", 

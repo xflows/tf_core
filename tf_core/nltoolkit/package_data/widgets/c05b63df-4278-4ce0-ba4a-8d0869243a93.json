@@ -4,7 +4,7 @@
     "fields": {
       "category": "017444c3-afd0-4300-9766-bedeaef10765", 
       "treeview_image": "", 
-      "name": "Regex Stemmer nltoolkit", 
+      "name": "Regex Stemmer", 
       "is_streaming": false, 
       "uid": "c05b63df-4278-4ce0-ba4a-8d0869243a93", 
       "interaction_view": "", 

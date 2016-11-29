@@ -4,7 +4,7 @@
     "fields": {
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
-      "name": "Extract ADC Name nltoolkit", 
+      "name": "Extract ADC Name", 
       "is_streaming": false, 
       "uid": "330f644a-a4f1-4735-b6e4-f871da812342", 
       "interaction_view": "", 

@@ -4,7 +4,7 @@
     "fields": {
       "category": "5a2a3054-1e34-4e51-851e-85baaee020d4", 
       "treeview_image": "", 
-      "name": "Calculate Similarity Matrix nltoolkit", 
+      "name": "Calculate Similarity Matrix", 
       "is_streaming": false, 
       "uid": "911c9ae2-ff54-437b-bd18-faba2d010473", 
       "interaction_view": "", 

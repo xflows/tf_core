@@ -4,7 +4,7 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "name": "POS Brill's rule-based Tagger nltoolkit", 
+      "name": "POS Brill's rule-based Tagger", 
       "is_streaming": false, 
       "uid": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
       "interaction_view": "", 

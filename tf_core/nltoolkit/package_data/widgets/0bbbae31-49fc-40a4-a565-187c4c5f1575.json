@@ -4,7 +4,7 @@
     "fields": {
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
-      "name": "POS Tagger Hub nltoolkit", 
+      "name": "POS Tagger Hub", 
       "is_streaming": false, 
       "uid": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
       "interaction_view": "", 

@@ -4,7 +4,7 @@
     "fields": {
       "category": "6091637f-b3cd-4559-b525-18357b02dbc2", 
       "treeview_image": "", 
-      "name": "Create BoW Dataset using the BoW Model Constructor nltoolkit", 
+      "name": "Create BoW Dataset using the BoW Model Constructor", 
       "is_streaming": false, 
       "uid": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
       "interaction_view": "", 

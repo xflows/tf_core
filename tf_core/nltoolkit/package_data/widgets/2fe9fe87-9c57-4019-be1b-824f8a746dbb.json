@@ -4,7 +4,7 @@
     "fields": {
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
-      "name": "POS Tagger Evaluator nltoolkit", 
+      "name": "POS Tagger Evaluator", 
       "is_streaming": false, 
       "uid": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
       "interaction_view": "", 

@@ -4,7 +4,7 @@
     "fields": {
       "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
       "treeview_image": "", 
-      "name": "Load Document Corpus nltoolkit", 
+      "name": "Load Document Corpus", 
       "is_streaming": false, 
       "uid": "c4c09d13-026a-4190-8d03-b8d3a9591a98", 
       "interaction_view": "", 

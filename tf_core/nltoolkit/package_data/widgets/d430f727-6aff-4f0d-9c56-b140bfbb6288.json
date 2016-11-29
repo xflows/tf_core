@@ -4,7 +4,7 @@
     "fields": {
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
-      "name": "NLTK maxent treebank tagger nltoolkit", 
+      "name": "NLTK maxent treebank tagger", 
       "is_streaming": false, 
       "uid": "d430f727-6aff-4f0d-9c56-b140bfbb6288", 
       "interaction_view": "", 

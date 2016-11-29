@@ -4,7 +4,7 @@
     "fields": {
       "category": "45090e07-d869-4fb2-990a-dd108b1063cc", 
       "treeview_image": "", 
-      "name": "Classifier based parser nltoolkit", 
+      "name": "Classifier based parser", 
       "is_streaming": false, 
       "uid": "7a06c214-b7ab-40ef-947f-73f5648aefa1", 
       "interaction_view": "", 

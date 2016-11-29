@@ -4,7 +4,7 @@
     "fields": {
       "category": "b0ce2ce4-16e8-4f9c-9874-238066c20fea", 
       "treeview_image": "", 
-      "name": "Simple Tokenizer nltoolkit", 
+      "name": "Simple Tokenizer", 
       "is_streaming": false, 
       "uid": "97e51e6b-74de-45b1-9539-784b300b1ac6", 
       "interaction_view": "", 
