@@ -620,10 +620,8 @@ class CustomPerceptronTagger(TaggerI):
         prev, prev2 = self.START
         output = []
         
-        context = self.START + [self.normalize(w) if len(w) > 0 else self.normalize('.') for w in tokens] + self.END
+        context = self.START + [self.normalize(w) for w in tokens] + self.END
         for i, word in enumerate(tokens):
-            if len(word) < 1:
-                word = '.'
             tag = self.tagdict.get(word)
             if not tag:
                 features = self._get_features(i, word, context, prev, prev2)
@@ -657,11 +655,8 @@ class CustomPerceptronTagger(TaggerI):
                 tags  = [tag for word,tag in sentence]
                 
                 prev, prev2 = self.START
-                context = self.START + [self.normalize(w) if len(w) > 0 else self.normalize('.') for w in words] \
-                                                                    + self.END
+                context = self.START + [self.normalize(w) for w in words] + self.END
                 for i, word in enumerate(words):
-                    if len(word) < 1:
-                        word = '.'
                     guess = self.tagdict.get(word)
                     if not guess:
                         feats = self._get_features(i, word, context, prev, prev2)
@@ -697,7 +692,9 @@ class CustomPerceptronTagger(TaggerI):
         - Other digits are represented as !DIGITS
         :rtype: str
         '''
-        if '-' in word and word[0] != '-':
+        if len(word) == 0:
+            return ""
+        elif '-' in word and word[0] != '-':
             return '!HYPHEN'
         elif word.isdigit() and len(word) == 4:
             return '!YEAR'
@@ -719,7 +716,8 @@ class CustomPerceptronTagger(TaggerI):
         # It's useful to have a constant feature, which acts sort of like a prior
         add('bias')
         add('i suffix', word[-3:])
-        add('i pref1', word[0])
+        if len(word) > 0:
+            add('i pref1', word[0])
         add('i-1 tag', prev)
         add('i-2 tag', prev2)
         add('i tag+i-2 tag', prev, prev2)
