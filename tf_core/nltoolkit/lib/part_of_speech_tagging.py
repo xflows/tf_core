@@ -50,7 +50,7 @@ def pos_tagger_hub(input_dict):
 
 def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
-    if 'name' in tagger:
+    if isinstance(tagger, dict) and 'name' in tagger:
         tagger_name=tagger['name']
     else:
         tagger_name=tagger['object'].__class__.__name__ if not tagger.__class__.__name__=="LatinoObject" else tagger.name
