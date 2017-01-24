@@ -223,7 +223,17 @@ def pattern_porter_stemmer(input_dict):
                 }}
 
 
+class DefaultLemmatizer:
+    #Baseline lemmatizer, doesn't do anything, returns unchanged word
+    def lemmatize(self, word):
+        return word
 
+
+def default_lemmatizer(input_dict):
+    return {'tagger':
+                {'object': DefaultLemmatizer(),
+                 'function': 'lemmatize',
+                }}
 
 
 

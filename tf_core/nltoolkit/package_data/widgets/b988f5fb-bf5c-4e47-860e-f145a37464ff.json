@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "treeview_image": "", 
+      "name": "Default Lemmatizer", 
+      "is_streaming": false, 
+      "uid": "b988f5fb-bf5c-4e47-860e-f145a37464ff", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "tf_core.nltoolkit", 
+      "static_image": "tag_stem_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "default_lemmatizer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 5, 
+      "description": "Default Lemmatizer\r\n    \r\nLemmatizer that can be used as a baseline. Does not do anything, returns word unchanged."
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "b988f5fb-bf5c-4e47-860e-f145a37464ff", 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "f0651b72-84c1-4339-950b-8b25a695c394", 
+      "order": 1, 
+      "description": ""
+    }
+  }
+]
