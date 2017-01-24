@@ -182,7 +182,7 @@ def nltk_wordnet_lemmatizer(input_dict):
     Returns the input word unchanged if it cannot be found in WordNet.
     """
 
-    pos_annotation = input_dict['pos_annotation']
+    pos_annotation = input_dict.get('pos_annotation')
     return {'tagger':
                 {'object': WordnetLemmatizer(pos_annotation),
                  'function': 'lemmatize',

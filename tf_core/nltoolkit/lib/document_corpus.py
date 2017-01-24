@@ -7,7 +7,7 @@ import re
 
 def nltk_corpus(input_dict):
     """Returns the nltk.corpus for the selected corpus name"""
-    return {'corpus': {'corpus': NltkCorpus(input_dict['corpus_name']), 'chunk': input_dict['chunk']}}
+    return {'corpus': {'corpus': NltkCorpus(input_dict['corpus_name']), 'chunk': input_dict.get('chunk','100%')}}
 
 
 def extract_nltk_corpus_name(input_dict):
