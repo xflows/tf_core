@@ -122,7 +122,6 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
     allAnnotations = 0
     result_list = []
     n = int(input_dict['n_gram'])
-    print(stat_type)
     if stat_type == 'frequency':
         annotation_dict = {}
         for doc in adc.documents:
@@ -188,7 +187,7 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
             X = vectorizer.fit_transform(raw_text)
             chi2score = chi2(X,labels)[0]
             wscores = zip(vectorizer.get_feature_names(),chi2score)
-            result_list = sorted(wscores, reverse=True, key=lambda x:x[1]) [:40]
+            result_list = sorted(wscores, reverse=True, key=lambda x:x[1])[:40]
             title = "Chi square feature evaluation"
 
         
