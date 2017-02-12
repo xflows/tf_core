@@ -185,12 +185,13 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
 
             labels = [document.get_first_label() for document in adc.documents]
             X = vectorizer.fit_transform(raw_text)
-            chi2score = chi2(X,labels)[0]
+            chi2score = chi2(X,labels)
+            chi2score = zip(chi2score[0], chi2score[1])
             wscores = zip(vectorizer.get_feature_names(),chi2score)
-            result_list = sorted(wscores, reverse=True, key=lambda x:x[1])[:40]
+            result_list = sorted(wscores, reverse=True, key=lambda x:x[1][0])[:40]
+            result_list = [(feat, '{:.2f}'.format(chi[0]), '{:.2e}'.format(chi[1]))for feat, chi in result_list]
             title = "Chi square feature evaluation"
 
-        
     view = django.shortcuts.render(request, 'visualizations/annotation_statistics.html', {'widget': widget,
                                                                                                'data': [result_list, title],
                                                                                                'narrow_doc': narrow_doc})
