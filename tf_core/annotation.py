@@ -17,4 +17,4 @@ class Annotation:
         return 'span_start: %d, span_ned: %d' % (self.span_start, self.span_end)
     
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return str(self).encode('utf-8')

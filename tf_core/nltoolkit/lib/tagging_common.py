@@ -1,4 +1,4 @@
-from itertools import izip
+
 import inspect
 
 def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation, pos_annotation=None):
@@ -62,8 +62,8 @@ def universal_sentence_tagger_hub(input_dict):
                 annotations_grouped.append(sentence_annotations)
 
             new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
-            for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
-                for feature,annotation in izip(sentence_features,sentence_annotations):
+            for sentence_features, sentence_annotations in zip(new_features,annotations_grouped):
+                for feature,annotation in zip(sentence_features,sentence_annotations):
                     annotation.features[output_annotation_name]=feature[1] #[0:number_of_letters]
 
     return {'adc': adc }

@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from tagging_common import universal_word_tagger_hub
+from .tagging_common import universal_word_tagger_hub
 
 def stop_word_tagger_hub(input_dict):
     """
@@ -39,7 +39,7 @@ class StopWordTagger:
     def __init__(self,stop_words,ignore_case=True):
         self.ignore_case=ignore_case
         self.stop_words=stop_words
-        if type(stop_words) in [str,unicode]:
+        if type(stop_words) == str:
             self.stop_words=self.stop_words.split("\n")
         if ignore_case:
             self.stop_words=[sw.lower() for sw in self.stop_words]

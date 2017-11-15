@@ -1,7 +1,7 @@
 import pickle
 
 from tf_core.document_corpus import DocumentCorpus
-from tagging_common import universal_sentence_tagger_hub
+from .tagging_common import universal_sentence_tagger_hub
 #from tagging_common_parallel import universal_sentence_tagger_hub
 #from nltk.tag.simplify   import (simplify_brown_tag, simplify_wsj_tag,
 #                                 simplify_indian_tag, simplify_alpino_tag,
@@ -21,6 +21,7 @@ from nltk.corpus import brown, treebank, nps_chat
 from nltk.tag.stanford import StanfordPOSTagger
 import os
 import re
+import collections
 
 
 def pos_tagger_hub(input_dict):
@@ -40,8 +41,8 @@ def pos_tagger_hub(input_dict):
         for doc in adc.documents:
             for annotation in doc.get_annotations(element_annotation_name):
                 if not output_annotation_name in annotation.features:
-                    print input_dict['pos_tagger'],annotation.features
-                    print doc.features
+                    print(input_dict['pos_tagger'],annotation.features)
+                    print(doc.features)
                 else:
                     annotation.features[output_annotation_name]=annotation.features[output_annotation_name][0:number_of_letters]
 
@@ -67,7 +68,7 @@ def corpus_reader(corpus, chunk):
         if chunk[0] == '^':
             reverse = True
             chunk = chunk[1:]
-        if callable(tagged_posts):
+        if isinstance(tagged_posts, collections.Callable):
             if chunk[-1] == '%':
                 index = (float(chunk[:-1])/100) * len(corpus.tagged_posts())
             else:
@@ -337,7 +338,7 @@ class MaxentPosTagger(TaggerI):
                                                  trace, **cutoffs)
         t2 = time.time()
         if trace > 0:
-            print "time to train the classifier: {0}".format(round(t2-t1, 3))
+            print("time to train the classifier: {0}".format(round(t2-t1, 3)))
 
     def gen_feat_freqs(self, featuresets):
         features_freqdist = defaultdict(int)
@@ -426,12 +427,12 @@ class MaxentPosTagger(TaggerI):
 
     def tag(self, sentence, rare_word_cutoff=5):
         history = []
-        for i in xrange(len(sentence)):
+        for i in range(len(sentence)):
             featureset = self.extract_feats(sentence, i, history,
                                                rare_word_cutoff)
             tag = self.classifier.classify(featureset)
             history.append(tag)
-        return zip(sentence, history)
+        return list(zip(sentence, history))
 
     def tag_sents(self, sentences):
         return [self.tag(sent) for sent in sentences]
@@ -744,7 +745,7 @@ class CustomPerceptronTagger(TaggerI):
         freq_thresh = 20
         ambiguity_thresh = 0.97
         for word, tag_freqs in counts.items():
-            tag, mode = max(tag_freqs.items(), key=lambda item: item[1])
+            tag, mode = max(list(tag_freqs.items()), key=lambda item: item[1])
             n = sum(tag_freqs.values())
             # Don't add rare words to the tag dictionary
             # Only add quite unambiguous words

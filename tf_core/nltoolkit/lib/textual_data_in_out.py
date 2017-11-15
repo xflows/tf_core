@@ -1,5 +1,5 @@
 import json
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import requests
 from requests.auth import HTTPBasicAuth
 from requests.exceptions import ConnectionError
@@ -7,11 +7,11 @@ import os.path
 import time
 import re
 import zipfile
-import document_converters
+from . import document_converters
 from tf_core.annotation import Annotation
 from tf_core.document import Document
 from tf_core.document_corpus import DocumentCorpus
-from part_of_speech_tagging import corpus_reader
+from .part_of_speech_tagging import corpus_reader
 
 
 def load_adc(input_dict):
@@ -25,21 +25,21 @@ def load_adc(input_dict):
     :param leading_labels: documents has labels infront of the text. Example: !LB1 !Lb2 !LBL \t start of text
     :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
-    input_text = input_dict[u"input"]
+    input_text = input_dict["input"]
     tab_separated_title = input_dict['tab_separated_title'] == "true"
     leading_labels = input_dict['leading_labels'] == "true"
 
     docs, source, source_date,titles=_process_input(input_text,leading_labels)
 
-    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    corpus_date = str(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     documents, labels = _process_adc(docs, tab_separated_title, leading_labels, titles)
-    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": json.dumps(labels)}
+    features = {"Source": source, "SourceDate": source_date, "CorpusCreateDate": corpus_date, "Labels": json.dumps(labels)}
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
 
 
 def load_ptb_corpus(input_dict):
-    input_text = input_dict[u"input"]
+    input_text = input_dict["input"]
     leading_labels = False
     docs, source, source_date,titles=_process_input(input_text,leading_labels)
     tagged_sents = []
@@ -80,8 +80,8 @@ def ptb_to_adc_converter(input_dict):
     annotations = []
     string_list = []
     docs = []
-    title = u"Document1"
-    features = {u"contentType": u"Text", u"sourceFileLine": '1'}
+    title = "Document1"
+    features = {"contentType": "Text", "sourceFileLine": '1'}
     position = 0
     for i, sentence in enumerate(corpus):
         if i%100 == 0 and i != 0 and i != (len(corpus) - 1):
@@ -92,8 +92,8 @@ def ptb_to_adc_converter(input_dict):
             docs.append(document)
             annotations = []
             string_list = []
-            title = u"Document" + str(i)
-            features = {u"contentType": u"Text", u"sourceFileLine": '1'}
+            title = "Document" + str(i)
+            features = {"contentType": "Text", "sourceFileLine": '1'}
             position = 0
 
         sentence_start = position
@@ -115,8 +115,8 @@ def ptb_to_adc_converter(input_dict):
     docs.append(document)
     source = input_dict['ptb_corpus'][0]
     source_date = "unknown"
-    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
-    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": []}
+    corpus_date = str(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    features = {"Source": source, "SourceDate": source_date, "CorpusCreateDate": corpus_date, "Labels": []}
     adc = DocumentCorpus(documents=docs, features=features)
 
     return {"adc": adc}
@@ -153,7 +153,7 @@ def crawl_url_links(input_dict):
     docs=[]
     titles=[]
     for url in urls:
-        print url
+        print(url)
         try:
             r = requests.get(url)
         except ConnectionError:
@@ -171,9 +171,9 @@ def crawl_url_links(input_dict):
             docs.append(text)
 
 
-    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    corpus_date = str(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     documents, labels = _process_adc(docs, False, label, titles)
-    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date,
+    features = {"Source": source, "SourceDate": source_date, "CorpusCreateDate": corpus_date,
                 "Labels": json.dumps([label]) if label else '[]'}
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
@@ -187,13 +187,13 @@ def search_with_faroo(input_dict):
     query=input_dict['query']
 
     if not query:
-        raise StandardError("Please specify some search keywords.")
+        raise Exception("Please specify some search keywords.")
 
     urls=[]
     if os.path.isfile(file_name):
         with open(file_name) as data_file:
             api=json.load(data_file)
-            query = '%27' + urllib.quote(query) + '%27'
+            query = '%27' + urllib.parse.quote(query) + '%27'
 
             response=requests.get(faroo_search.format(key=api, query=query, length=limit))
 
@@ -202,10 +202,10 @@ def search_with_faroo(input_dict):
                 for result in results:
                     urls.append(result['url'])
             else:
-                raise StandardError(response.content())
+                raise Exception(response.content())
 
     else:
-        raise StandardError("Please create specify your Bing Api key in workflows/nltoolkit/package_data/faroo_api_key.json")
+        raise Exception("Please create specify your Bing Api key in workflows/nltoolkit/package_data/faroo_api_key.json")
 
     return {'urls': urls}
 
@@ -216,13 +216,13 @@ def search_with_bing(input_dict):
     query=input_dict['query']
 
     if not query:
-        raise StandardError("Please specify some search keywords.")
+        raise Exception("Please specify some search keywords.")
 
     urls=[]
     if os.path.isfile(file_name):
         with open(file_name) as data_file:
             api=json.load(data_file)
-            query = '%27' + urllib.quote(query) + '%27'
+            query = '%27' + urllib.parse.quote(query) + '%27'
 
             base_url = 'https://api.datamarket.azure.com/Bing/Search/Web'
             url = base_url + '?Query=' + query + '&$top=' + str(limit) + '&$format=json'
@@ -240,7 +240,7 @@ def search_with_bing(input_dict):
                 #{u'Description': u'Reading the newest QubeGB reviews is a thing that could possibly be amazed for. This UK based communication firm gives a great choice of services to their customers.', u'Title': u'Kemi Anita Dasilva Ibru', u'Url': u'http://sfasf.com/', u'__metadata': {u'type': u'WebResult', u'uri': u"https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='sfasf'&$skip=0&$top=1"}, u'DisplayUrl': u'sfasf.com', u'ID': u'b5811fb0-d21d-4868-a4ee-be32e3eae759'}
                 urls.append(result['Url'])
     else:
-        raise StandardError("Please create specify your Bing Api key in workflows/nltoolkit/package_data/bing_api_key.json")
+        raise Exception("Please create specify your Bing Api key in workflows/nltoolkit/package_data/bing_api_key.json")
 
 
     return {'urls': urls}
@@ -271,11 +271,11 @@ def load_mysql_document_corpus(input_dict):
         features={"Labels": json.dumps(doc_labels) }
         documents.append(Document(name=title,
                               features=features,
-                              text=unicode(text),
-                              annotations=[Annotation(span_start=0,span_end=max(0, len(unicode(text)) - 1),
-                                                      type=u"TextBlock", features={})]))
+                              text=str(text),
+                              annotations=[Annotation(span_start=0,span_end=max(0, len(str(text)) - 1),
+                                                      type="TextBlock", features={})]))
     c.close()
-    features = {u"Source": 'MySQL DB: '+database_name, u"CorpusCreateDate": unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime())),
+    features = {"Source": 'MySQL DB: '+database_name, "CorpusCreateDate": str(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime())),
                 "Labels": json.dumps(list(labels)) }
     return {'adc': DocumentCorpus(documents=documents, features=features)}
 
@@ -291,7 +291,7 @@ def _process_input(input_text,tab_separated_title):
     if type(input_text) != list and os.path.exists(input_text):
         source = os.path.basename(input_text)
         seconds = os.path.getctime(input_text)
-        source_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime(seconds)))
+        source_date = str(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime(seconds)))
         ext = os.path.splitext(input_text)[1]
 
         if ext == ".zip":
@@ -314,7 +314,7 @@ def _process_input(input_text,tab_separated_title):
             filename, input_text = document_converters.document_to_text(input_text)
 
     #check if input is a string
-    if type(input_text) == unicode or type(input_text) == str:
+    if type(input_text) == str or type(input_text) == str:
         source = "string" if source == "list" else source
         input_text = re.split("[\r\n]", input_text)
 
@@ -333,20 +333,20 @@ def _process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
     corpus_labels = set()
     for i, text in enumerate(texts):
         if text:
-            title = u"Document" + unicode(i + 1) if titles == [] else titles[i]
-            features = {u"contentType": u"Text", u"sourceFileLine": unicode(i)}
+            title = "Document" + str(i + 1) if titles == [] else titles[i]
+            features = {"contentType": "Text", "sourceFileLine": str(i)}
     
             if tab_separated_title:
                 #example: title \t start of text
                 text = text.split("\t")
-                title = unicode(text[0])
+                title = str(text[0])
                 text = "\t".join(text[1:])
     
             if leading_labels:
                 #example: !LB1 !Lb2 !LBL \t start of text
                 text = text.split("\t")
                 doc_labels=[]
-                for label in [f.strip() for f in text[0].split("!") if f != u""]:
+                for label in [f.strip() for f in text[0].split("!") if f != ""]:
                     features[label] = "true"
                     corpus_labels.add(label)
                     doc_labels.append(label)
@@ -355,10 +355,10 @@ def _process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
     
             documents.append(Document(name=title,
                                       features=features,
-                                      text=unicode(text),
+                                      text=str(text),
                                       annotations=[Annotation(span_start=0,
-                                                              span_end=max(0, len(unicode(text)) - 1),
-                                                              type=u"TextBlock",
+                                                              span_end=max(0, len(str(text)) - 1),
+                                                              type="TextBlock",
                                                               features={})]))
     return documents, list(corpus_labels)
 

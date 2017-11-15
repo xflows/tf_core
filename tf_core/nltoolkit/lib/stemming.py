@@ -1,7 +1,7 @@
 from django.conf import settings
 
 import nltk
-from tagging_common import universal_word_tagger_hub
+from .tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
 from pattern.vector import stem, PORTER, LEMMA
 

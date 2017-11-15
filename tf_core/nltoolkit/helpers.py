@@ -101,14 +101,14 @@ class DictionaryProbDist(DictionaryProbDist):
     def from_prediction_and_classes(cls,prediction,classes):
         prob_dict={}
         for i,klass in enumerate(classes):
-            prob_dict[unicode(klass)]=1. if klass==prediction else 0.
+            prob_dict[str(klass)]=1. if klass==prediction else 0.
         return cls(prob_dict=prob_dict)
 
     @classmethod
     def from_probabilities_and_classes(cls,predictions,classes):
         prob_dict={}
         for i,klass in enumerate(classes):
-            prob_dict[unicode(klass)]=predictions[i]
+            prob_dict[str(klass)]=predictions[i]
         return cls(prob_dict=prob_dict)
 
 

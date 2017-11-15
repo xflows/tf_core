@@ -1,4 +1,4 @@
-from itertools import izip
+
 
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.tree import DecisionTreeClassifier
@@ -34,14 +34,14 @@ class BowDataset:
         cx=self.sparse_bow_matrix.tocoo() #A sparse matrix in COOrdinate format.
         if cx.shape[0]!=len(self.labels):
             raise Exception("Nekaj gnilega je v dezeli Danski, sporoci maticu.")
-        for (i,j,v) in izip(cx.row, cx.col, cx.data):
+        for (i,j,v) in zip(cx.row, cx.col, cx.data):
             train_data[i][0][j]=v   #seting the dict in (list(tuple(dict, str)))
         return train_data
 
     def nltk_dataset_without_labels(self):
         cx=self.sparse_bow_matrix.tocoo() #A sparse matrix in COOrdinate format.
         train_data=[{} for _ in range(cx.shape[0])]
-        for (i,j,v) in izip(cx.row, cx.col, cx.data):
+        for (i,j,v) in zip(cx.row, cx.col, cx.data):
             train_data[i][j]=v   #seting the dict in (list(dict))
         return train_data
 

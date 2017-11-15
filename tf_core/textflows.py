@@ -1,5 +1,5 @@
 import copy
-from itertools import izip
+
 import json
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer, TfidfTransformer
@@ -15,7 +15,7 @@ from sklearn.naive_bayes import GaussianNB, MultinomialNB
 def simulate_cf_pickling(obj_to_pickle,compress_object=False):
     from base64 import b64encode, b64decode
     from zlib import compress, decompress
-    from cPickle import dumps,loads
+    from pickle import dumps,loads
 
     if not compress_object:
         return loads(b64decode(b64encode(dumps(obj_to_pickle))))
@@ -30,7 +30,7 @@ def simulate_cf_pickling(obj_to_pickle,compress_object=False):
 
 if __name__=="__main__":
     """quick test, pickling and depickling"""
-    from cPickle import dumps,loads
+    from pickle import dumps,loads
     from base64 import b64encode, b64decode
 
     dc=DocumentCorpus([Document("name","text",[Annotation(1,2,'token',{'stopword': True})],{})],{'created_at':'now'})

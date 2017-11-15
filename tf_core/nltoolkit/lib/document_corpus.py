@@ -67,7 +67,7 @@ def add_feature(input_dict):
     """
 
     for i, document in enumerate(input_dict["adc"].documents):
-        document.features[input_dict[u"feature_name"]] = input_dict[u"feature_value_prefix"] + str(input_dict[u"feature_values"][i])
+        document.features[input_dict["feature_name"]] = input_dict["feature_value_prefix"] + str(input_dict["feature_values"][i])
     return {"adc":input_dict["adc"]}
 
 
@@ -127,10 +127,10 @@ def split_documents_by_feature_value(input_dict):
     :return adc_filtered: adc with documents that fulfil the condition
     :return adc_rest: adc with documents that do not fulfil the condtion
     """
-    discard_filtered_out = input_dict["discard_filtered_out"] == u"true"
+    discard_filtered_out = input_dict["discard_filtered_out"] == "true"
     adc_filtered, adc_rest = None, input_dict["adc"]
 
-    if input_dict["feature_condition"] != u'':
+    if input_dict["feature_condition"] != '':
         feature_conditions = [el.strip().split("=") for el in re.split("[;|,]",input_dict["feature_condition"])]
         for i in range(len(feature_conditions)):
             if len(feature_conditions[i]) != 2:
@@ -166,7 +166,7 @@ def extract_documents(input_dict):
     :return adc_rest: adc with documents that do not fulfil the condtion
     """
 
-    discard_filtered_out = input_dict["discard_filtered_out"] == u"true"
+    discard_filtered_out = input_dict["discard_filtered_out"] == "true"
     included = input_dict["index_list"]
 
     for i in included:
@@ -188,8 +188,8 @@ def merge_corpora(input_dict):
     """
 
     adc = input_dict["adc"][0]
-    adc.features["SourceDate"] = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
-    adc.features["CorpusCreateDate"] = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    adc.features["SourceDate"] = time.strftime("%d.%m.%Y %H:%M:%S", time.localtime())
+    adc.features["CorpusCreateDate"] = time.strftime("%d.%m.%Y %H:%M:%S", time.localtime())
 
     for i in range(1, len(input_dict["adc"])):
         for document in input_dict["adc"][i].documents:

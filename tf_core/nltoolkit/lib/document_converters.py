@@ -6,7 +6,7 @@ from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
-from cStringIO import StringIO
+from io import StringIO
 from subprocess import Popen, PIPE
 
 
@@ -40,7 +40,7 @@ def document_to_text(path):
         cmd = os.path.dirname(os.path.realpath(__file__)) + os.sep + "antiword" + os.sep + "antiword.exe -m CP852 " + path
         pipe = Popen(cmd, stdout=PIPE, shell=True)
         text = pipe.communicate()[0]
-        return filename, unicode(re.sub("\r|\n", "", text).strip())
+        return filename, str(re.sub("\r|\n", "", text).strip())
 
     elif ext == ".docx":
         document = opendocx(path)
@@ -52,9 +52,9 @@ def document_to_text(path):
 
     elif ext == ".pdf":
         text = convert_pdf_to_txt(path)
-        return filename, unicode(re.sub("\r|\n", "", text).strip())
+        return filename, str(re.sub("\r|\n", "", text).strip())
 
     else:
-        text = unicode(open(path, "r").read(), errors='replace').strip()
+        text = str(open(path, "r").read(), errors='replace').strip()
         return filename, text
 

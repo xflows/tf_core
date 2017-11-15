@@ -65,7 +65,7 @@ class Document:
 
     def get_annotation_texts(self,selector,stop_word_feature_name="StopWord"):
         return [text for (ann,text) in self.get_annotations_with_text(selector)
-                               if not ann.features.has_key(stop_word_feature_name)]
+                               if stop_word_feature_name not in ann.features]
 
     def raw_text(self,selector=None,stop_word_feature_name="StopWord",join_annotations_with=" "):
         if not selector:
@@ -86,5 +86,5 @@ class Document:
             #print label_value
             true_value=json.loads(label_value)
             return true_value[0] if type(true_value)==list else label_value #if not a json list
-        except ValueError, e:
+        except ValueError as e:
             return label_value

@@ -13,7 +13,7 @@ train_set = ["president of India",doc1, doc2, doc3]
 
 tfidf_vectorizer = TfidfVectorizer()
 tfidf_matrix_train = tfidf_vectorizer.fit_transform(train_set)  #finds the tfidf score with normalization
-print "cosine scores ==> ",cosine_similarity(tfidf_matrix_train[0:1], tfidf_matrix_train)  #here the first element of tfidf_matrix_train is matched with other three elements
+print("cosine scores ==> ",cosine_similarity(tfidf_matrix_train[0:1], tfidf_matrix_train))  #here the first element of tfidf_matrix_train is matched with other three elements
 
 
 from nltk.classify.util import names_demo, names_demo_features

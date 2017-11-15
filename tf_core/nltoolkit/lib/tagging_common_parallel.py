@@ -1,6 +1,6 @@
 import multiprocessing
 from functools import partial
-from itertools import izip
+
 
 
 def tag_document(document,tagger,tagger_function,args,kwargs,input_annotation,output_annotation):
@@ -22,7 +22,7 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
 
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
 
-    print "evo nas!!!"
+    print("evo nas!!!")
     #parallel for document in adc.documents:
     new_documents=pool.map(
         partial(tag_document,
@@ -39,7 +39,7 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
     pool.join()
     adc.documents=new_documents #list(new_documents)
 
-    print "dijo!2!!"
+    print("dijo!2!!")
 
     return {'adc': adc }
 
@@ -69,8 +69,8 @@ def sentance_tag_a_document(doc,tagger,tagger_function,args,kwargs,
             annotations_grouped.append(sentence_annotations)
 
         new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
-        for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
-            for feature,annotation in izip(sentence_features,sentence_annotations):
+        for sentence_features, sentence_annotations in zip(new_features,annotations_grouped):
+            for feature,annotation in zip(sentence_features,sentence_annotations):
                 annotation.features[output_annotation_name]=feature[1]
     return doc
 
@@ -91,7 +91,7 @@ def universal_sentence_tagger_hub(input_dict):
 
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
 
-    print "evo nas!!!"
+    print("evo nas!!!")
     #parallel for document in adc.documents:
     new_documents=pool.map(
         partial(sentance_tag_a_document,
@@ -108,7 +108,7 @@ def universal_sentence_tagger_hub(input_dict):
     pool.close()
     pool.join()
     adc.documents=new_documents
-    print "dijo!!!"
+    print("dijo!!!")
     return {'adc': adc }
 
 

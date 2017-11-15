@@ -34,4 +34,4 @@ for tree in chunked_sentences:
 #print entity_names
 
 # Print unique entity names
-print set(entity_names)
+print(set(entity_names))

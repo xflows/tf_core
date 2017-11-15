@@ -1,5 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, TfidfTransformer
-from nltoolkit.helpers import TokenSplitter
+from .nltoolkit.helpers import TokenSplitter
 
 from tf_core.nltoolkit.helpers import TokenSplitter
 
@@ -83,8 +83,8 @@ class BowModelConstructor:
     def _count_vectorizer(self):
         return CountVectorizer(**self.__count_params)
     def _tfidf_vectorizer(self):
-        return TfidfVectorizer(**dict(self.__count_params.items()
-                                      +self.__tfidf_params.items()
+        return TfidfVectorizer(**dict(list(self.__count_params.items())
+                                      +list(self.__tfidf_params.items())
                                       #+[['tokenizer',self.custom_tokenizer]]
                                       ))
     def _tfidf_transformer(self):

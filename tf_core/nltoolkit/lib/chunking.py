@@ -1,7 +1,7 @@
-from itertools import izip
+
 
 import nltk
-from tagging_common import universal_word_tagger_hub
+from .tagging_common import universal_word_tagger_hub
 #from tagging_common_parallel import universal_word_tagger_hub
 
 
@@ -42,7 +42,7 @@ def chunking_hub(input_dict):
                 annotations_grouped.append(sentence_annotations)
                 #print list(izip(annotations_grouped, text_grouped))
             new_features=[getattr(chunker,chunker_function)(tagged_sentence,*args,**kwargs) for tagged_sentence in annotations_grouped]
-            for annotation, chunk in izip(group_annotations, new_features):
+            for annotation, chunk in zip(group_annotations, new_features):
                 annotation[0][3].append((output_annotation, chunk)) #[0:number_of_letters]
 
     return {'adc': adc }
@@ -106,7 +106,7 @@ class ConsecutiveNPChunkTagger(nltk.TaggerI):
             featureset = npchunk_features(sentence, i, history)
             tag = self.classifier.classify(featureset)
             history.append(tag)
-        return zip(sentence, history)
+        return list(zip(sentence, history))
 
 
 class ClassifierBasedChunkParser(nltk.ChunkParserI):
