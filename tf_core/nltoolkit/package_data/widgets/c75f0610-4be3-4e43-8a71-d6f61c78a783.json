@@ -2,10 +2,10 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "uid": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
-      "has_file": false, 
+      "uid": "c75f0610-4be3-4e43-8a71-d6f61c78a783", 
+      "has_file": true, 
       "image": "", 
-      "description": "Perceptron tagger from NLTK. It's the tagger NLTK 3.0 uses when 'nltk.pos_tag()'  function is called. ", 
+      "description": "POS tagger from NLP4J", 
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "interaction_view": "", 
       "streaming_visualization_view": "", 
@@ -13,9 +13,9 @@
       "is_streaming": false, 
       "windows_queue": false, 
       "static_image": "tag_pos_image.png", 
-      "action": "nltk_perceptron_pos_tagger", 
+      "action": "nlp4j_tagger", 
       "wsdl": "", 
-      "name": "NLTK perceptron tagger", 
+      "name": "NLP4J POS tagger", 
       "package": "tf_core.nltoolkit", 
       "visualization_view": "", 
       "post_interact_action": "", 
@@ -28,10 +28,10 @@
   {
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
-      "name": "Training Corpus", 
+      "widget": "c75f0610-4be3-4e43-8a71-d6f61c78a783", 
+      "name": "Training corpus", 
       "short_name": "cor", 
-      "uid": "c2a9a12a-5d03-4cc7-9524-3ef2b737f34d", 
+      "uid": "badc3da2-818d-45f1-9803-995f2842b0cf", 
       "default": "", 
       "required": false, 
       "multi": false, 
@@ -39,19 +39,19 @@
       "variable": "training_corpus", 
       "parameter": false, 
       "order": 1, 
-      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
+      "description": "POS tagged corpus for training"
     }
   }, 
   {
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
+      "widget": "c75f0610-4be3-4e43-8a71-d6f61c78a783", 
       "name": "POS Tagger", 
       "short_name": "tgr", 
       "variable": "pos_tagger", 
-      "uid": "99f3d531-b733-46cd-a398-eccfe442b9ef", 
+      "uid": "49c8c7f4-62da-4708-832c-e9d4c6cbdad9", 
       "order": 1, 
-      "description": "A python dictionary containing the POS tagger "
+      "description": "A python dictionary containing the POS tagger"
     }
   }
 ]
