@@ -1,5 +1,6 @@
 from itertools import izip
 import inspect
+from crf_tagger import CRFTagger
 
 def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation, pos_annotation=None):
     tagger=tagger_dict['object']
@@ -60,8 +61,13 @@ def universal_sentence_tagger_hub(input_dict):
                     i+=1
                 text_grouped.append(elements)
                 annotations_grouped.append(sentence_annotations)
-
-            new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
+            
+            if hasattr(tagger, 'name') and tagger.name == 'crfTagger':
+                crf_tagger = CRFTagger()
+                new_features=getattr(tagger,tagger_function)(crf_tagger, text_grouped,*args,**kwargs)
+            else:
+                new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
+            print('done')
             for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
                 for feature,annotation in izip(sentence_features,sentence_annotations):
                     annotation.features[output_annotation_name]=feature[1] #[0:number_of_letters]
