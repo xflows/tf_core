@@ -62,6 +62,7 @@ def universal_sentence_tagger_hub(input_dict):
                 annotations_grouped.append(sentence_annotations)
 
             if hasattr(tagger, 'name') and tagger.name == 'crfTagger':
+                from tf_taggers.pos_taggers.library import CRFTagger
                 crf_tagger = CRFTagger()
                 new_features=getattr(tagger,tagger_function)(crf_tagger, text_grouped,*args,**kwargs)
             else:
