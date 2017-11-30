@@ -14,7 +14,6 @@ from nltk.tag.brill      import BrillTagger
 from nltk.tag.brill_trainer import BrillTaggerTrainer
 from nltk.tag.tnt        import TnT
 from nltk.tag.hunpos     import HunposTagger
-from nltk.tag.stanford   import StanfordTagger
 #from nltk.tag.crf        import MalletCRF
 from django.conf import settings
 from nltk.corpus import brown, treebank, nps_chat
@@ -769,17 +768,3 @@ def nltk_custom_perceptron_pos_tagger(input_dict):
                 'name': name
             }
     }
-
-
-
-
-def stanford_pos_tagger(input_dict):
-    tagger = StanfordPOSTagger(model_filename=settings.STANFORD_POS_TAGGER_MODEL, path_to_jar=settings.STANFORD_POS_TAGGER_JAR, java_options='-mx4000m')
-    return {'pos_tagger': {
-                'function':'tag_sents',
-                'object': tagger
-            }
-    }
-
-
-
