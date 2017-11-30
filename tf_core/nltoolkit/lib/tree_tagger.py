@@ -17,6 +17,7 @@ import re
 from nltk.internals import find_binary, find_file
 from nltk.tag.api import TaggerI
 from collections import defaultdict
+from django.conf import settings
 
 def tUoB(obj, encoding='utf-8'):
     if isinstance(obj, basestring):
@@ -36,7 +37,7 @@ _treetagger_charset = [u'utf-8', u'latin-1']
 interpelations = {'NP':'NNP', 'NPS':'NNPS', 'PP':'PRP', 'PP$':'PRP$', 
                   'VD':'VB', 'VDD':'VBD', 'VDG':'VBG', 'VDN':'VBN', 'VDZ': 'VBZ', 'VDP':'VBP',
                   'VH':'VB', 'VHD':'VBD', 'VHG':'VBG', 'VHN':'VBN', 'VHZ': 'VBZ', 'VHP':'VBP',
-                  'VV':'VB', 'VVD':'VBD', 'VVG':'VBG', 'VVN':'VBN', 'VVZ': 'VBZ', 'VVP':'VBP' }
+                  'VV':'VB', 'VVD':'VBD', 'VVG':'VBG', 'VVN':'VBN', 'VVZ': 'VBZ', 'VVP':'VBP', 'IN/that':'IN' }
                    
 
 class TreeTagger(TaggerI):
@@ -90,7 +91,7 @@ class TreeTagger(TaggerI):
     """
 
     def __init__(self, path_to_home=None, language='english', 
-                 encoding='utf-8', verbose=False, abbreviation_list=None, widget_id=None, params="C:\TreeTagger\\lib", trained=False):
+                 encoding='utf-8', verbose=False, abbreviation_list=None, widget_id=None, trained=False):
         """
         Initialize the TreeTagger.
 
@@ -104,20 +105,19 @@ class TreeTagger(TaggerI):
             This parameter is ignored for str tokens, which are sent as-is.
             The caller must ensure that tokens are encoded in the right charset.
         """
-        treetagger_paths = ['C:\TreeTagger\\bin', '.', '/usr/bin', '/usr/local/bin', '/opt/local/bin',
-                        '/Applications/bin', '~/bin', '~/Applications/bin',
-                        '~/work/TreeTagger/cmd', '~/tree-tagger/cmd']
+        tagger_bin = os.path.join(settings.TREE_TAGGER, 'bin')
+        treetagger_paths = [tagger_bin]
         treetagger_paths = map(os.path.expanduser, treetagger_paths)
         self._abbr_list = abbreviation_list
         self.widget_id = widget_id
-        self.params = params
+        self.params = os.path.join(settings.TREE_TAGGER, 'lib')
         self.trained = trained
 
         try:
             self._encoding = encoding
             if language=='english':
-                treetagger_bin_name = 'tag-english.bat'
-                train_treetagger_bin_name = 'train-tree-tagger.exe'
+                treetagger_bin_name = 'tree-tagger'
+                train_treetagger_bin_name = 'train-tree-tagger'
 
         except KeyError as e:
                 raise LookupError('NLTK was unable to find the TreeTagger bin!')
@@ -146,6 +146,11 @@ class TreeTagger(TaggerI):
         for sent in sentences:
             for i, token in enumerate(sent):
                 word, tag = token
+                if len(word) == 0:
+                    word = '-NONE-'
+                    tag = '-NONE-'
+                if len(tag) == 0:
+                    tag = '-NONE-'
                 if i == len(sent) - 1 and tag == '.':
                     tag = 'SENT'
                 f.write(word + '\t' + tag + '\n')
@@ -157,6 +162,7 @@ class TreeTagger(TaggerI):
             os.remove(lexicon_path)
         f = open(lexicon_path, 'a')
         cd = False
+        print(lexicon['!'])
         for key in sorted(lexicon):
             tag_list = ""
             for i, tag in enumerate(lexicon[key]):
@@ -181,15 +187,13 @@ class TreeTagger(TaggerI):
         f.close()
         unknown_words = os.path.join(settings.TREE_TAGGER, "tree_tagger_unknown_words.txt")
 
-        param_path = os.path.join(self.params, 'english-utf8.par')
-        pretrained_param = os.path.join(self.params, 'english-utf8-pretrained.par')
-        if not os.path.exists(pretrained_param):
-            os.rename(param_path, pretrained_param)
-        else:
+        param_path = os.path.join(self.params, str(self.widget_id) + '.par')
+        if os.path.exists(param_path):
             os.remove(param_path)
 
         p = Popen([self._train_treetagger_bin, lexicon_path, unknown_words, train_path, param_path], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         a = p.communicate()
+        print(a)
 
 
     def tag(self, sentences):
@@ -201,51 +205,58 @@ class TreeTagger(TaggerI):
         # Write the actual sentences to the temporary input file
         if not self.trained:
             param_path = os.path.join(self.params, 'english-utf8.par')
-            pretrained_param = os.path.join(self.params, 'english-utf8-pretrained.par')
-            if os.path.exists(pretrained_param):
-                os.remove(param_path)
-                os.rename(pretrained_param, param_path)
+        else:
+            param_path = os.path.join(self.params, str(self.widget_id) + '.par')
 
         if isinstance(sentences, list):
+            tokens = []
             new_sents = []
+            input_path = os.path.join(settings.TREE_TAGGER, str(self.widget_id) + ".txt")
+            if os.path.exists(input_path):
+                os.remove(input_path)
+            f = open(os.path.join(settings.TREE_TAGGER, str(self.widget_id) + ".txt"), 'a')
+
             for sentence in sentences:
-                sentence = ' '.join(sentence)
-                sentence = sentence.replace(" 's ", "'s ")
-                sentence = sentence.replace(" 'm ", "'m ")
-                sentence = sentence.replace(" 're ", "'re ")
-                sentence = sentence.replace(" 'll ", "'ll ")
-                sentence = sentence.replace(" 've ", "'ve ")
-                sentence = sentence.replace(" 'd ", "'d ")
+                #sentence = ' '.join(sentence)
+                #sentence = sentence.replace(" 's ", "'s ")
+                #sentence = sentence.replace(" 'm ", "'m ")
+                #sentence = sentence.replace(" 're ", "'re ")
+                #sentence = sentence.replace(" 'll ", "'ll ")
+                #sentence = sentence.replace(" 've ", "'ve ")
+                #sentence = sentence.replace(" 'd ", "'d ")
                 #sentence = sentence.replace('\xe2\x84\x87"', "\xe2\x84\x87")
                 #sentence = re.sub(r" ([^ ']+)' ", r" \1 ", sentence)
                 #sentence = re.sub(r" '([^ ']+) ", r" \1 ", sentence)
                 #sentence = re.sub(r" ([^ ']+)-- ", r" \1 ", sentence)
                 #sentence = re.sub(r" ([^ .]+)\. ", r" \1 ", sentence)
-
+                for token in sentence:
+                    if len(token) == 0:
+                        f.write('-NONE-\n')
+                        tokens.append('-NONE-')
+                    elif token == '###':
+                        f.write('#\n')
+                        tokens.append('#')
+                    else:
+                        f.write(token + '\n')
+                        tokens.append(token)
+                f.write('###\n')
+                tokens.append('###')
+               
                 new_sents.append(sentence)
-
-            sentences = new_sents
-            sentences = ' ### '.join(sentences)
-           
-            f = open(os.path.join(settings.TREE_TAGGER, str(self.widget_id) + ".txt"), 'w')
-            f.write(sentences)
             f.close()
                
-            p = Popen([self._treetagger_bin, os.path.join(settings.TREE_TAGGER, str(self.widget_id) + ".txt")], stdin=PIPE, stdout=PIPE, stderr=PIPE)
-                
+            p = Popen([self._treetagger_bin, param_path, os.path.join(settings.TREE_TAGGER, str(self.widget_id) + ".txt")], stdin=PIPE, stdout=PIPE, stderr=PIPE)
                 
             (taggedSnt, stderr) = p.communicate()
             
             sentences = []
             sentence = []
-            splitted_tags = taggedSnt.split('\n')
-            last = len(splitted_tags) - 1
-            for i, line in enumerate(splitted_tags):
-                line = line.strip()
+            splitted_tags = taggedSnt.split('\n')[:-1]
+            
+            for word, tag in zip(tokens, splitted_tags):
                 try:
-                    word = line.split('\t')[0].strip()
-                    tag = line.split('\t') [1].strip()
-
+                    word = word.strip()
+                    tag = tag.strip()
                     if word == '###':
                         sentences.append(sentence)
                         sentence = []
@@ -259,7 +270,7 @@ class TreeTagger(TaggerI):
                                 sentence.append((word, tag))
                 except:
                     pass
-            sentences.append(sentence)
+
         checked_sentences = []
         counter = 0
         for i, sentence in enumerate(sentences):
@@ -267,36 +278,78 @@ class TreeTagger(TaggerI):
                 counter += 1
                 sentence = self.fixTokens(old[i], sentence)
             checked_sentences.append(sentence)
-        print('counter: ', counter, len(sentences))
         return checked_sentences
 
+    
+    
     def fixTokens(self, standard, new):
+        standard = [u"#" if t==u"###" else t for t in standard]
         fixed = []
         fix = 0
         new_tag = ""
-        if len(standard) < len(new):
+        messedup_sent = False
+        if len(standard) < len(new) or messedup_sent:
             new_token=""
             for i, token in enumerate(new):
                 word = token[0]
                 tag = token[1]
-                if word == standard[fix]:
+                if word == standard[fix] and new_token=="":
                     fix += 1
                     fixed.append(token)
                 else:
+                    revert_token = new_token
+                    old_token = new_token
                     new_token += word
-                    if len(new_tag) == 0 or len(word) > 1:
-                        new_tag = tag
-                    if new_token == standard[fix]:
-                        fixed.append((new_token, tag))
-                        fix += 1
-                        new_token = ""
-                        new_tag = ""
-            if not len(fixed) == len(standard):
-                print('ni popravu: ', standard, new)
+                    if not standard[fix].startswith(new_token):
+                        old_token += " " + word
+                        new_token = old_token
+                    if not standard[fix].startswith(new_token):
+                        #the most complicated scenario with completely wrong tokens
+                        messedup_sent = True
+                        for j in range(i, len(new)):
+                            fixed.append(new[j])
+                        break
+                    else:
+                        if len(new_tag) == 0 or len(word) > 1:
+                            new_tag = tag
+                        if new_token == standard[fix]:
+                            fixed.append((new_token, tag))
+                            fix += 1
+                            new_token = ""
+                            new_tag = ""
+            #if not len(fixed) == len(standard):
+            #    print('ni popravu: ', standard, new, fixed)
 
-            return fixed
-        else:
-            print('neki cudnga: ', standard, new)
+            new = fixed
+        fixed = []
+        fix = 0
+        new_tag = ""
+        if len(standard) > len(new) or messedup_sent:
+            sliced = ""
+            for i, token in enumerate(standard):
+                word = token
+                predicted_token = new[fix][0]
+                if word == predicted_token:
+                    fixed.append((token, new[fix][1]))
+                    fix += 1
+                else:
+                    if sliced == "":
+                        sliced = predicted_token
+                    fixed.append((word, new[fix][1]))
+                    sliced = sliced[len(word):]
+                    if sliced == "":
+                        fix += 1
+                    
+            #if not len(fixed) == len(standard):
+            #    print('ni popravu dolzga: ', standard, fixed)
+            #else:
+            #    print('popravu', standard, fixed)
+            new = fixed
+
+        if not len(new) == len(standard):
+            print('ni popravu: ', standard, new)
+
+        return new
 
 
 
