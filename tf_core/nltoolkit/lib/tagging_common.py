@@ -61,13 +61,8 @@ def universal_sentence_tagger_hub(input_dict):
                 text_grouped.append(elements)
                 annotations_grouped.append(sentence_annotations)
 
-            if hasattr(tagger, 'name') and tagger.name == 'crfTagger':
-                from tf_taggers.pos_taggers.library import CRFTagger
-                crf_tagger = CRFTagger()
-                new_features=getattr(tagger,tagger_function)(crf_tagger, text_grouped,*args,**kwargs)
-            else:
-                new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
-            print('done')
+            
+            new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
 
             for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
                 for feature,annotation in izip(sentence_features,sentence_annotations):
