@@ -1,0 +1,40 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "uid": "38da03dd-8f53-4e9a-8492-ffc9b4dc7e51", 
+      "has_file": false, 
+      "image": "", 
+      "description": "Lemmagen lemmatizer as implemented in Python", 
+      "category": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
+      "static_image": "tag_stem_image.png", 
+      "action": "lemmagen_lemmatizer", 
+      "wsdl": "", 
+      "name": "Lemmagen Lemmatizer", 
+      "package": "tf_core.nltoolkit", 
+      "visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "has_progress_bar": false, 
+      "order": 5, 
+      "interactive": false
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "38da03dd-8f53-4e9a-8492-ffc9b4dc7e51", 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "ce685200-b15a-4e95-b3e0-3405348d7458", 
+      "order": 1, 
+      "description": ""
+    }
+  }
+]

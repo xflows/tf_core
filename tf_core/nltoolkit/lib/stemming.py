@@ -4,6 +4,8 @@ import nltk
 from tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
 from pattern.vector import stem, PORTER, LEMMA
+import lemmagen.lemmatizer
+from lemmagen.lemmatizer import Lemmatizer
 
 #from tagging_common_parallel import universal_word_tagger_hub
 from tf_core.nltoolkit.helpers import NltkRegexpStemmer
@@ -174,7 +176,6 @@ class WordnetLemmatizer:
         return self.lemmatizer.lemmatize(lemma)
 
 
-
 def nltk_wordnet_lemmatizer(input_dict):
     """
     WordNet Lemmatizer
@@ -187,6 +188,20 @@ def nltk_wordnet_lemmatizer(input_dict):
                 {'object': WordnetLemmatizer(pos_annotation),
                  'function': 'lemmatize',
                 }}
+
+class LemmagenLemmatizer:
+   
+    def lemmatize(self, word):
+        lemmatizer = Lemmatizer(dictionary=lemmagen.DICTIONARY_ENGLISH)
+        return lemmatizer.lemmatize(word)
+
+
+
+def lemmagen_lemmatizer(input_dict):
+    return {'tagger':
+                {'object': LemmagenLemmatizer(),
+                 'function': 'lemmatize',
+                }}    
 
 
 class PatternLemmatizer:
