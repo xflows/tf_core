@@ -207,6 +207,10 @@ def lemmagen_lemmatizer(input_dict):
 
 class PatternLemmatizer:
     def lemmatize(self, word):
+        if word == '/':
+            return word
+        if len(word) == 0:
+            return word
         word = word.replace('/', '')
         return parse(word, lemmata=True).split('/')[4]
 
