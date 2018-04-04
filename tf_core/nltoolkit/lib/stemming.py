@@ -4,6 +4,7 @@ import nltk
 from tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
 from pattern.vector import stem, PORTER, LEMMA
+from pattern.en import parse
 import lemmagen.lemmatizer
 from lemmagen.lemmatizer import Lemmatizer
 
@@ -206,7 +207,8 @@ def lemmagen_lemmatizer(input_dict):
 
 class PatternLemmatizer:
     def lemmatize(self, word):
-        return stem(word, stemmer = LEMMA)
+        word = word.replace('/', '')
+        return parse(word, lemmata=True).split('/')[4]
 
 
 def pattern_lemmatizer(input_dict):
