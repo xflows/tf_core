@@ -212,7 +212,11 @@ class PatternLemmatizer:
         if len(word) == 0:
             return word
         word = word.replace('/', '')
-        return parse(word, lemmata=True).split('/')[4]
+        try:
+            return parse(word, lemmata=True).split('/')[4]
+        except:
+            #print('Napaka: ', word, parse(word, lemmata=True))
+            return word
 
 
 def pattern_lemmatizer(input_dict):
