@@ -38,7 +38,7 @@ setup(
         "numpy",
         "scipy",
         "scikit-learn==0.16.1",
-        "docx",
+        "python-docx",
         "requests",
         "pdfminer",
         "pattern==2.6"

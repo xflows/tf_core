@@ -1,5 +1,5 @@
-
-
+from Orange.base import Learner
+from Orange.data import Table, Domain, Variable, ContinuousVariable, DiscreteVariable, StringVariable
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.tree import DecisionTreeClassifier
 
@@ -8,6 +8,7 @@ from tf_core.nltoolkit.helpers import NltkClassifier
 
 class BowDataset:
     def __init__(self,sparse_bow_matrix,labels=None):
+        #orange
         self.sparse_bow_matrix=sparse_bow_matrix
         self.labels=labels
     def __len__(self):
@@ -20,9 +21,12 @@ class BowDataset:
     @classmethod
     def from_adc(cls,adc,bow_model):
         sparse_bow_matrix = bow_model.vectorizer.transform(bow_model.get_raw_text(adc.documents,join_annotations_with='|##|'))
-        labels=bow_model.get_document_labels(adc)
+        Y, labels=bow_model.get_document_labels(adc,binary=True)
+        domain=Domain([ContinuousVariable.make(a) for a in bow_model.vectorizer.get_feature_names()],
+                      DiscreteVariable("class",values=labels))
+        new_data = Table.from_numpy(domain, sparse_bow_matrix, Y=Y)
 
-        return cls(sparse_bow_matrix,labels)
+        return new_data #cls(sparse_bow_matrix,labels)
 
     #def sparce_bow_matrix(self):
     #    return self.sparse_bow_matrix()
@@ -51,6 +55,35 @@ class BowDataset:
             return self.nltk_dataset_without_labels() if no_labels else self.nltk_dataset_with_labels()
         elif isinstance(classifier, (GaussianNB, MultinomialNB,  DecisionTreeClassifier)):
             return self.dense_bow_matrix()
+        elif isinstance(classifier,Learner):
+            # from Orange.data import ContinuousVariable, DiscreteVariable, Domain, Table
+            # Table(input_dict['file'])
+            #
+            # def orange_load_dataset_from_arff_string(input_dict):
+            #     output_dict = {}
+            #     data = arff.loads(input_dict['arff'])
+            #     attributes = []
+            #     classVar = None
+            #     for idx, (att_name, values) in enumerate(data['attributes']):
+            #         if values == 'REAL':
+            #             att = ContinuousVariable(att_name)
+            #         else:
+            #             att = DiscreteVariable(att_name, values)
+            #         if idx == len(data['attributes']) - 1:
+            #             classVar = att
+            #         else:
+            #             attributes.append(att)
+            #     domain = Domain(attributes, classVar)
+            #     data = Table.from_list(domain, data['data'])
+            #     output_dict['dataset'] = data
+            #     return output_dict
+            #
+            # data = input_dict['data']
+            #
+            # Y = classifier(data)
+            #
+            # new_data = Table.from_numpy(data.domain, data.X, Y=Y, metas=data.metas)
+            print("hello")
         else: #if latino classifier or a classifier that can deal with sparse data
             return self.sparse_bow_matrix
 

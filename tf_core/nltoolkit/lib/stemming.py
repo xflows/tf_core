@@ -3,7 +3,7 @@ from django.conf import settings
 import nltk
 from .tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
-from pattern.vector import stem, PORTER, LEMMA
+from pattern3.vector import stem, PORTER, LEMMA
 
 #from tagging_common_parallel import universal_word_tagger_hub
 from tf_core.nltoolkit.helpers import NltkRegexpStemmer

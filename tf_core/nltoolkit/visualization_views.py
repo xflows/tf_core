@@ -7,7 +7,7 @@ from nltk.collocations import *
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_selection import chi2
 
-@login_required
+# @login_required
 def display_document_corpus(request, input_dict, output_dict, widget, narrow_doc='n'):
     """
     Display Document Corpus widget displays ADC (Annotated Document Corpus) structure.
@@ -20,7 +20,7 @@ def display_document_corpus(request, input_dict, output_dict, widget, narrow_doc
                                                                                                'narrow_doc': narrow_doc})
     return view
 
-@login_required
+# @login_required
 def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  narrow_doc='n'):
     """
     Function display a list of documents, if there is less than 100 documents.
@@ -36,7 +36,7 @@ def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  
         #get interval of documents. document_id_from has -1, because we start counting documents from 1 and not 0.
         #document_id_to does not have -1, because we output documents to document x, with document x included.
         documents = w.inputs.all()[0].value.documents[int(document_id_from):int(document_id_to)]
-        back_url = request.environ["HTTP_REFERER"]
+        back_url = request.META.get('HTTP_REFERER')
 
     if len(documents) <= 100:
         #display 100 documents or less
@@ -77,7 +77,7 @@ def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  
 
     return view
 
-@login_required
+# @login_required
 def document_page(request, widget_id, document_id, narrow_doc='n'):
     """
     Function displays details for a single document.
@@ -85,7 +85,7 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
     from . import random_colors
     w = get_object_or_404(Widget, pk=widget_id)
     document = w.inputs.all()[0].value.documents[int(document_id)]
-    back_url = request.environ["HTTP_REFERER"]
+    back_url = request.META.get("HTTP_REFERER")
 
     #create a new data structure for annotations that is more appropriate for django template language
     annotations = {}
@@ -110,7 +110,7 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
     return view
 
 
-@login_required
+# @login_required
 def display_annotation_statistic(request, input_dict, output_dict, widget, narrow_doc='n'):
     """
     Display POS statistics, basicaly frequencies of specific tags

@@ -1,7 +1,7 @@
 
 import re
 import os.path
-from docx import opendocx, getdocumenttext
+# from docx import opendocx, getdocumenttext #TODO update with python-docx
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
@@ -55,6 +55,6 @@ def document_to_text(path):
         return filename, str(re.sub("\r|\n", "", text).strip())
 
     else:
-        text = str(open(path, "r").read(), errors='replace').strip()
+        text = open(path, "r").read().strip()
         return filename, text
 
