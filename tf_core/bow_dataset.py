@@ -95,7 +95,7 @@ class BowDataset:
         return output_train,output_test
 
     def get_document_labels(self,indices):
-        return [self.labels[i] for i in indices] if self.labels!=None else []
+        return [self.labels[i] for i in indices] if self.labels is not None else []
 
 # try:
 #     from nltk.classify import scikitlearn
