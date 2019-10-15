@@ -1,3 +1,4 @@
+import csv
 import json
 import urllib.request, urllib.parse, urllib.error
 import requests
@@ -72,6 +73,28 @@ def load_ptb_corpus(input_dict):
             tagged_sents.append(tagged_sent)
 
     return {"ptb_corpus": [name, tagged_sents]}
+
+
+def load_adc_from_tsv(input_dict):
+    input_text = input_dict['input']
+    title_column = input_dict['title_column'] or 'title'
+    text_column = input_dict['text_column'] or 'text'
+    label_column = input_dict['label_column'] or 'label'
+    sep = '\t'
+
+    texts, source, source_date, _ = _process_input(input_text, tab_separated_title=False)
+    titles, texts, labels = parse_csv(texts, sep, title_column, text_column, label_column)
+    documents, corpus_labels = lists_to_documents(titles, texts, labels)
+
+    corpus_date = str(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    features = {
+        "Source": source,
+        "SourceDate": source_date,
+        "CorpusCreateDate": corpus_date,
+        "Labels": json.dumps(corpus_labels)
+    }
+    output = {"adc": DocumentCorpus(documents=documents, features=features)}
+    return output
 
 
 def ptb_to_adc_converter(input_dict):
@@ -279,6 +302,63 @@ def load_mysql_document_corpus(input_dict):
                 "Labels": json.dumps(list(labels)) }
     return {'adc': DocumentCorpus(documents=documents, features=features)}
 
+
+def parse_csv(input_text, sep, title_column, text_column, label_column):
+    csv_reader = csv.reader(input_text, delimiter=sep)
+    columns = [title_column, text_column, label_column]
+    outputs = {column: [] for column in columns}
+    columns_indices = {}
+
+    # set column indices
+    first_row = next(csv_reader)
+    first_row_indices = dict((v, k) for k, v in enumerate(first_row))
+    for column in columns:
+        columns_indices[column] = first_row_indices.get(column, -1)
+
+    if columns_indices[text_column] == -1:
+        raise Exception('Text column: %s is not found in text' % text_column)
+
+    for row in csv_reader:
+        if not row:
+            continue
+        for column_name in columns:
+            column_index = columns_indices[column_name]
+            if column_index == -1 or column_index >= len(row):
+                outputs[column_name].append('')
+                continue
+
+            column_value = row[column_index]
+            if column_name == text_column:
+                # Remove consecutive spaces because the space tokenizer has problems with them
+                column_value = re.sub(' +', ' ', column_value)
+            outputs[column_name].append(column_value)
+
+    return (outputs[column] for column in columns)
+
+
+def lists_to_documents(titles, texts, labels):
+    documents = []
+    corpus_labels = set()
+    for i, text in enumerate(texts):
+        if not text:
+            continue
+        label = labels[i]
+
+        title = "Document" + str(i + 1) if titles == [] else titles[i]
+        features = {"contentType": "Text", "sourceFileLine": str(i)}
+
+        if label:
+            # This method supports only one label per document
+            label = label.strip()
+            features[label] = "true"
+            corpus_labels.add(label)
+            features["Labels"] = json.dumps([label])
+        annotation = Annotation(span_start=0, span_end=max(0,
+                                                           len(str(text)) - 1), type="TextBlock",
+                                features={})
+        document = Document(name=title, features=features, text=str(text), annotations=[annotation])
+        documents.append(document)
+    return documents, list(corpus_labels)
 
 
 def _process_input(input_text,tab_separated_title):
