@@ -84,7 +84,7 @@ def load_adc_from_tsv(input_dict):
 
     texts, source, source_date, _ = _process_input(input_text, tab_separated_title=False)
     titles, texts, labels = parse_csv(texts, sep, title_column, text_column, label_column)
-    documents, corpus_labels = lists_to_documents(titles, texts, labels)
+    documents, corpus_labels = zip_to_documents(titles, texts, labels)
 
     corpus_date = str(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     features = {
@@ -336,7 +336,7 @@ def parse_csv(input_text, sep, title_column, text_column, label_column):
     return (outputs[column] for column in columns)
 
 
-def lists_to_documents(titles, texts, labels):
+def zip_to_documents(titles, texts, labels):
     documents = []
     corpus_labels = set()
     for i, text in enumerate(texts):
