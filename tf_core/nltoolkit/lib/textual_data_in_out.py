@@ -77,9 +77,9 @@ def load_ptb_corpus(input_dict):
 
 def load_adc_from_tsv(input_dict):
     input_text = input_dict['input']
-    title_column = input_dict['title_column'] or 'title'
-    text_column = input_dict['text_column'] or 'text'
-    label_column = input_dict['label_column'] or 'label'
+    title_column = input_dict.get('title_column') or 'title'
+    text_column = input_dict.get('text_column') or 'text'
+    label_column = input_dict.get('label_column') or 'label'
     sep = '\t'
 
     texts, source, source_date, _ = _process_input(input_text, tab_separated_title=False)
