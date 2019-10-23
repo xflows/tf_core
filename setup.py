@@ -33,7 +33,7 @@ setup(
         'Topic :: Software Development :: Libraries'
     ],
     install_requires=[
-        "nltk==3.2.1",
+        "nltk==3.4.5",
         "django-discover-runner==1.0",
         "numpy",
         "scipy",
