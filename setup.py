@@ -40,7 +40,6 @@ setup(
         "scikit-learn==0.16.1",
         "python-docx",
         "requests",
-        "pdfminer",
-        "pattern==2.6"
+        "pattern"
     ]
 )
