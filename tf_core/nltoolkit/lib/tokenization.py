@@ -46,7 +46,7 @@ def tokenizer_hub(input_dict):
                     for starts_at,ends_at in new_token_spans:
                         document.annotations.append(Annotation(annotation.span_start+starts_at,annotation.span_start+ends_at-1,output_annotation))
             if i%100==0:
-                print int((i+1)*1.0/docs_count*100)
+                print(int((i+1)*1.0/docs_count*100))
             #widget.progress = int((i+1)*1.0/*100)
             #widget.save()
         return {'adc': adc}
@@ -105,9 +105,9 @@ def nltk_regex_tokenizer(input_dict):
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
 
-    pattern = input_dict[u'pattern']
-    gaps = input_dict[u'gaps'] == "true"
-    discard_empty = input_dict[u'discard_empty'] == "true"
+    pattern = input_dict['pattern']
+    gaps = input_dict['gaps'] == "true"
+    discard_empty = input_dict['discard_empty'] == "true"
 
     return {'tokenizer': {'object': NltkRegexpTokenizer(pattern, gaps=gaps, discard_empty=discard_empty)}}
 
@@ -129,8 +129,8 @@ def nltk_sexpression_tokenizer(input_dict):
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
 
-    parens = input_dict[u'parens']
-    strict = input_dict[u'strict'] == "true"
+    parens = input_dict['parens']
+    strict = input_dict['strict'] == "true"
 
     return {'tokenizer': {'object': nltk.SExprTokenizer(parens=parens, strict=strict)}}
 
@@ -160,17 +160,17 @@ def nltk_simple_tokenizer(input_dict):
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
 
-    if input_dict["type"] == u"char_tokenizer":
+    if input_dict["type"] == "char_tokenizer":
         tokenizer = nltk.tokenize.simple.CharTokenizer()
-    elif input_dict["type"] == u"space_tokenizer":
+    elif input_dict["type"] == "space_tokenizer":
         tokenizer = nltk.SpaceTokenizer()
-    elif input_dict["type"] == u"tab_tokenizer":
+    elif input_dict["type"] == "tab_tokenizer":
         tokenizer = nltk.TabTokenizer()
-    elif input_dict["type"] == u"whitespace_tokenizer":
+    elif input_dict["type"] == "whitespace_tokenizer":
         tokenizer = nltk.WhitespaceTokenizer()
-    elif input_dict["type"] == u"blankline_tokenizer":
+    elif input_dict["type"] == "blankline_tokenizer":
         tokenizer = nltk.BlanklineTokenizer()
-    elif input_dict["type"] == u"wordpunct_tokenizer":
+    elif input_dict["type"] == "wordpunct_tokenizer":
         tokenizer = nltk.WordPunctTokenizer()
 
     return {'tokenizer': {'object': tokenizer}}
@@ -186,7 +186,7 @@ def nltk_line_tokenizer(input_dict):
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
 
-    blanklines = input_dict[u"blanklines"]
+    blanklines = input_dict["blanklines"]
     return {'tokenizer': {'object': nltk.LineTokenizer(blanklines=blanklines)}}
 
 

@@ -1,5 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, TfidfTransformer
-from nltoolkit.helpers import TokenSplitter
+from .nltoolkit.helpers import TokenSplitter
 
 from tf_core.nltoolkit.helpers import TokenSplitter
 
@@ -83,8 +83,8 @@ class BowModelConstructor:
     def _count_vectorizer(self):
         return CountVectorizer(**self.__count_params)
     def _tfidf_vectorizer(self):
-        return TfidfVectorizer(**dict(self.__count_params.items()
-                                      +self.__tfidf_params.items()
+        return TfidfVectorizer(**dict(list(self.__count_params.items())
+                                      +list(self.__tfidf_params.items())
                                       #+[['tokenizer',self.custom_tokenizer]]
                                       ))
     def _tfidf_transformer(self):
@@ -112,11 +112,12 @@ class BowModelConstructor:
         '''
 
         if self._doc_class_label:
-            res=[doc.get_first_label(self._doc_class_label) for doc in adc.documents]
+            document_labels=[doc.get_first_label(self._doc_class_label) for doc in adc.documents]
+            uniq_labels = list(set(document_labels))
+
             if binary:
-                uniq_res=list(set(res))
-                return [uniq_res.index(r) for r in res]
-            return res
+                return [uniq_labels.index(r) for r in document_labels], uniq_labels
+            return document_labels, uniq_labels
         else:
             return None
     def get_feature_names(self):

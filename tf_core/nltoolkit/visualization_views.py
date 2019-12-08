@@ -7,7 +7,7 @@ from nltk.collocations import *
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_selection import chi2
 
-@login_required
+# @login_required
 def display_document_corpus(request, input_dict, output_dict, widget, narrow_doc='n'):
     """
     Display Document Corpus widget displays ADC (Annotated Document Corpus) structure.
@@ -20,7 +20,7 @@ def display_document_corpus(request, input_dict, output_dict, widget, narrow_doc
                                                                                                'narrow_doc': narrow_doc})
     return view
 
-@login_required
+# @login_required
 def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  narrow_doc='n'):
     """
     Function display a list of documents, if there is less than 100 documents.
@@ -36,7 +36,7 @@ def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  
         #get interval of documents. document_id_from has -1, because we start counting documents from 1 and not 0.
         #document_id_to does not have -1, because we output documents to document x, with document x included.
         documents = w.inputs.all()[0].value.documents[int(document_id_from):int(document_id_to)]
-        back_url = request.environ["HTTP_REFERER"]
+        back_url = request.META.get('HTTP_REFERER')
 
     if len(documents) <= 100:
         #display 100 documents or less
@@ -77,15 +77,15 @@ def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  
 
     return view
 
-@login_required
+# @login_required
 def document_page(request, widget_id, document_id, narrow_doc='n'):
     """
     Function displays details for a single document.
     """
-    import random_colors
+    from . import random_colors
     w = get_object_or_404(Widget, pk=widget_id)
     document = w.inputs.all()[0].value.documents[int(document_id)]
-    back_url = request.environ["HTTP_REFERER"]
+    back_url = request.META.get("HTTP_REFERER")
 
     #create a new data structure for annotations that is more appropriate for django template language
     annotations = {}
@@ -99,7 +99,7 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
 
     #create a color for each annotation
     annotation_colors = random_colors.get_colors(len(annotations))
-    for i, (k, v) in enumerate(annotations.iteritems()):
+    for i, (k, v) in enumerate(annotations.items()):
         annotations[k] = [v, annotation_colors[i]]
 
     view = django.shortcuts.render(request, 'visualizations/document_page.html', {'widget_id': widget_id,
@@ -110,7 +110,7 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
     return view
 
 
-@login_required
+# @login_required
 def display_annotation_statistic(request, input_dict, output_dict, widget, narrow_doc='n'):
     """
     Display POS statistics, basicaly frequencies of specific tags
@@ -144,7 +144,7 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
             title = "Annotation frequency"
         
         allAnnotations = float(allAnnotations)
-        for pos, number in annotation_dict.items():
+        for pos, number in list(annotation_dict.items()):
             result_list.append((pos, "{0:.2f}".format(float(number)/allAnnotations)))
 
         result_list = sorted(result_list, key=lambda x: x[1], reverse=True)[:40]
@@ -186,8 +186,8 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
             labels = [document.get_first_label() for document in adc.documents]
             X = vectorizer.fit_transform(raw_text)
             chi2score = chi2(X,labels)
-            chi2score = zip(chi2score[0], chi2score[1])
-            wscores = zip(vectorizer.get_feature_names(),chi2score)
+            chi2score = list(zip(chi2score[0], chi2score[1]))
+            wscores = list(zip(vectorizer.get_feature_names(),chi2score))
             result_list = sorted(wscores, reverse=True, key=lambda x:x[1][0])[:40]
             result_list = [(feat, '{:.2f}'.format(chi[0]), '{:.2e}'.format(chi[1]))for feat, chi in result_list]
             title = "Chi square feature evaluation"

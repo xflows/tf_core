@@ -1,12 +1,12 @@
 {# Template displays a document corpus catalog, when there is more tham 100 documents. Documents are displayed in groups of 100 documents.#}
-{% load static %}
-
+{% load fullpath %}
 {# select a css style, if a page is displayed in a frame or in a new windows #}
 {%  if narrow_doc == "n" %}
-    <link rel="stylesheet" href="{% static 'css/document_corpus_narrow.css' %}">
+   <link rel="stylesheet" href="{% static_fullpath request 'tf_core.nltoolkit/css/document_corpus_narrow.css' %}">
 {% else %}
-    <link rel="stylesheet" href="{% static 'css/document_corpus.css' %}">
+   <link rel="stylesheet" href="{% static_fullpath request 'tf_core.nltoolkit/css/document_corpus.css' %}">
 {% endif %}
+
 
 <div id="corpusFeatures">
     <h2>Features</h2>

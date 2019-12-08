@@ -1,16 +1,16 @@
-{% load static %}
-
-<script type="text/javascript" src="{% static  'js/jquery.js' %}"></script>
-<script type="text/javascript" src="{% static  'js/annotations.js' %}"></script>
+{% load fullpath %}
+<script type="text/javascript" src="{% static_fullpath request 'tf_core.nltoolkit/js/jquery-1.7.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static_fullpath request 'tf_core.nltoolkit/js/annotations.js' %}"></script>
 
 {%  if narrow_doc == "n" %}
-    <link rel="stylesheet" href="{% static 'css/document_page_narrow.css' %}">
+    <link rel="stylesheet" href="{% static_fullpath request 'tf_core.nltoolkit/css/document_page_narrow.css' %}">
 {% else %}
-    <link rel="stylesheet" href="{% static 'css/document_page.css' %}">
+    <link rel="stylesheet" href="{% static_fullpath request 'tf_core.nltoolkit/css/document_page.css' %}">
 {% endif %}
 
-<link type="text/css" href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet" />
-<script type="text/javascript" src="{{STATIC_URL}}js/jquery.tipsy.js"></script>
+<link rel="stylesheet" href="{% static_fullpath request 'tf_core.nltoolkit/css/tipsy.css' %}">
+<link type="text/css" href="{% static_fullpath request 'tf_core.nltoolkit/css/document_page.css' %}" />
+<script type="text/javascript" src="{% static_fullpath request 'tf_core.nltoolkit/js/jquery.tipsy.js' %}"></script>
 
 <script>
 var htmlText = "{{document.text|linebreaks }}";
@@ -21,7 +21,7 @@ var htmlText = "{{document.text|linebreaks }}";
     <h3 id="h3Tree">Annotation tree</h3>
     <ul>
         <ul>
-        {% for annotation_name, annotation_el in annotations.iteritems %}
+        {% for annotation_name, annotation_el in annotations.items %}
                 <li> <table>
                     <tr>
                         <td name="annotation" style='padding-right:10px' >
@@ -37,7 +37,7 @@ var htmlText = "{{document.text|linebreaks }}";
     <div id="DocumentFeaturesLayer">
 
     <h3>Features</h3>
-    {% for name, value in document.features.iteritems  %}
+    {% for name, value in document.features.items  %}
 
         <b>{{name}}</b> = {{ value }} <br/>
 

@@ -1,0 +1,108 @@
+[
+  {
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "name": "Load Document Corpus from Tab-separated Values",
+      "action": "load_adc_from_tsv",
+      "wsdl": "",
+      "wsdl_method": "",
+      "description": "This widget processes input text from a Tab-separated values and loads it into ADC (Annotated Document Corpus) structure.",
+      "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe",
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "interactive": false,
+      "interaction_view": "",
+      "post_interact_action": "",
+      "image": "",
+      "treeview_image": "",
+      "static_image": "load_adc_from_file_image.png",
+      "has_progress_bar": false,
+      "is_streaming": false,
+      "order": 1,
+      "uid": "65072aac-1327-4ae6-bfb3-2277ec2051f9",
+      "package": "tf_core.nltoolkit",
+      "always_save_results": false,
+      "windows_queue": false
+    }
+  },
+  {
+    "model": "workflows.abstractinput",
+    "fields": {
+      "name": "Title column",
+      "short_name": "tl",
+      "description": "Name of the title column in tsv file (not required)",
+      "variable": "title_column",
+      "widget": "65072aac-1327-4ae6-bfb3-2277ec2051f9",
+      "required": false,
+      "parameter": true,
+      "multi": false,
+      "default": "title",
+      "parameter_type": "text",
+      "order": 1,
+      "uid": "137aba7f-8a94-41ca-b5c4-772ba28d1e58"
+    }
+  },
+  {
+    "model": "workflows.abstractinput",
+    "fields": {
+      "name": "Text column",
+      "short_name": "tc",
+      "description": "Name of the text column in  tsv file (required)",
+      "variable": "text_column",
+      "widget": "65072aac-1327-4ae6-bfb3-2277ec2051f9",
+      "required": true,
+      "parameter": true,
+      "multi": false,
+      "default": "text",
+      "parameter_type": "text",
+      "order": 2,
+      "uid": "21f2f022-8769-40e1-ad2e-56be5a6a0371"
+    }
+  },
+  {
+    "model": "workflows.abstractinput",
+    "fields": {
+      "name": "Label column",
+      "short_name": "lc",
+      "description": "Name of the label column in tsv file (required for classification)",
+      "variable": "label_column",
+      "widget": "65072aac-1327-4ae6-bfb3-2277ec2051f9",
+      "required": true,
+      "parameter": true,
+      "multi": false,
+      "default": "label",
+      "parameter_type": "text",
+      "order": 3,
+      "uid": "6499104c-12cc-4422-a601-c65afb4994e4"
+    }
+  },
+  {
+    "model": "workflows.abstractinput",
+    "fields": {
+      "name": "Input",
+      "short_name": "inp",
+      "description": "Input can be a tsv file (fil).",
+      "variable": "input",
+      "widget": "65072aac-1327-4ae6-bfb3-2277ec2051f9",
+      "required": true,
+      "parameter": false,
+      "multi": false,
+      "default": "",
+      "parameter_type": null,
+      "order": 1,
+      "uid": "f2a917a2-8972-4190-bba2-30c21019b36d"
+    }
+  },
+  {
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "description": "Annotated Document Corpus.",
+      "variable": "adc",
+      "widget": "65072aac-1327-4ae6-bfb3-2277ec2051f9",
+      "order": 1,
+      "uid": "7ccbde57-7ea6-459e-8055-d167ba2af5d3"
+    }
+  }
+] 

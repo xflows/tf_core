@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='tf_core',
-    version='0.0.26',
+    version='0.0.27',
     packages=['tf_core'],
     include_package_data=True,
     license='MIT License',
@@ -33,14 +33,13 @@ setup(
         'Topic :: Software Development :: Libraries'
     ],
     install_requires=[
-        "nltk==3.2.1",
-        "django-discover-runner==1.0",
+        "nltk",
         "numpy",
         "scipy",
-        "scikit-learn==0.16.1",
-        "docx",
+        "scikit-learn",
+        "python-docx",
         "requests",
-        "pdfminer",
-        "pattern==2.6"
+        "Django",
+        "pattern3"
     ]
 )

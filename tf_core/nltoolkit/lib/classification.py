@@ -185,6 +185,6 @@ def extract_classifier_name(input_dict):
 
 
 def extract_actual_and_predicted_values(input_dict):
-    actual=input_dict['dataset'].labels
-    predicted=[a.max() for a in input_dict['predictions']]
-    return {'actual_and_predicted': [actual, predicted]}
+    actual=input_dict['dataset']
+    predicted=input_dict['predictions'] #[a.max() for a in input_dict['predictions']]
+    return {'actual_and_predicted': [list(actual.Y), list(predicted.Y)]}
