@@ -1,0 +1,108 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "uid": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "has_file": false, 
+      "image": "", 
+      "description": "Takes as an input an ADC object with predicted features and an ADC object with actual features(golden standard). Output is a list containing a list of predicted features and a list contained actual features.", 
+      "category": "ed2728bc-3fd5-4244-9876-f6a757d1b922", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
+      "static_image": "", 
+      "action": "extract_actual_and_predicted_features", 
+      "wsdl": "", 
+      "name": "Extract Actual and Predicted features", 
+      "package": "tf_core.nltoolkit", 
+      "visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "has_progress_bar": false, 
+      "order": 1001, 
+      "interactive": false
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Actual annotation", 
+      "short_name": "str", 
+      "uid": "89cdcbd2-684f-4f56-a21e-3ba611ae634a", 
+      "default": "POS tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_actual", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Lowercase", 
+      "short_name": "str", 
+      "uid": "b2f8ca03-ed6f-45b3-a14a-8a6a467e7904", 
+      "default": "False", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "lowercase", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "Convert features to lowercase"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Predicted annotation", 
+      "short_name": "str", 
+      "uid": "c67d197b-d7f0-4697-b9c5-bafb87a6a968", 
+      "default": "POS tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_predicted", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "cfc16923-a5fb-4050-b58c-79d9f4544b07", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "d7bd1d1d-3f76-4217-afb5-b401a738d64e", 
+      "name": "Actual and Predicted Values", 
+      "short_name": "lst", 
+      "variable": "actual_and_predicted", 
+      "uid": "b76ad968-cbfa-444f-9916-3e085f1a6f2a", 
+      "order": 1, 
+      "description": "List of Actual and Predicted Values"
+    }
+  }
+]

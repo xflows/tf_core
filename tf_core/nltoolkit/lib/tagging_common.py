@@ -61,6 +61,7 @@ def universal_sentence_tagger_hub(input_dict):
                 text_grouped.append(elements)
                 annotations_grouped.append(sentence_annotations)
 
+            
             new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
             for sentence_features, sentence_annotations in zip(new_features,annotations_grouped):
                 for feature,annotation in zip(sentence_features,sentence_annotations):

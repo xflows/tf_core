@@ -3,7 +3,11 @@ from django.conf import settings
 import nltk
 from .tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
-from pattern3.vector import stem, PORTER, LEMMA
+
+from pattern.vector import stem, PORTER, LEMMA
+from pattern.en import parse
+import lemmagen.lemmatizer
+from lemmagen.lemmatizer import Lemmatizer
 
 #from tagging_common_parallel import universal_word_tagger_hub
 from tf_core.nltoolkit.helpers import NltkRegexpStemmer
@@ -174,7 +178,6 @@ class WordnetLemmatizer:
         return self.lemmatizer.lemmatize(lemma)
 
 
-
 def nltk_wordnet_lemmatizer(input_dict):
     """
     WordNet Lemmatizer
@@ -188,10 +191,33 @@ def nltk_wordnet_lemmatizer(input_dict):
                  'function': 'lemmatize',
                 }}
 
+class LemmagenLemmatizer:
+   
+    def lemmatize(self, word):
+        lemmatizer = Lemmatizer(dictionary=lemmagen.DICTIONARY_ENGLISH)
+        return lemmatizer.lemmatize(word)
+
+
+
+def lemmagen_lemmatizer(input_dict):
+    return {'tagger':
+                {'object': LemmagenLemmatizer(),
+                 'function': 'lemmatize',
+                }}    
+
 
 class PatternLemmatizer:
     def lemmatize(self, word):
-        return stem(word, stemmer = LEMMA)
+        if word == '/':
+            return word
+        if len(word) == 0:
+            return word
+        word = word.replace('/', '')
+        try:
+            return parse(word, lemmata=True).split('/')[4]
+        except:
+            #print('Napaka: ', word, parse(word, lemmata=True))
+            return word
 
 
 def pattern_lemmatizer(input_dict):
