@@ -44,7 +44,7 @@ def pos_tagger_hub(input_dict):
                     print(doc.features)
                 else:
                     annotation.features[output_annotation_name]=annotation.features[output_annotation_name][0:number_of_letters]
-    print 'POS tagging done'
+    print('POS tagging done')
 
     return {'adc': adc }
 
