@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='tf_core',
-    version='0.0.27',
+    version='0.3.0',
     packages=['tf_core'],
     include_package_data=True,
     license='MIT License',
